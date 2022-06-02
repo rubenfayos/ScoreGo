@@ -8,8 +8,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -29,8 +32,6 @@ import javaproject.model.UsuarioModel;
  * @author 1erDAM
  */
 public class FXMLAjustesUsuarioController implements Initializable {
-    
-    private SceneController sc;
     
     private UsuarioModel usuarioModel;
     
@@ -62,8 +63,6 @@ public class FXMLAjustesUsuarioController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        this.sc = new SceneController();
         
         this.usuarioModel = new UsuarioModel();
         
@@ -120,12 +119,7 @@ public class FXMLAjustesUsuarioController implements Initializable {
                 }
         }else{
             ai.show();
-        }
-        
-        
-        
-        
-        
+        }    
     }
 
     @FXML
@@ -154,7 +148,12 @@ public class FXMLAjustesUsuarioController implements Initializable {
             if(ac.getResult() == ButtonType.OK){           
                 if(this.usuarioModel.eliminarUsuario(this.usuario) > 0){
                     ae.showAndWait();
-                    this.sc.switchToInicio(event);
+                    try {
+                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
+                            this.AjustesUsuario.getChildren().setAll(pane);
+                        } catch (IOException ex) {
+                            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    }   
                 }
                     
             }

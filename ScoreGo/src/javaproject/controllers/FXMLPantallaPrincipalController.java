@@ -35,7 +35,6 @@ public class FXMLPantallaPrincipalController implements Initializable {
     private Scene scene;
     private Parent root;
     
-    private SceneController scenecon;
     private AnchorPane AP;
     @FXML
     private AnchorPane SideBar;
@@ -54,7 +53,6 @@ public class FXMLPantallaPrincipalController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         //Inicia el Anchor Pane de la página inicio
-       this.scenecon=new SceneController();
        try {
             ScrollPane scp = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
             this.PrincipalAP.getChildren().setAll(scp);

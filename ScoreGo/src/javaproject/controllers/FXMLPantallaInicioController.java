@@ -32,7 +32,6 @@ public class FXMLPantallaInicioController implements Initializable{
     @FXML
     private Button crearUsuarioButton;
     
-    private SceneController scenecon;
     @FXML
     private AnchorPane AP;
 
@@ -41,7 +40,6 @@ public class FXMLPantallaInicioController implements Initializable{
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {  
-        this.scenecon=new SceneController();
         
     }    
 

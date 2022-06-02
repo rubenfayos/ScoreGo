@@ -22,9 +22,11 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javaproject.controllers.FXMLPantallaPrincipalController;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
+import javaproject.vistas.ScoreGo;
 
 /**
  * FXML Controller class
@@ -35,7 +37,6 @@ public class FXMLInformacionUsuarioController implements Initializable {
     
     private Singleton s = Singleton.getInstance();
     private Usuario us;
-    private SceneController sc;
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -64,8 +65,6 @@ public class FXMLInformacionUsuarioController implements Initializable {
         
         this.us=s.us;
         
-        this.sc = new SceneController();
-        
         this.infoNombreUsuario.setText(us.getNombre());
         this.infoCorreoUsuario.setText(us.getCorreo());
         this.infoNombreUsuario1.setText(us.getFechaNacimiento().toString());
@@ -79,7 +78,7 @@ public class FXMLInformacionUsuarioController implements Initializable {
     }    
 
     @FXML
-    private void clickBotonCerrarSesion(ActionEvent event) throws IOException {
+    private void clickBotonCerrarSesion(ActionEvent event) throws IOException, Exception {
         
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("INFORMATION DIALOG");
@@ -88,10 +87,11 @@ public class FXMLInformacionUsuarioController implements Initializable {
         
         ac.showAndWait();
             
-            if(ac.getResult() == ButtonType.OK)         
-                    this.sc.switchToInicio(event);
-                
-        
+        if(ac.getResult() == ButtonType.OK){
+            
+            ScoreGo sc = new ScoreGo();
+            sc.start(new Stage());
+        }           
     }
 
     @FXML

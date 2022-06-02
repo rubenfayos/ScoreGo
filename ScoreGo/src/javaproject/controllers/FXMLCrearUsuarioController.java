@@ -34,8 +34,6 @@ import javaproject.model.UsuarioModel;
 public class FXMLCrearUsuarioController implements Initializable {
     
     private UsuarioModel usuarioModel;
-    
-    private SceneController scenecon;
 
     @FXML
     private Button añadirUsuarioBoton;
@@ -61,8 +59,6 @@ public class FXMLCrearUsuarioController implements Initializable {
    
 
     public void initialize(URL url, ResourceBundle rb) {
-         
-        this.scenecon= new SceneController();
         
         //Se hace la conexión con la base de datos
         this.usuarioModel=new UsuarioModel();
@@ -122,8 +118,12 @@ public class FXMLCrearUsuarioController implements Initializable {
 
     @FXML
     private void switchToInicio(ActionEvent event) throws IOException {
-        this.scenecon.switchToInicio(event);
         
-    }
-    
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
+            this.AP.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    } 
 }

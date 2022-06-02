@@ -27,7 +27,6 @@ import javaproject.model.UsuarioModel;
  */
 public class FXMLIniciarSesionController implements Initializable {
     
-    private SceneController scenecon;
     private UsuarioModel usuarioModel;
     
     private Singleton s = Singleton.getInstance();
@@ -44,7 +43,6 @@ public class FXMLIniciarSesionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.scenecon=new SceneController();
         this.usuarioModel= new UsuarioModel();
     }    
 
@@ -67,10 +65,13 @@ public class FXMLIniciarSesionController implements Initializable {
             if(this.s.us.getNombreUsuario() == null)
                 a2.show();
             else   
-                this.scenecon.switchToPantallaPrincipal(event);
-        };
-        
-        
+                try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaPrincipal.fxml"));
+                this.AP.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            };     
     }
 
     @FXML
