@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javaproject.clases.Partitura;
 import javaproject.clases.Usuario;
 import jdk.nashorn.internal.objects.NativeRegExp;
@@ -18,7 +20,7 @@ import jdk.nashorn.internal.objects.NativeRegExp;
  */
 public class PartituraModel extends DBUtil{
     
-        public void subirPartitura(Partitura p){
+        public int subirPartitura(Partitura p){
             
             int comp = 0;
         
@@ -49,9 +51,11 @@ public class PartituraModel extends DBUtil{
                     
                     stmt2.setInt(1, p.getId());
                     stmt2.setInt(2, i);
-                    stmt2.execute();
+                    comp=stmt2.executeUpdate();
                 }
-          
+                
+                 if(comp > ins.size())
+                     comp = 1;
             
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -61,6 +65,8 @@ public class PartituraModel extends DBUtil{
                 //Cerramos conexion
                 this.cerrarConexion();
             }
+             
+            return comp;
         
         }
          
@@ -183,5 +189,45 @@ public class PartituraModel extends DBUtil{
         return ins;
         
     }
+        
+    public ObservableList<Partitura> listarPartituras(Usuario u){
+        
+        ObservableList<Partitura> partituras = FXCollections.observableArrayList();
+            
+            try{
+            
+            //Hacemos update con los nuevos datos del usuario sobre el id del usuario
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura WHERE nombre=?");
+            
+            stmt.setInt(1, u.getId());
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+            
+                Partitura p = new Partitura();
+                p.setId(rs.getInt("id"));
+                p.setAutor(rs.getString("autor"));
+                p.setNombre(rs.getString("nombre"));
+                p.setSrc(rs.getString("src"));
+                p.setMp3(rs.getString("mp3"));
+                partituras.add(p);
+            
+            }
+                
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+            
+            return partituras;
+       
+        }
           
 }

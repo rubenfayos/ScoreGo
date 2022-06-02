@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLSubirPartituraController">
+<AnchorPane id="AnchorPane" fx:id="AP" prefHeight="720.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLSubirPartituraController">
    <children>
       <Label layoutX="189.0" layoutY="128.0" text="Nombre">
          <font>
@@ -73,7 +73,7 @@
       </Pane>
       <Button layoutX="189.0" layoutY="318.0" mnemonicParsing="false" onAction="#SubirArchivo" style="-fx-background-color: #36d8ad;" text="Examinar" />
       <Button layoutX="189.0" layoutY="398.0" mnemonicParsing="false" onAction="#SubirAudio" style="-fx-background-color: #36d8ad;" text="Examinar" />
-      <Label fx:id="archivoText" layoutX="225.0" layoutY="314.0" prefHeight="17.0" prefWidth="125.0" text="." />
-      <Label fx:id="audioText" layoutX="225.0" layoutY="394.0" prefHeight="17.0" prefWidth="125.0" text="." />
+      <Label fx:id="archivoText" layoutX="264.0" layoutY="322.0" prefHeight="17.0" prefWidth="125.0" text="." />
+      <Label fx:id="audioText" layoutX="264.0" layoutY="402.0" prefHeight="17.0" prefWidth="125.0" text="." />
    </children>
 </AnchorPane>

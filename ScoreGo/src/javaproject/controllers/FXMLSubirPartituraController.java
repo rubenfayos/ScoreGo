@@ -9,8 +9,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -77,6 +80,8 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
     private Label audioText;
     @FXML
     private AnchorPane tablaInstrumentos;
+    @FXML
+    private AnchorPane AP;
     /**
      * Initializes the controller class.
      */
@@ -126,11 +131,21 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
         p.setAutor(autorPartitura.getText());
         p.setNombre(nombrePartitura.getText());
         p.setUsuario(this.us);
-        p.setMp3(this.ftpManager.subir(this.mp3.getAbsolutePath(), this.mp3.getName()));
-        p.setSrc(this.ftpManager.subir(this.pdf.getAbsolutePath(), this.pdf.getName()));
+        //Sube el mp3 al servidor
+        p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName()));
+        //Sube el pdf al servidor
+        p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName()));
         p.setInstrumentos(this.instrumentos);
         
-        this.partituraModel.subirPartitura(p);
+        if(this.partituraModel.subirPartitura(p) == 1){
+            ai.showAndWait();
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
+                this.AP.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }     
+        }
     }
     
     @FXML

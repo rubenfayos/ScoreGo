@@ -54,7 +54,7 @@ public class FTPManager {
         
     }
     
-    public String subir(String localFile, String nombre) throws IOException {
+    public String subirPDF(String localFile, String nombre) throws IOException {
         
         this.getConexion();
     	
@@ -62,7 +62,31 @@ public class FTPManager {
         File firstLocalFile = new File(localFile.toString());
 
         //Ruta donde se subirá el archivo en el servidor
-        String firstRemoteFile = "/public_html/data/admin/files/";
+        String firstRemoteFile = "/public_html/data/admin/files/Partituras/pdf/";
+        firstRemoteFile+=nombre.toString();
+        InputStream inputStream = new FileInputStream(firstLocalFile);
+		
+
+        System.out.println("Subiendo el archivo...");
+        boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
+        inputStream.close();
+        if (done) {
+            System.out.println("Archivo subido");
+        }
+        
+        return firstRemoteFile;
+    	
+    }
+    
+    public String subirMP3(String localFile, String nombre) throws IOException {
+        
+        this.getConexion();
+    	
+    	//Archivo que se quiere subir en local
+        File firstLocalFile = new File(localFile.toString());
+
+        //Ruta donde se subirá el archivo en el servidor
+        String firstRemoteFile = "/public_html/data/admin/files/Partituras/mp3/";
         firstRemoteFile+=nombre.toString();
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
