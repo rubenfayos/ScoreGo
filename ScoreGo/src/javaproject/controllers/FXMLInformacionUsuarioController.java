@@ -99,6 +99,14 @@ public class FXMLInformacionUsuarioController implements Initializable {
         
          //Switch a Anchor Pane ajustes
         try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustesUsuario.fxml"));
+            this.AnchorPane.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    
+    try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustes.fxml"));
             this.AnchorPane.getChildren().setAll(pane);
         } catch (IOException ex) {
