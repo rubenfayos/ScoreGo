@@ -84,7 +84,7 @@ public class FXMLPublicacionesBandaController implements Initializable {
     @FXML
     private void clickPartiturasBanda(ActionEvent event) {
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartitura.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartituraBanda.fxml"));
             this.publicacionesSubPane.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
