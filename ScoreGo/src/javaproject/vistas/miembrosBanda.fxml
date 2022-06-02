@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" maxHeight="649.0" maxWidth="1110.0" prefHeight="667.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="659.0" prefWidth="1110.0" style="-fx-background-color: white;">
+         <children>
+            <AnchorPane layoutY="-1.0" prefHeight="110.0" prefWidth="1110.0">
+               <children>
+                  <Label layoutX="118.0" layoutY="36.0" text="Miembros de la banda">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="32.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label layoutX="666.0" layoutY="134.0">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <Separator layoutX="552.0" layoutY="120.0" orientation="VERTICAL" prefHeight="521.0" prefWidth="1.0" />
+            <ImageView fx:id="vistaFotoUsuario" fitHeight="324.0" fitWidth="467.0" layoutX="606.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true" />
+            <ScrollPane layoutX="69.0" layoutY="126.0" prefHeight="499.0" prefWidth="467.0">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="691.0" prefWidth="452.0">
+                     <children>
+                        <TableView fx:id="tablaMiembros" prefHeight="659.0" prefWidth="454.0">
+                          <columns>
+                            <TableColumn prefWidth="453.0" text="Nombre miembro" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </AnchorPane>
+              </content>
+            </ScrollPane>
+            <AnchorPane fx:id="panelDatosUsuario" layoutX="602.0" layoutY="116.0" prefHeight="90.0" prefWidth="475.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
+               <children>
+                  <Label fx:id="nombreMiembro" layoutX="14.0" layoutY="30.0" prefHeight="31.0" prefWidth="256.0" text="nombreMiembro">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="fechaCreacionPerfil" layoutX="277.0" layoutY="37.0" prefHeight="17.0" prefWidth="71.0" text="fechaperfil" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

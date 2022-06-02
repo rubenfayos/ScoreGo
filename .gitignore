@@ -1,10 +1,11 @@
 
 
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
+ScoreGo/nbproject/private/
+ScoreGo/nbproject/Makefile-*.mk
+ScoreGo/nbproject/Package-*.bash
 build/
 nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+prueba/

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="AP" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLCrearUsuarioController">
+    <children>
+      <Pane prefHeight="150.0" prefWidth="1280.0" style="-fx-background-color: #36d8ad;">
+         <children>
+            <Label layoutX="514.0" layoutY="28.0" text="Creación usuario">
+               <font>
+                  <Font name="System Bold" size="32.0" />
+               </font>
+            </Label>
+            <Label layoutX="367.0" layoutY="75.0" text="Rellena los siguientes campos para crear tu cuenta de usuario">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Pane layoutX="390.0" layoutY="165.0" prefHeight="500.0" prefWidth="500.0">
+         <children>
+              <Button fx:id="añadirUsuarioBoton" layoutX="250.0" layoutY="308.0" onAction="#añadirUsuario" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #36D8AD; -fx-border-width: 0px;" text="Añadir">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Button>
+            <Label layoutY="98.0" prefHeight="34.0" prefWidth="200.0" text="Nombre">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="add_nombre_usuario" layoutY="132.0" prefWidth="200.0" />
+            <Label layoutY="158.0" prefHeight="34.0" prefWidth="200.0" text="Apellidos">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="add_apellido_usuario" layoutY="192.0" prefWidth="200.0" />
+            <Label layoutY="41.0" prefHeight="34.0" prefWidth="200.0" text="Nombre usuario">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="add_id_usuario" layoutY="71.0" prefWidth="200.0" />
+            <Label layoutY="224.0" prefHeight="34.0" prefWidth="200.0" text="Contraseña">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="300.0" prefHeight="34.0" prefWidth="200.0" text="Correo electrónico">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="add_correo_usuario" layoutY="330.0" prefWidth="200.0" />
+            <DatePicker fx:id="add_date_usuario" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" />
+            <Label layoutY="355.0" prefHeight="34.0" prefWidth="200.0" text="Fecha de nacimiento">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="427.0" prefHeight="34.0" prefWidth="200.0" text="Nacionalidad">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <ChoiceBox fx:id="add_nacionalidad_usuario" layoutY="461.0" prefWidth="200.0" />
+            <Button layoutX="373.0" layoutY="318.0" mnemonicParsing="false" onAction="#switchToInicio" style="-fx-background-color: #aeaeae; -fx-border-width: 0px;" text="Volver al inicio" />
+            <PasswordField fx:id="add_contraseña_usuario" layoutY="260.0" prefWidth="200.0" />
+            <Button layoutX="420.0" layoutY="46.0" mnemonicParsing="false" text="subir" />
+            <Label layoutX="250.0" layoutY="41.0" prefHeight="34.0" prefWidth="200.0" text="Imagen de perfil">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imagenPerfil" fitHeight="150.0" fitWidth="200.0" layoutX="264.0" layoutY="84.0" pickOnBounds="true" preserveRatio="true" />
+            <CheckBox layoutX="263.0" layoutY="264.0" mnemonicParsing="false" text="Acepto los términos y condiciones" />
+            <Separator layoutX="264.0" layoutY="240.0" prefWidth="200.0" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
