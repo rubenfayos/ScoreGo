@@ -126,14 +126,11 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
         p.setAutor(autorPartitura.getText());
         p.setNombre(nombrePartitura.getText());
         p.setUsuario(this.us);
-        p.setMp3(this.mp3.getAbsolutePath());
-        p.setSrc(this.pdf.getAbsolutePath());
+        p.setMp3(this.ftpManager.subir(this.mp3.getAbsolutePath(), this.mp3.getName()));
+        p.setSrc(this.ftpManager.subir(this.pdf.getAbsolutePath(), this.pdf.getName()));
         p.setInstrumentos(this.instrumentos);
         
         this.partituraModel.subirPartitura(p);
-        
-        this.ftpManager.subir(this.pdf.getAbsolutePath(), this.pdf.getName());
-        this.ftpManager.subir(this.mp3.getAbsolutePath(), this.mp3.getName());    
     }
     
     @FXML

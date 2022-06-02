@@ -4,10 +4,14 @@
  */
 package javaproject.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
@@ -40,6 +44,8 @@ public class FXMLVerPartituraController implements Initializable {
     private ImageView partituraVista;
     @FXML
     private Label descripcionPartitura;
+    @FXML
+    private AnchorPane mp3AP;
 
     /**
      * Initializes the controller class.
@@ -56,7 +62,13 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void reproducirMp3(ActionEvent event) {
 
-        this.mp3.reproductor();
+        
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
+            this.mp3AP.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
 

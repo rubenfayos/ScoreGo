@@ -41,19 +41,19 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="add_nombre_usuario" layoutY="132.0" prefWidth="200.0" />
+            <TextField fx:id="add_nombre_usuario" layoutY="132.0" prefWidth="200.0" style="-fx-border-radius: 0; -fx-border-width: 2; -fx-border-color: #dddddd;" />
             <Label layoutY="158.0" prefHeight="34.0" prefWidth="200.0" text="Apellidos">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="add_apellido_usuario" layoutY="192.0" prefWidth="200.0" />
+            <TextField fx:id="add_apellido_usuario" layoutY="192.0" prefWidth="200.0" style="-fx-border-color: #dddddd; -fx-border-radius: 0; -fx-border-width: 2;" />
             <Label layoutY="41.0" prefHeight="34.0" prefWidth="200.0" text="Nombre usuario">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="add_id_usuario" layoutY="71.0" prefWidth="200.0" />
+            <TextField fx:id="add_id_usuario" layoutY="71.0" prefWidth="200.0" style="-fx-border-color: #dddddd; -fx-border-radius: 0; -fx-border-width: 2;" />
             <Label layoutY="224.0" prefHeight="34.0" prefWidth="200.0" text="Contraseña">
                <font>
                   <Font size="20.0" />
@@ -64,8 +64,8 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="add_correo_usuario" layoutY="330.0" prefWidth="200.0" />
-            <DatePicker fx:id="add_date_usuario" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" />
+            <TextField fx:id="add_correo_usuario" layoutY="330.0" prefWidth="200.0" style="-fx-border-color: #dddddd; -fx-border-radius: 0; -fx-border-width: 2;" />
+            <DatePicker fx:id="add_date_usuario" layoutY="389.0" prefHeight="25.0" prefWidth="200.0" style="-fx-border-color: #dddddd; -fx-border-radius: 0; -fx-border-width: 2;" />
             <Label layoutY="355.0" prefHeight="34.0" prefWidth="200.0" text="Fecha de nacimiento">
                <font>
                   <Font size="20.0" />
@@ -76,9 +76,9 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="add_nacionalidad_usuario" layoutY="461.0" prefWidth="200.0" />
+            <ChoiceBox fx:id="add_nacionalidad_usuario" layoutY="461.0" prefWidth="200.0" style="-fx-border-color: #36D8AD; -fx-border-radius: 0; -fx-border-width: 2;/" />
             <Button layoutX="373.0" layoutY="318.0" mnemonicParsing="false" onAction="#switchToInicio" style="-fx-background-color: #aeaeae; -fx-border-width: 0px;" text="Volver al inicio" />
-            <PasswordField fx:id="add_contraseña_usuario" layoutY="260.0" prefWidth="200.0" />
+            <PasswordField fx:id="add_contraseña_usuario" layoutY="260.0" prefWidth="200.0" style="-fx-border-color: #dddddd; -fx-border-radius: 0; -fx-border-width: 2;" />
             <Button layoutX="420.0" layoutY="46.0" mnemonicParsing="false" text="subir" />
             <Label layoutX="250.0" layoutY="41.0" prefHeight="34.0" prefWidth="200.0" text="Imagen de perfil">
                <font>
