@@ -5,7 +5,9 @@
 package javaproject.controllers;
 
 import com.sun.org.apache.xalan.internal.xsltc.dom.SingletonIterator;
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -117,6 +119,13 @@ public class FXMLInformacionUsuarioController implements Initializable {
 
     @FXML
     private void clickAccesoWeb(ActionEvent event) {
+        try {
+    Desktop.getDesktop().browse(new URL("https://scorego.ddns.net/").toURI());
+} catch (IOException e) {
+    e.printStackTrace();
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
     }
     
 }
