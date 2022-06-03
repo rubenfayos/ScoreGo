@@ -21,6 +21,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javaproject.clases.Partitura;
+import javaproject.clases.Singleton;
+import javaproject.clases.Usuario;
+import javaproject.model.PartituraModel;
 import javaproject.model.mp3Player;
 
 /**
@@ -49,6 +52,10 @@ public class FXMLVerPartituraController implements Initializable {
     private Label descripcionPartitura;
     @FXML
     private AnchorPane mp3AP;
+    
+    private Singleton s = Singleton.getInstance();
+    
+    private Usuario us;
 
     /**
      * Initializes the controller class.
@@ -78,6 +85,8 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void eliminar(ActionEvent event) {
         //alerta de confirmación para eliminar partitura en una banda
+        
+        
          Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("Eliminar partitura");
         ac.setHeaderText("Eliminar partitura");
@@ -85,6 +94,8 @@ public class FXMLVerPartituraController implements Initializable {
         Optional<ButtonType> result = ac.showAndWait();
         ac.show();
         if (result.get() == ButtonType.OK) {
+            PartituraModel p = new PartituraModel();
+            p.borrarPartitura(this.us, this.p );
            //falta el codigo de eliminación para que esto funcione, de momento la alerta solo se cerrará
            ac.close();
         }
