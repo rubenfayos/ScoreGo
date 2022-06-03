@@ -4,6 +4,7 @@
  */
 package javaproject.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,8 +17,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javaproject.clases.Partitura;
+import javaproject.model.FTPManager;
+import javaproject.model.PartituraModel;
 import javaproject.model.mp3Player;
 
 /**
@@ -27,8 +31,10 @@ import javaproject.model.mp3Player;
  */
 public class FXMLVerPartituraController implements Initializable {
     
+    private FTPManager ftp;
     private mp3Player mp3;
     private Partitura p;
+    private PartituraModel pm;
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -54,9 +60,9 @@ public class FXMLVerPartituraController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         this.mp3=new mp3Player();
-        
-      
-        
+        this.pm=new PartituraModel();
+        this.ftp=new FTPManager();
+           
     }    
 
     @FXML
@@ -74,10 +80,34 @@ public class FXMLVerPartituraController implements Initializable {
 
     @FXML
     private void eliminar(ActionEvent event) {
+        
+        this.pm.borrarPartitura(p);
+        
     }
 
     @FXML
     private void descargar(ActionEvent event) {
+        
+        this.p=new Partitura();
+        
+        this.p.setSrc("/public_html/data/admin/files/Partituras/pdf/RutinaPPL.pdf");
+        
+        //Crea un directory chooser
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        dirChooser.setTitle("Elige la carpeta de  descarga");
+        File selectedDir = dirChooser.showDialog(new Stage());
+        //Coge la ruta de descarga
+        String selectedDirPath = selectedDir.toString() + "\\si.pdf";
+        
+        System.out.println(selectedDirPath);
+        
+        //Descarga el archivo
+        if(this.ftp.downloadFile(this.p.getSrc().toString(), selectedDirPath) == true){
+            System.out.print("si");
+        }else{
+            System.out.print("Descarga fallida");
+        }
+        
     }
     
 }

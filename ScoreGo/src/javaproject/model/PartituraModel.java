@@ -70,7 +70,7 @@ public class PartituraModel extends DBUtil{
         
         }
          
-        public void borrarPartitura(Usuario u, Partitura p){
+        public void borrarPartitura(Partitura p){
         
             try{
             

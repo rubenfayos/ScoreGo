@@ -54,12 +54,12 @@ public class FTPManager {
         
     }
     
-    public String subirPDF(String localFile, String nombre) throws IOException {
+    public String subirPDF(String archivoLocal, String nombre) throws IOException {
         
         this.getConexion();
     	
     	//Archivo que se quiere subir en local
-        File firstLocalFile = new File(localFile.toString());
+        File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
         String firstRemoteFile = "/public_html/data/admin/files/Partituras/pdf/";
@@ -78,12 +78,12 @@ public class FTPManager {
     	
     }
     
-    public String subirMP3(String localFile, String nombre) throws IOException {
+    public String subirMP3(String archivoLocal, String nombre) throws IOException {
         
         this.getConexion();
     	
     	//Archivo que se quiere subir en local
-        File firstLocalFile = new File(localFile.toString());
+        File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
         String firstRemoteFile = "/public_html/data/admin/files/Partituras/mp3/";
@@ -102,13 +102,17 @@ public class FTPManager {
     	
     }
     	
-    public void downloadFile(String remoteFilePath, String localFilePath) {
+    public boolean downloadFile(String rutaRemota, String rutaLocal) {
         
-        //Define la ruta donde se descargará
-        try (FileOutputStream fos = new FileOutputStream(localFilePath)) {
+        boolean done = false;
+        
+        this.getConexion();
+        
+        //Define la ruta local donde se descargará
+        try (FileOutputStream fos = new FileOutputStream(rutaLocal)) {
             
             //Recibe el archivo
-            boolean done = this.ftpClient.retrieveFile(remoteFilePath, fos);
+            done = this.ftpClient.retrieveFile(rutaRemota, fos);
 
             if(done){
                 System.out.println("The file was downloaded successfully.");
@@ -117,5 +121,8 @@ public class FTPManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
+        return done;
+        
     }   	  	
 }
