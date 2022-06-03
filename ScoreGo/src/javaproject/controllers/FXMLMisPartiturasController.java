@@ -40,6 +40,7 @@ public class FXMLMisPartiturasController implements Initializable {
     private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
     private Usuario u = s.us;
+    private Partitura p = new Partitura();
 
     @FXML
     private AnchorPane AP;
@@ -48,14 +49,13 @@ public class FXMLMisPartiturasController implements Initializable {
     @FXML
     private GridPane partituraGP;
 
-    /**
-     * Initializes the controller class.
-     */
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        String num = "";
 
-        
+        //Coge las partiturasd de la base de datos
         ObservableList<Partitura> partituras = this.pm.listarPartiturasUsuario(this.u);
         
         double filas = 1;
@@ -89,7 +89,9 @@ public class FXMLMisPartiturasController implements Initializable {
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
                 b.setOnAction((event) -> {
+                    
                     VerPartitura(b.getId());
+                    
                 });
                 pa.getChildren().add(b);
                 partituraGP.add(pa, x, i);
@@ -99,11 +101,8 @@ public class FXMLMisPartiturasController implements Initializable {
                     x=columnas;
                     i=(int) filas;
                 }
-    
-            }
-            
+            }   
         }
-        
     }    
 
     private void switchToPartitura(ActionEvent event) {
@@ -132,7 +131,8 @@ public class FXMLMisPartiturasController implements Initializable {
     @FXML
     private void VerPartitura(String id){
         
-        System.out.println(id);
+        this.p.setId(Integer.parseInt(id));
+        this.s.p = this.p;
         
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartitura.fxml"));

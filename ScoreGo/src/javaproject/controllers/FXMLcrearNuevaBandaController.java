@@ -118,11 +118,11 @@ public class FXMLcrearNuevaBandaController implements Initializable {
             previsualizacion.setImage(null);
             
             try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
-            this.anchorPaneCrearBanda.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
+                this.anchorPaneCrearBanda.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
     
         }
         
@@ -136,8 +136,7 @@ public class FXMLcrearNuevaBandaController implements Initializable {
         
         this.bm.crearBanda(b);
         
-        
-        
+             
     }
     
     public void fileChooserIMG(){

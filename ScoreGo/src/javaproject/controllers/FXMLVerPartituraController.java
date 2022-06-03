@@ -4,8 +4,10 @@
  */
 package javaproject.controllers;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -19,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -29,6 +32,7 @@ import javaproject.clases.Usuario;
 import javaproject.model.FTPManager;
 import javaproject.model.PartituraModel;
 import javaproject.model.mp3Player;
+import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -72,18 +76,28 @@ public class FXMLVerPartituraController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {    
-      
-        //this.p=this.pm.listarPartitura(id);
+    public void initialize(URL url, ResourceBundle rb) {   
         
+       //coge la partitura
+       this.p = pm.buscarPartitura(this.s.p.getId());
         
         if(this.u.getId() == this.p.getUsuario().getId()){
             editarButton.setVisible(true);
             eliminarButton.setVisible(true);
         }else
-            guardarButton.setVisible(true);
+            guardarButton.setVisible(true); 
+        
+        
+        this.tituloPartitura.setText(p.getNombre());
+        this.autorPartitura.setText(p.getAutor());
+        //this.fechaSubidaPartitura.setText(p.getFechaSubida().toString());
+        
+        Image image = new Image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.fotocommunity.com%2Fatardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg%3Fheight%3D1080&f=1&nofb=1");
+        this.partituraVista.setImage(image);
+        
+        
+        
            
-
     }    
 
     @FXML

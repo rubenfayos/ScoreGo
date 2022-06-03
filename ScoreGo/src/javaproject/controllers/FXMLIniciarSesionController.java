@@ -27,7 +27,7 @@ import javaproject.model.UsuarioModel;
  */
 public class FXMLIniciarSesionController implements Initializable {
     
-    private UsuarioModel usuarioModel;
+    private UsuarioModel usuarioModel = new UsuarioModel();
     
     private Singleton s = Singleton.getInstance();
 
@@ -43,7 +43,7 @@ public class FXMLIniciarSesionController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.usuarioModel= new UsuarioModel();
+        
     }    
 
     @FXML

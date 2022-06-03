@@ -14,7 +14,7 @@ public class Singleton {
     // of type Singleton
     private static Singleton single_instance = null;
   
-    // Declaring a variable of type String
+    public Partitura p;
     public Usuario us;
   
     // Constructor

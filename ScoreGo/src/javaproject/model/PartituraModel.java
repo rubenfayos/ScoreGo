@@ -216,6 +216,51 @@ public class PartituraModel extends DBUtil{
         
     }
         
+    public Partitura buscarPartitura(int id){
+        
+        Partitura p = new Partitura();
+        
+        Usuario u = new Usuario();
+            
+            try{
+            
+            //Hacemos update con los nuevos datos del usuario sobre el id del usuario
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura WHERE id=?");
+            
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                
+                u.setId(rs.getInt("usuario"));
+            
+                p.setId(rs.getInt("id"));
+                p.setAutor(rs.getString("autor"));
+                p.setNombre(rs.getString("nombre"));
+                p.setUsuario(u);
+                p.setMp3(rs.getString("mp3"));
+                p.setSrc(rs.getString("src"));
+            
+            }
+            
+            p.setInstrumentos(instrumentos(p));
+                
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+            
+            return p;
+        
+    }
+        
     public ObservableList<Partitura> listarPartiturasUsuario(Usuario u){
         
         ObservableList<Partitura> partituras = FXCollections.observableArrayList();
