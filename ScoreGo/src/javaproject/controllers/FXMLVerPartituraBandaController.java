@@ -5,10 +5,13 @@
 package javaproject.controllers;
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -38,7 +41,10 @@ public class FXMLVerPartituraBandaController implements Initializable {
     private ImageView partituraVista;
     @FXML
     private Label descripcionPartitura;
-
+    
+    private Alert ac;
+    
+    
     /**
      * Initializes the controller class.
      */
@@ -54,9 +60,26 @@ public class FXMLVerPartituraBandaController implements Initializable {
     private void reproducirMp3(ActionEvent event) {
         this.mp3.reproductor();
     }
+    public void alert() {
+    
+    }
 
     @FXML
     private void eliminar(ActionEvent event) {
+        //alerta de confirmación para eliminar una partitura dentro de una banda
+        Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
+        ac.setTitle("Eliminar partitura");
+        ac.setHeaderText("Eliminar partitura");
+        ac.setContentText("¿Seguro que deseas eliminar la partitura?");
+        Optional<ButtonType> result = ac.showAndWait();
+        ac.show();
+        if (result.get() == ButtonType.OK) {
+           //falta el codigo de eliminación para que esto funcione, de momento la alerta solo se cerrará
+           ac.close();
+        }
+        else {
+            ac.close();
+        } 
     }
 
     @FXML
