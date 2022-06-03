@@ -5,11 +5,16 @@
  */
 package javaproject.controllers;
 
+import java.beans.EventHandler;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -25,6 +30,7 @@ import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.BandasModel;
 import javafx.scene.image.Image;
+import javafx.stage.Window;
 
 /**
  * FXML Controller class
@@ -53,6 +59,8 @@ public class FXMLcrearNuevaBandaController implements Initializable {
     private ImageView previsualizacion;
     @FXML
     private PasswordField contraseñaBanda;
+    @FXML
+    private AnchorPane anchorPaneCrearBanda;
 
     /**
      * Initializes the controller class.
@@ -86,12 +94,36 @@ public class FXMLcrearNuevaBandaController implements Initializable {
         ae2.setHeaderText("Esto es un mensaje de error");
         ae2.setContentText("No se ha seleccionado ninguna imagen");
         
+        Alert ai = new Alert(AlertType.INFORMATION);
+        ai.setTitle("INFORMACIÓN");
+        ai.setHeaderText("Esto es un mensaje de información");
+        ai.setContentText("La banda se ha creado correctamente");
+        
         if(crearNombreDeBanda.getText().isEmpty() || crearDescripcionDeBanda.getText().isEmpty() || contraseñaBanda.getText().isEmpty()){
             ae.show();
         }
         
-        if(!previsualizacion.isVisible()){
+        if(previsualizacion.getImage() == null){
             ae2.show();
+        }
+        
+        
+        if(crearNombreDeBanda.getText() != null && crearDescripcionDeBanda.getText() != null && contraseñaBanda.getText() != null && previsualizacion.getImage() != null){
+            
+            ai.show();
+            
+            crearNombreDeBanda.setText(""); 
+            crearDescripcionDeBanda.setText("");
+            contraseñaBanda.setText("");
+            previsualizacion.setImage(null);
+            
+            try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
+            this.anchorPaneCrearBanda.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
         }
         
         Banda b = new Banda();
@@ -118,6 +150,24 @@ public class FXMLcrearNuevaBandaController implements Initializable {
         Image imag = new Image(this.img.toURI().toString());
         
         previsualizacion.setImage(imag);
+        
+        /*final Button openButton = new Button("Open a Picture...");
+        
+        openButton.setOnAction(
+                new EventHandler<ActionEvent>(){
+                    private Window stage;
+                    public void handle (final ActionEvent e){
+                        File file = fileChooser.showOpenDialog(stage);
+                        if(file != null){
+                            openFile(file);
+                        }
+                    }
+
+            private void openFile(File file) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+                });*/
+        
         
     }
     
