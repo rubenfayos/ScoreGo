@@ -35,7 +35,7 @@
                   <Font size="22.0" />
                </font>
             </Button>
-            <Hyperlink layoutX="128.0" layoutY="230.0" text="Visita nuestra página web" />
+            <Hyperlink fx:id="accesoWebInicio" layoutX="128.0" layoutY="228.0" onAction="#clickAccesoWebInicio" text="Visita nuestra página web" />
          </children>
       </Pane>
    </children>
