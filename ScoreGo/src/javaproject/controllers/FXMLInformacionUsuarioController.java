@@ -93,6 +93,7 @@ public class FXMLInformacionUsuarioController implements Initializable {
             
             ScoreGo sc = new ScoreGo();
             sc.start(new Stage());
+            
         }           
     }
 

@@ -87,6 +87,7 @@ public class FXMLVerPartituraController implements Initializable {
         //alerta de confirmación para eliminar partitura en una banda
         
         
+        
          Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("Eliminar partitura");
         ac.setHeaderText("Eliminar partitura");
@@ -107,6 +108,7 @@ public class FXMLVerPartituraController implements Initializable {
 
     @FXML
     private void descargar(ActionEvent event) {
+        System.out.println("Va Antoni que ");
     }
     
 }

@@ -126,24 +126,38 @@ public class FXMLAjustesUsuarioController implements Initializable {
     private void EliminarUsuario(ActionEvent event) throws IOException {
         
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
-        ac.setTitle("INFORMATION DIALOG");
-        ac.setHeaderText("¿Deseas eliminar definitivamente el usuario?");
+        ac.setTitle("Eliminar usuario");
+        ac.setHeaderText("¿Desea eliminar definitivamente el usuario?");
         ac.setContentText("Esta accion es irreversible");
         
         Alert ai = new Alert(Alert.AlertType.ERROR);
-        ai.setTitle("INFORMATION DIALOG");
+        ai.setTitle("Error");
         ai.setHeaderText("Error");
-        ai.setContentText("No has introducido la contraseña o es incorrecta");
+        ai.setContentText("La contraseña o es incorrecta");
         
         //Alerta confirmación creación usuario
         Alert ae = new Alert(Alert.AlertType.INFORMATION);
-        ae.setTitle("INFORMATION DIALOG");
+        ae.setTitle("Usuario aliminado");
         ae.setHeaderText("Eliminación usuario");
         ae.setContentText("El usuario se ha eliminado satisfactoriamente");
         
+        //Alerta de campo contraseña vacío
+
+        Alert av = new Alert(Alert.AlertType.INFORMATION);
+        av.setTitle("Contraseña vacía");
+        av.setHeaderText("Contraseña vacía");
+        av.setContentText("El campo contraseña está vacío");
+        
+            
         if(this.usuario.getContraseña().equals(ContraseñaEliminarText.getText())){
             
             ac.showAndWait();
+        
+        }
+        else if(ContraseñaEliminarText.getText().isEmpty()){
+            
+            av.showAndWait();
+        }
             
             if(ac.getResult() == ButtonType.OK){           
                 if(this.usuarioModel.eliminarUsuario(this.usuario) > 0){
@@ -155,11 +169,12 @@ public class FXMLAjustesUsuarioController implements Initializable {
                             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                     }   
                 }
-                    
+                else {
+                    ai.show();
             }
-            
-        }else
-            ai.show();
-        
+}
     }
 }
+        
+
+
