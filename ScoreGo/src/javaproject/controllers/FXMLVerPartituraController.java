@@ -34,12 +34,12 @@ import javaproject.model.mp3Player;
  */
 public class FXMLVerPartituraController implements Initializable {
     
-    private FTPManager ftp;
-    private mp3Player mp3;
-    private Partitura p;
-    private PartituraModel pm;
-    private Usuario u;
+    private FTPManager ftp = new FTPManager();
+    private mp3Player mp3 = new mp3Player();
+    private Partitura p = new Partitura();
+    private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
+    private Usuario u = s.us;
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -68,15 +68,10 @@ public class FXMLVerPartituraController implements Initializable {
      * Initializes the controller class.
      */
     @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public void initialize(URL url, ResourceBundle rb) {    
+      
+        //this.p=this.pm.listarPartitura(id);
         
-        this.mp3=new mp3Player();
-        this.pm=new PartituraModel();
-        this.ftp=new FTPManager();
-        
-        this.p=new Partitura();
-        
-        this.u=s.us;
         
         if(this.u.getId() == this.p.getUsuario().getId()){
             editarButton.setVisible(true);
@@ -84,6 +79,7 @@ public class FXMLVerPartituraController implements Initializable {
         }else
             guardarButton.setVisible(true);
            
+
     }    
 
     @FXML

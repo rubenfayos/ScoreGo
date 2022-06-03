@@ -9,6 +9,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.RowConstraints;
+import javaproject.clases.Partitura;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.BandasModel;
@@ -32,10 +36,9 @@ import javaproject.model.BandasModel;
  */
 public class FXMLMisBandasController implements Initializable {
     
-    private BandasModel bm;
-    
+    private BandasModel bm = new BandasModel();
     private Singleton s = Singleton.getInstance();
-    private Usuario us;
+    private Usuario us = s.us;
 
     @FXML
     private GridPane gridPaneMisBandas;
@@ -65,10 +68,58 @@ public class FXMLMisBandasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        this.bm = new BandasModel();
+        /*
         
-        this.us=s.us;
+        ObservableList<Partitura> partituras = this.bm;
         
+        double filas = 1;
+        double size = partituras.size();
+        
+        if(partituras.size() >4){
+            filas = size/4;
+            if((filas%1) != 0)
+                filas++;
+        }
+        
+        int filas2 = (int) filas;
+        
+        int columnas=4;
+        int cont = 0;
+        
+        //Define la cantidad de filas y su tamaño
+        for (int i = 0; i < filas2-1; i++) {
+        RowConstraints rowConst = new RowConstraints();
+        rowConst.setPrefHeight(220);
+        gridPaneMisBandas.getRowConstraints().add(rowConst);    
+        }
+        
+        gridPaneMisBandas.setPrefHeight(220*filas);
+
+        for(int i = 0; i < filas; i++){
+            for(int x = 0; x < columnas; x++){
+                Pane pa= new Pane();
+                Button b = new Button(partituras.get(cont).getNombre());
+                b.setPrefSize(200, 200);
+                //Coge el id de la partitura
+                b.setId(Integer.toString(partituras.get(cont).getId()));
+                b.setOnAction((event) -> {
+                    VerPartitura(b.getId());
+                });
+                pa.getChildren().add(b);
+                partituraGP.add(pa, x, i);
+                cont++;
+                
+                if(cont == partituras.size()){
+                    x=columnas;
+                    i=(int) filas;
+                }
+    
+            }
+            
+        }
+
+    */
+             
     }    
 
     @FXML

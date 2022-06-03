@@ -54,8 +54,8 @@ public class PartituraModel extends DBUtil{
                     comp=stmt2.executeUpdate();
                 }
                 
-                 if(comp > ins.size())
-                     comp = 1;
+                if(comp > ins.size())
+                    comp = 1;
             
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -216,7 +216,7 @@ public class PartituraModel extends DBUtil{
         
     }
         
-    public ObservableList<Partitura> listarPartituras(Usuario u){
+    public ObservableList<Partitura> listarPartiturasUsuario(Usuario u){
         
         ObservableList<Partitura> partituras = FXCollections.observableArrayList();
             
