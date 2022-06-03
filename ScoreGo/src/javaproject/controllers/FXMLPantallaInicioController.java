@@ -4,7 +4,9 @@
  */
 package javaproject.controllers;
 
+import java.awt.Desktop;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javaproject.clases.Usuario;
@@ -34,6 +37,8 @@ public class FXMLPantallaInicioController implements Initializable{
     
     @FXML
     private AnchorPane AP;
+    @FXML
+    private Hyperlink accesoWebInicio;
 
     /**
      * Initializes the controller class.
@@ -61,6 +66,17 @@ public class FXMLPantallaInicioController implements Initializable{
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void clickAccesoWebInicio(ActionEvent event) {
+        try {
+    Desktop.getDesktop().browse(new URL("https://scorego.ddns.net/").toURI());
+} catch (IOException e) {
+    e.printStackTrace();
+} catch (URISyntaxException e) {
+    e.printStackTrace();
+}
     }
 
 
