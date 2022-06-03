@@ -3,7 +3,6 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -40,18 +39,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
-               <children>
-                  <AnchorPane fx:id="anchorPanePartituras" prefHeight="184.0" prefWidth="202.0" GridPane.columnSpan="2147483647" GridPane.rowSpan="2147483647">
-                     <children>
-                        <Button fx:id="botonSwitchToPartitura" layoutX="13.0" layoutY="14.0" mnemonicParsing="false" onAction="#switchToPartitura" prefHeight="166.0" prefWidth="216.0">
-                           <graphic>
-                              <ImageView fx:id="imagenPartituraMisPartituras" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
-                           </graphic>
-                        </Button>
-                        <Label layoutX="98.0" layoutY="205.0" text="Partitura" />
-                     </children>
-                  </AnchorPane>
-               </children>
             </GridPane>
          </content>
       </ScrollPane>

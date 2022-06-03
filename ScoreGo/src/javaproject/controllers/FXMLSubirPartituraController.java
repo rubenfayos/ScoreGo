@@ -139,6 +139,7 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
         
         if(this.partituraModel.subirPartitura(p) == 1){
             ai.showAndWait();
+            this.partituraModel.guardarPartitura(p, this.us);
             try {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
                 this.AP.getChildren().setAll(pane);
