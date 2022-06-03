@@ -31,20 +31,24 @@ public class FXMLMisPartiturasController implements Initializable {
     @FXML
     private ScrollPane scrollPanelMisPartituras;
     @FXML
-    private GridPane gridPanelMisPartituras;
-    @FXML
     private AnchorPane anchorPanePartituras;
     @FXML
     private Button botonSwitchToPartitura;
     @FXML
     private ImageView imagenPartituraMisPartituras;
+    @FXML
+    private GridPane partituraGP;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+        
+        partituraGP.add(AP, 0, 0);
+        partituraGP.add(AP, 0, 1);
+        partituraGP.add(AP, 0, 2);
     }    
 
     @FXML

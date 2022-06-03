@@ -40,13 +40,15 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <Button layoutX="839.0" layoutY="663.0" mnemonicParsing="false" onAction="#reproducirMp3" style="-fx-background-color: lightblue;" text="Reproducir audio" />
-      <Button layoutX="965.0" layoutY="663.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.78" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" />
-      <Button layoutX="751.0" layoutY="663.0" mnemonicParsing="false" onAction="#descargar" style="-fx-background-color: #36d8ad;" text="Descargar">
+      <Button layoutX="787.0" layoutY="663.0" mnemonicParsing="false" onAction="#reproducirMp3" style="-fx-background-color: lightblue;" text="Reproducir audio" />
+      <Button fx:id="eliminarButton" layoutX="959.0" layoutY="663.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.78" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" visible="false" />
+      <Button layoutX="706.0" layoutY="663.0" mnemonicParsing="false" onAction="#descargar" style="-fx-background-color: #36d8ad;" text="Descargar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <AnchorPane fx:id="mp3AP" layoutX="743.0" layoutY="570.0" prefHeight="65.0" prefWidth="281.0" />
+      <AnchorPane fx:id="mp3AP" layoutX="701.0" layoutY="570.0" prefHeight="65.0" prefWidth="281.0" />
+      <Button fx:id="editarButton" layoutX="905.0" layoutY="663.0" mnemonicParsing="false" onAction="#editar" opacity="0.78" style="-fx-background-color: #5c4aff;" text="Editar" textFill="WHITE" visible="false" />
+      <Button fx:id="guardarButton" layoutX="899.0" layoutY="663.0" mnemonicParsing="false" onAction="#guardar" opacity="0.78" prefHeight="25.0" prefWidth="119.0" style="-fx-background-color: #00a426;" text="Guardar" textFill="WHITE" visible="false" />
    </children>
 </AnchorPane>

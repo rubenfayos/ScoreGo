@@ -14,12 +14,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import javaproject.clases.Partitura;
+import javaproject.clases.Singleton;
+import javaproject.clases.Usuario;
 import javaproject.model.FTPManager;
 import javaproject.model.PartituraModel;
 import javaproject.model.mp3Player;
@@ -35,6 +38,8 @@ public class FXMLVerPartituraController implements Initializable {
     private mp3Player mp3;
     private Partitura p;
     private PartituraModel pm;
+    private Usuario u;
+    private Singleton s = Singleton.getInstance();
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -52,6 +57,12 @@ public class FXMLVerPartituraController implements Initializable {
     private Label descripcionPartitura;
     @FXML
     private AnchorPane mp3AP;
+    @FXML
+    private Button eliminarButton;
+    @FXML
+    private Button editarButton;
+    @FXML
+    private Button guardarButton;
 
     /**
      * Initializes the controller class.
@@ -62,6 +73,16 @@ public class FXMLVerPartituraController implements Initializable {
         this.mp3=new mp3Player();
         this.pm=new PartituraModel();
         this.ftp=new FTPManager();
+        
+        this.p=new Partitura();
+        
+        this.u=s.us;
+        
+        if(this.u.getId() == this.p.getUsuario().getId()){
+            editarButton.setVisible(true);
+            eliminarButton.setVisible(true);
+        }else
+            guardarButton.setVisible(true);
            
     }    
 
@@ -88,7 +109,7 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void descargar(ActionEvent event) {
         
-        this.p=new Partitura();
+        
         
         this.p.setSrc("/public_html/data/admin/files/Partituras/pdf/RutinaPPL.pdf");
         
@@ -107,6 +128,17 @@ public class FXMLVerPartituraController implements Initializable {
         }else{
             System.out.print("Descarga fallida");
         }
+        
+    }
+
+    @FXML
+    private void editar(ActionEvent event) {
+    }
+
+    @FXML
+    private void guardar(ActionEvent event) {
+        
+        
         
     }
     

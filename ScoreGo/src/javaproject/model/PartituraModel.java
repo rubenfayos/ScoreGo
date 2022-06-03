@@ -69,6 +69,32 @@ public class PartituraModel extends DBUtil{
             return comp;
         
         }
+        
+        public int guardarPartitura(Partitura p, Usuario u){
+            
+            int i = 0;
+            
+            try{
+            
+                //Insert en usuario-partitura
+                PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO usuario_partitura VALUES (?,?)");
+            
+                stmt.setInt(1, u.getId());
+                stmt.setInt(2, p.getId()); 
+                
+                i=stmt.executeUpdate();
+          
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+            
+            return i;
+        }
          
         public void borrarPartitura(Partitura p){
         
