@@ -72,14 +72,16 @@ public class FXMLMisPartiturasController implements Initializable {
         int columnas=4;
         int cont = 0;
         
+        partituraGP.setPrefHeight(220*filas2);
+        
         //Define la cantidad de filas y su tamaño
         for (int i = 0; i < filas2-1; i++) {
-        RowConstraints rowConst = new RowConstraints();
-        rowConst.setPrefHeight(220);
-        partituraGP.getRowConstraints().add(rowConst);    
+            RowConstraints rowConst = new RowConstraints();
+            rowConst.setPrefHeight(220);
+            partituraGP.getRowConstraints().add(rowConst);    
         }
         
-        partituraGP.setPrefHeight(220*filas);
+        
 
         for(int i = 0; i < filas; i++){
             for(int x = 0; x < columnas; x++){
@@ -128,7 +130,6 @@ public class FXMLMisPartiturasController implements Initializable {
         
     }
     
-    @FXML
     private void VerPartitura(String id){
         
         this.p.setId(Integer.parseInt(id));

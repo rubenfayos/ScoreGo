@@ -51,7 +51,7 @@ public class PartituraModel extends DBUtil{
                     
                     stmt2.setInt(1, p.getId());
                     stmt2.setInt(2, i);
-                    comp=stmt2.executeUpdate();
+                    comp+=stmt2.executeUpdate();
                 }
                 
                 if(comp > ins.size())

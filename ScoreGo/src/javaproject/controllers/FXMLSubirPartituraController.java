@@ -122,23 +122,30 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
                 !TubaCB.isSelected() && !BombardinoCB.isSelected() && !TrompetaCB.isSelected() && !TrombonCB.isSelected() &&
                 !TrompaCB.isSelected() && !PercusionCB.isSelected() && !SaxoCB.isSelected()){
             ae2.show();
-        }
+        }else{
 
-        comprobarInstrumentos();
+        
         
         Partitura p = new Partitura();
         
         p.setAutor(autorPartitura.getText());
         p.setNombre(nombrePartitura.getText());
         p.setUsuario(this.us);
+        
         //Sube el mp3 al servidor
-        p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName()));
+        //p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName()));
+        p.setMp3("jaja");
+        p.setSrc("jaja");
+        
         //Sube el pdf al servidor
-        p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName()));
+        //p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName()));
+       
+        comprobarInstrumentos();
         p.setInstrumentos(this.instrumentos);
         
         if(this.partituraModel.subirPartitura(p) == 1){
             ai.showAndWait();
+            p=this.partituraModel.listarPartitura(p.getNombre(), this.us);
             this.partituraModel.guardarPartitura(p, this.us);
             try {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
@@ -146,6 +153,8 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
             } catch (IOException ex) {
                 Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }     
+        }
+        
         }
     }
     
