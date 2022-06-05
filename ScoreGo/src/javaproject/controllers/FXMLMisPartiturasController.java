@@ -15,6 +15,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -24,6 +26,8 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
+import javafx.scene.text.TextAlignment;
 import javaproject.clases.Partitura;
 import javaproject.clases.Post;
 import javaproject.clases.Singleton;
@@ -58,49 +62,55 @@ public class FXMLMisPartiturasController implements Initializable {
         //Coge las partiturasd de la base de datos
         ObservableList<Partitura> partituras = this.pm.listarPartiturasUsuario(this.u);
         
-        double filas = 1;
-        double size = partituras.size();
+        int filas = 0;
         
-        if(partituras.size() >4){
-            filas = size/4;
-            if((filas%1) != 0)
+        for(int i = 0; i <= partituras.size(); i=i+4){
+            
+            if(i < partituras.size())
                 filas++;
         }
         
-        int filas2 = (int) filas;
+        partituraGP.setPrefHeight(250*filas);
         
-        int columnas=4;
-        int cont = 0;
-        
-        partituraGP.setPrefHeight(220*filas2);
         
         //Define la cantidad de filas y su tamaño
-        for (int i = 0; i < filas2-1; i++) {
+        for (int i = 0; i < filas-1; i++) {
             RowConstraints rowConst = new RowConstraints();
-            rowConst.setPrefHeight(220);
+            rowConst.setPrefHeight(250);
             partituraGP.getRowConstraints().add(rowConst);    
         }
         
-        
+        int cont = 0;
 
         for(int i = 0; i < filas; i++){
-            for(int x = 0; x < columnas; x++){
+            for(int x = 0; x < 4; x++){
+                
+                //Crea un nuevo pane donde se mostrará la partitura
                 Pane pa= new Pane();
-                Button b = new Button(partituras.get(cont).getNombre());
+                
+                //Crea un nuevo boton 
+                Button b = new Button();
                 b.setPrefSize(200, 200);
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
+                //Añade la accion de ver la partitura al botton
                 b.setOnAction((event) -> {
                     
                     VerPartitura(b.getId());
                     
                 });
+                
                 pa.getChildren().add(b);
+
+                //Creación de label del nombre de la partitura
+                pa.getChildren().add(crearLabel(partituras.get(cont).getNombre()));
+                
+                //Añade el pane al GridPane
                 partituraGP.add(pa, x, i);
                 cont++;
                 
                 if(cont == partituras.size()){
-                    x=columnas;
+                    x=4;
                     i=(int) filas;
                 }
             }   
@@ -144,5 +154,18 @@ public class FXMLMisPartiturasController implements Initializable {
 
         
     }
+    
+    public Label crearLabel(String p){
+        
+        Label l = new Label(p);
+               
+                l.setLayoutY(210);
+                l.setFont(new Font(16));
+                l.setPrefWidth(200);
+                l.setAlignment(Pos.CENTER);
+    
+        return l;
+    }
+    
     
 }

@@ -14,6 +14,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.HPos;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -21,9 +23,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javaproject.clases.Banda;
 import javaproject.clases.Partitura;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
@@ -42,12 +46,6 @@ public class FXMLMisBandasController implements Initializable {
 
     @FXML
     private GridPane gridPaneMisBandas;
-    @FXML
-    private Button botonEntrarABanda;
-    @FXML
-    private ImageView imageMiBanda1;
-    @FXML
-    private Label nombreBanda1;
     @FXML
     private Button botonAnyadirBanda;
     @FXML
@@ -68,26 +66,27 @@ public class FXMLMisBandasController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        /*
         
-        ObservableList<Partitura> partituras = this.bm;
         
-        double filas = 1;
-        double size = partituras.size();
+        ObservableList<Banda> bandas = this.bm.listarBandas(us);
         
-        if(partituras.size() >4){
-            filas = size/4;
-            if((filas%1) != 0)
+        int filas = 0;
+        
+        for(int i = 0; i <= bandas.size(); i=i+4){
+            
+            if(i < bandas.size())
                 filas++;
         }
-        
-        int filas2 = (int) filas;
         
         int columnas=4;
         int cont = 0;
         
+        ColumnConstraints cols = new ColumnConstraints();
+        cols.setHalignment(HPos.CENTER);
+        gridPaneMisBandas.getColumnConstraints().add(cols);
+        
         //Define la cantidad de filas y su tamaño
-        for (int i = 0; i < filas2-1; i++) {
+        for (int i = 0; i < filas-1; i++) {
         RowConstraints rowConst = new RowConstraints();
         rowConst.setPrefHeight(220);
         gridPaneMisBandas.getRowConstraints().add(rowConst);    
@@ -98,18 +97,20 @@ public class FXMLMisBandasController implements Initializable {
         for(int i = 0; i < filas; i++){
             for(int x = 0; x < columnas; x++){
                 Pane pa= new Pane();
-                Button b = new Button(partituras.get(cont).getNombre());
+                Button b = new Button(bandas.get(cont).getNombre());
                 b.setPrefSize(200, 200);
-                //Coge el id de la partitura
-                b.setId(Integer.toString(partituras.get(cont).getId()));
+                
+                //Coge el id de la banda
+                b.setId(Integer.toString(bandas.get(cont).getId()));
                 b.setOnAction((event) -> {
-                    VerPartitura(b.getId());
+                    switchToBanda(b.getId());
                 });
+                
                 pa.getChildren().add(b);
-                partituraGP.add(pa, x, i);
+                gridPaneMisBandas.add(pa, x, i);
                 cont++;
                 
-                if(cont == partituras.size()){
+                if(cont == bandas.size()){
                     x=columnas;
                     i=(int) filas;
                 }
@@ -117,13 +118,15 @@ public class FXMLMisBandasController implements Initializable {
             }
             
         }
-
-    */
              
     }    
 
-    @FXML
-    private void clickEntrarABanda1(ActionEvent event) {
+    private void switchToBanda(String id) {
+        
+        Banda b = new Banda();
+        b.setId(Integer.parseInt(id));
+        this.s.b=b;
+        
          try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
             this.AP.getChildren().setAll(pane);
@@ -162,7 +165,9 @@ public class FXMLMisBandasController implements Initializable {
     private void UnirseBanda(ActionEvent event) {
         
         //Te une a la banda
-        this.bm.unirseBanda(unirseNombre.getText(), unirseContraseña.getText(), this.us);
+        if(this.bm.unirseBanda(unirseNombre.getText(), unirseContraseña.getText(), this.us) > 0){
+            //Alerta unirse banda y reinicio
+        }
         
     }
     

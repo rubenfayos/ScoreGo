@@ -8,6 +8,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javaproject.clases.Banda;
 import javaproject.clases.Usuario;
 
@@ -92,8 +95,6 @@ public class BandasModel extends DBUtil{
 
         ResultSet rs = stmt.executeQuery();
         
-        
-        
         while(rs.next()){
         
         b.setId(rs.getInt("id"));
@@ -116,6 +117,45 @@ public class BandasModel extends DBUtil{
         
         return b;
         
+    }
+    
+    public ObservableList<Banda> listarBandas(Usuario u){
+        
+        ObservableList<Banda> bandas = FXCollections.observableArrayList();
+        
+        try{
+        
+        //Vamos a comprobar que el usuario del login es correcto
+        PreparedStatement stmt = this.getConexion().prepareStatement("SELECT b.* FROM usuarios_banda ub, banda b WHERE ub.banda = b.id AND ub.usuario=?;");
+        stmt.setInt(1, u.getId());
+
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            
+        Banda b = new Banda();
+        
+        b.setId(rs.getInt("id"));
+        b.setNombre(rs.getString("nombre"));
+        b.setDescripcion(rs.getString("descripcion"));
+        b.setContraseña(rs.getString("contraseña"));
+        b.setImg(rs.getString("img"));
+        
+        bandas.add(b);
+        
+        }
+        
+        }catch (SQLException e) {
+            e.printStackTrace();   
+        } 
+
+        finally {
+            //Cerramos conexion
+            this.cerrarConexion();
+        }
+        
+        
+        return bandas;
     }
     
     

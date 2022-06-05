@@ -101,6 +101,30 @@ public class FTPManager {
         return firstRemoteFile;
     	
     }
+    
+    public String subirIMG(String archivoLocal, String nombre) throws IOException {
+        
+        this.getConexion();
+    	
+    	//Archivo que se quiere subir en local
+        File firstLocalFile = new File(archivoLocal.toString());
+
+        //Ruta donde se subirá el archivo en el servidor
+        String firstRemoteFile = "/public_html/data/admin/files/";
+        firstRemoteFile+=nombre.toString();
+        InputStream inputStream = new FileInputStream(firstLocalFile);
+		
+
+        System.out.println("Subiendo el archivo...");
+        boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
+        inputStream.close();
+        if (done) {
+            System.out.println("Archivo subido");
+        }
+        
+        return firstRemoteFile;
+    	
+    }
     	
     public boolean downloadFile(String rutaRemota, String rutaLocal) {
         

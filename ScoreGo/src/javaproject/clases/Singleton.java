@@ -16,6 +16,7 @@ public class Singleton {
   
     public Partitura p;
     public Usuario us;
+    public Banda b;
   
     // Constructor
     // Here we will be creating private constructor

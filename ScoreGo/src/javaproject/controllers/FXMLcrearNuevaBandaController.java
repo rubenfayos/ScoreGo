@@ -31,6 +31,7 @@ import javaproject.clases.Usuario;
 import javaproject.model.BandasModel;
 import javafx.scene.image.Image;
 import javafx.stage.Window;
+import javaproject.model.FTPManager;
 
 /**
  * FXML Controller class
@@ -39,13 +40,12 @@ import javafx.stage.Window;
  */
 public class FXMLcrearNuevaBandaController implements Initializable {
     
-    private BandasModel bm;
-    
+    private BandasModel bm = new BandasModel();
+    private FTPManager ftp = new FTPManager();
     private File img;
     
-    private Usuario usuario;
-    
     private Singleton s = Singleton.getInstance();
+    private Usuario u = s.us;
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -68,10 +68,6 @@ public class FXMLcrearNuevaBandaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        this.bm = new BandasModel();
-        
-        this.usuario = s.us;
-        
     }    
 
     @FXML
@@ -82,7 +78,7 @@ public class FXMLcrearNuevaBandaController implements Initializable {
     }
 
     @FXML
-    private void crearBanda(ActionEvent event) {
+    private void crearBanda(ActionEvent event) throws IOException {
         
         Alert ae = new Alert(AlertType.ERROR);
         ae.setTitle("ERROR");
@@ -101,16 +97,23 @@ public class FXMLcrearNuevaBandaController implements Initializable {
         
         if(crearNombreDeBanda.getText().isEmpty() || crearDescripcionDeBanda.getText().isEmpty() || contraseñaBanda.getText().isEmpty()){
             ae.show();
-        }
-        
-        if(previsualizacion.getImage() == null){
+        }else if(previsualizacion.getImage() == null){
             ae2.show();
-        }
-        
-        
-        if(crearNombreDeBanda.getText() != null && crearDescripcionDeBanda.getText() != null && contraseñaBanda.getText() != null && previsualizacion.getImage() != null){
+        } else if(crearNombreDeBanda.getText() != null && crearDescripcionDeBanda.getText() != null && contraseñaBanda.getText() != null && previsualizacion.getImage() != null){
             
-            ai.show();
+            Banda b = new Banda();
+        
+            b.setNombre(crearNombreDeBanda.getText());
+            b.setContraseña(contraseñaBanda.getText());
+            b.setDescripcion(crearDescripcionDeBanda.getText());
+            //b.setImg(this.ftp.subirIMG(this.img.getAbsolutePath(), this.img.getName()));
+            b.setAdministrador(this.u);
+        
+            this.bm.crearBanda(b);
+            
+            this.bm.unirseBanda(b.getNombre(), b.getContraseña(), this.u);
+            
+            ai.showAndWait();
             
             crearNombreDeBanda.setText(""); 
             crearDescripcionDeBanda.setText("");
@@ -125,17 +128,7 @@ public class FXMLcrearNuevaBandaController implements Initializable {
             }
     
         }
-        
-        Banda b = new Banda();
-        
-        b.setNombre(crearNombreDeBanda.getText());
-        b.setContraseña(contraseñaBanda.getText());
-        b.setDescripcion(crearDescripcionDeBanda.getText());
-        b.setImg(this.img.getAbsolutePath());
-        b.setAdministrador(this.usuario);
-        
-        this.bm.crearBanda(b);
-        
+                
              
     }
     
