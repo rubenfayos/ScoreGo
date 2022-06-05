@@ -192,7 +192,7 @@ public class PartituraModel extends DBUtil{
         try{
         
             //Seleccionamos los instrumentos correspondientes a la partitura
-            PreparedStatement stmt = this.getConexion().prepareStatement("select i.nombre FROM instrumentos i, partitura p, partitura_instrumentos pi WHERE i.id=pi.instrumento AND p.id=pi.partitura AND p.id=?;");
+            PreparedStatement stmt = this.getConexion().prepareStatement("select instrumento FROM partitura_instrumentos WHERE partitura=?;");
             
             stmt.setInt(1, p.getId());
             
@@ -247,7 +247,6 @@ public class PartituraModel extends DBUtil{
             p.setInstrumentos(instrumentos(p));
                 
                 
-            
             }catch (SQLException e) {
                 e.printStackTrace();   
             } 
