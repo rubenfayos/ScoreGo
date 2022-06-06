@@ -26,7 +26,7 @@
       </Pane>
       <ScrollPane fx:id="scp" layoutX="42.0" layoutY="200.0" prefHeight="500.0" prefWidth="1000.0" style="-fx-border-width: 0; -fx-border-color: white; -fx-background-color: white;">
          <content>
-            <GridPane fx:id="gridPaneMisBandas" alignment="CENTER" gridLinesVisible="true" hgap="1.0" prefHeight="220.0" prefWidth="980.0" vgap="1.0">
+            <GridPane fx:id="gridPaneMisBandas" alignment="CENTER" hgap="50.0" prefHeight="220.0" prefWidth="980.0" style="-fx-background-color: #f5f5f5;" vgap="1.0">
               <columnConstraints>
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />

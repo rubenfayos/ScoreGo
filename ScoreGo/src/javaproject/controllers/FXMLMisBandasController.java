@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,6 +28,7 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.text.Font;
 import javaproject.clases.Banda;
 import javaproject.clases.Partitura;
 import javaproject.clases.Singleton;
@@ -81,23 +83,19 @@ public class FXMLMisBandasController implements Initializable {
         int columnas=4;
         int cont = 0;
         
-        ColumnConstraints cols = new ColumnConstraints();
-        cols.setHalignment(HPos.CENTER);
-        gridPaneMisBandas.getColumnConstraints().add(cols);
-        
         //Define la cantidad de filas y su tamaño
         for (int i = 0; i < filas-1; i++) {
         RowConstraints rowConst = new RowConstraints();
-        rowConst.setPrefHeight(220);
+        rowConst.setPrefHeight(248);
         gridPaneMisBandas.getRowConstraints().add(rowConst);    
         }
         
-        gridPaneMisBandas.setPrefHeight(220*filas);
+        gridPaneMisBandas.setPrefHeight(248*filas);
 
         for(int i = 0; i < filas; i++){
             for(int x = 0; x < columnas; x++){
                 Pane pa= new Pane();
-                Button b = new Button(bandas.get(cont).getNombre());
+                Button b = new Button();
                 b.setPrefSize(200, 200);
                 
                 //Coge el id de la banda
@@ -107,6 +105,7 @@ public class FXMLMisBandasController implements Initializable {
                 });
                 
                 pa.getChildren().add(b);
+                pa.getChildren().add(crearLabel(bandas.get(cont).getNombre()));
                 gridPaneMisBandas.add(pa, x, i);
                 cont++;
                 
@@ -169,6 +168,18 @@ public class FXMLMisBandasController implements Initializable {
             //Alerta unirse banda y reinicio
         }
         
+    }
+    
+    public Label crearLabel(String p){
+        
+        Label l = new Label(p);
+               
+                l.setLayoutY(210);
+                l.setFont(new Font(16));
+                l.setPrefWidth(200);
+                l.setAlignment(Pos.CENTER);
+    
+        return l;
     }
     
     

@@ -158,5 +158,44 @@ public class BandasModel extends DBUtil{
         return bandas;
     }
     
+    public ObservableList<Usuario> listarUsuarios(Banda b){
+        
+        ObservableList<Usuario> usuarios = FXCollections.observableArrayList();
+        
+        try{
+        
+        //Vamos a comprobar que el usuario del login es correcto
+        PreparedStatement stmt = this.getConexion().prepareStatement("SELECT u.* FROM usuarios_banda ub, usuario u WHERE u.id=ub.usuario AND ub.banda=?;");
+        stmt.setInt(1, b.getId());
+
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            
+        Usuario u = new Usuario();
+        
+        u.setId(rs.getInt("id"));
+        u.setNombreUsuario(rs.getString("nombreUsuario"));
+        u.setNombre(rs.getString("nombre"));
+        u.setApellidos(rs.getString("apellidos"));
+        u.setNacionalidad(rs.getString("nacionalidad"));
+        
+        usuarios.add(u);
+        
+        }
+        
+        }catch (SQLException e) {
+            e.printStackTrace();   
+        } 
+
+        finally {
+            //Cerramos conexion
+            this.cerrarConexion();
+        }
+        
+         
+        return usuarios;
+    }
+    
     
 }
