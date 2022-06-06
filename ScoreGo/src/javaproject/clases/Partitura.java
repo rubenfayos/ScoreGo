@@ -16,6 +16,7 @@ public class Partitura extends DBUtil{
     private String nombre;
     private Usuario usuario;
     private java.sql.Date fechaSubida;
+    private String descripcion;
     private ArrayList<Integer> instrumentos;
     private String src;
     private String mp3;
@@ -44,6 +45,14 @@ public class Partitura extends DBUtil{
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public Usuario getUsuario() {
@@ -90,9 +99,10 @@ public class Partitura extends DBUtil{
         
     }
 
-    public Partitura(String autor, String nombre, int id, Usuario usuario, ArrayList<Integer> instrumentos, String src, String mp3) {
+    public Partitura(String autor, String nombre, String descripcion, int id, Usuario usuario, ArrayList<Integer> instrumentos, String src, String mp3) {
         this.autor = autor;
         this.nombre = nombre;
+        this.descripcion=descripcion;
         this.id = id;
         this.usuario = usuario;
         this.instrumentos = instrumentos;

@@ -72,6 +72,7 @@ public class FXMLMiembrosBandaController implements Initializable {
         nombreUsuarioText.setText(u.getNombreUsuario());
         nombreText.setText(u.getNombre());
         apellidosText.setText(u.getApellidos());
+        nacionalidadText.setText(u.getNacionalidad());
         
     }
     

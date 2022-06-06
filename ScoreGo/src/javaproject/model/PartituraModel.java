@@ -117,21 +117,24 @@ public class PartituraModel extends DBUtil{
         
         }
         
-        public void editarPartitura(Usuario u, Partitura newPartitura, Partitura oldPartitura){
+        public int editarPartitura(Usuario u, Partitura newPartitura, Partitura oldPartitura){
+            
+        int i = 0;
         
         try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            String sql = "UPDATE partitura SET autor=?, usuario=?, instrumentos=?, src=?, mp3=?"
-                    + "WHERE id=?";
+            String sql = "UPDATE partitura SET titulo=?, autor=?, descripcion=? src=?, mp3=? WHERE id=?";
             PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
-            stmt.setString(1, newPartitura.getAutor());
-            stmt.setInt(2, u.getId());
-            //stmt.setString(3, newPartitura.getInstrumentos());
+            stmt.setString(1, newPartitura.getNombre());
+            stmt.setString(2, newPartitura.getAutor());
+            stmt.setString(3, newPartitura.getDescripcion());
             stmt.setString(4, newPartitura.getSrc());
             stmt.setString(5, newPartitura.getMp3());
             stmt.setInt(6, oldPartitura.getId()); 
+            
+            i=stmt.executeUpdate();
             
         }catch (SQLException e) {
             e.printStackTrace();   
@@ -141,6 +144,8 @@ public class PartituraModel extends DBUtil{
             //Cerramos conexion
             this.cerrarConexion();
         }
+        
+        return i;
         
     }
         
@@ -225,7 +230,7 @@ public class PartituraModel extends DBUtil{
             try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura WHERE id=?");
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM partitura p, usuario u, usuario_partitura up WHERE up.usuario=u.id AND p.id=up.partitura AND p.id = ?;");
             
             stmt.setInt(1, id);
             
@@ -233,11 +238,13 @@ public class PartituraModel extends DBUtil{
             
             while(rs.next()){
                 
+                u.setNombreUsuario(rs.getString("nombreUsuario"));
                 u.setId(rs.getInt("usuario"));
             
                 p.setId(rs.getInt("id"));
                 p.setAutor(rs.getString("autor"));
                 p.setNombre(rs.getString("nombre"));
+                p.setDescripcion(rs.getString("descripcion"));
                 p.setUsuario(u);
                 p.setMp3(rs.getString("mp3"));
                 p.setSrc(rs.getString("src"));

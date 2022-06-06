@@ -21,10 +21,14 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javaproject.clases.Partitura;
 import javaproject.clases.Singleton;
@@ -47,6 +51,8 @@ public class FXMLVerPartituraController implements Initializable {
     private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
     private Usuario u = s.us;
+    File pdf;
+    File newMp3;
 
     @FXML
     private AnchorPane anchorPaneBandasPost;
@@ -70,6 +76,14 @@ public class FXMLVerPartituraController implements Initializable {
     private Button editarButton;
     @FXML
     private Button guardarButton;
+    @FXML
+    private Pane editarPane;
+    @FXML
+    private TextField editarTitulo;
+    @FXML
+    private TextField editarAutor;
+    @FXML
+    private TextArea editarDescripcion;
 
 
     /**
@@ -90,7 +104,9 @@ public class FXMLVerPartituraController implements Initializable {
         
         this.tituloPartitura.setText(p.getNombre());
         this.autorPartitura.setText(p.getAutor());
+        this.usuarioSubidaPartitura.setText(p.getUsuario().getNombreUsuario());
         //this.fechaSubidaPartitura.setText(p.getFechaSubida().toString());
+        this.descripcionPartitura.setText(p.getDescripcion());
         
         Image image = new Image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.fotocommunity.com%2Fatardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg%3Fheight%3D1080&f=1&nofb=1");
         this.partituraVista.setImage(image);
@@ -161,15 +177,75 @@ public class FXMLVerPartituraController implements Initializable {
         }
         
     }
+    
+    
 
     @FXML
     private void editar(ActionEvent event) {
+        
+        Partitura newP = this.p;
+        newP.setNombre(editarTitulo.getText());
+        newP.setAutor(editarAutor.getText());
+        newP.setDescripcion(editarDescripcion.getText());
+        //newP.setSrc(this.);
+        //newP.setMp3(mp3);
+        
+        if(this.pm.editarPartitura(u, newP, this.p) > 0){
+            
+        }
+        
     }
 
     @FXML
     private void guardar(ActionEvent event) {
         
+        this.pm.guardarPartitura(p, u);
         
     }
+
+    @FXML
+    private void showEditar(ActionEvent event) {
+        
+        if(!editarPane.isVisible())
+            editarPane.setVisible(true);
+        else if(editarPane.isVisible())
+            editarPane.setVisible(false);
+        
+    }
+
+    @FXML
+    private void editarPdf(ActionEvent event) {
+        
+        fileChooserPDF();
+        
+    }
+
+    @FXML
+    private void editarMp3(ActionEvent event) {
+        
+        fileChooserMP3();
+        
+    }
+    
+    private void fileChooserPDF(){
+         
+        
+        //Crea un file chooser para pdf
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
+        this.pdf = fileChooser.showOpenDialog(null);
+          
+    }
+    
+    private void fileChooserMP3(){
+        
+        //Crea un file chooser para mp3
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("MP3", "*.mp3"));
+        this.newMp3 = fileChooser.showOpenDialog(null);
+        
+        
+    }
+    
     
 }
