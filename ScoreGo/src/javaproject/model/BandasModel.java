@@ -83,15 +83,15 @@ public class BandasModel extends DBUtil{
         return i;
     }
     
-    public Banda listarBanda(String nombre){
+    public Banda listarBanda(int id){
         
         Banda b = new Banda();
         
         try{
         
         //Vamos a comprobar que el usuario del login es correcto
-        PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM banda WHERE nombre=?");
-        stmt.setString(1, nombre);
+        PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM banda WHERE id=?");
+        stmt.setInt(1, id);
 
         ResultSet rs = stmt.executeQuery();
         

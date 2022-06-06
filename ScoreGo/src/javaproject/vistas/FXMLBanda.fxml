@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" fx:id="AP" prefHeight="720.0" prefWidth="1100.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="javaproject.controllers.FXMLBandaController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLBandaController">
    <children>
       <AnchorPane prefHeight="150.0" prefWidth="1100.0" style="-fx-background-color: white;">
          <children>
@@ -17,13 +16,13 @@
                <children>
                   <Button mnemonicParsing="false" onAction="#partiturasBanda" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Partituras">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
                   <Separator opacity="0.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="25.0" style="-fx-background-color: white;" />
                   <Button mnemonicParsing="false" onAction="#miembrosBanda" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Miembros">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
                   <Separator maxWidth="30.0" opacity="0.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="25.0" style="-fx-background-color: white;" />
@@ -49,10 +48,11 @@
             <StackPane layoutX="150.0" layoutY="56.0" prefHeight="15.0" prefWidth="800.0" style="-fx-background-color: #36D8AD;" />
             <Label fx:id="nombreBandaText" alignment="CENTER" layoutY="5.0" prefWidth="1100.0" text="Label" textFill="#006f51">
                <font>
-                  <Font size="35.0" />
+                  <Font name="System Bold" size="35.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
+      <AnchorPane fx:id="AP" layoutY="150.0" prefHeight="570.0" prefWidth="1100.0" />
    </children>
 </AnchorPane>
