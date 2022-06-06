@@ -10,6 +10,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javaproject.clases.Banda;
@@ -29,7 +30,7 @@ public class FXMLSubirPostController implements Initializable {
     @FXML
     private TextField tituloPost;
     @FXML
-    private TextField textoPost;
+    private TextArea textoPost;
 
     /**
      * Initializes the controller class.

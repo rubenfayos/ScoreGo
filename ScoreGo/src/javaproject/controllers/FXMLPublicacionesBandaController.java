@@ -28,38 +28,9 @@ import javafx.scene.shape.Circle;
 public class FXMLPublicacionesBandaController implements Initializable {
 
     @FXML
-    private AnchorPane anchorPaneBandasPost;
-    @FXML
-    private Button botonSubirBanda;
-    @FXML
-    private Button botonPartiturasBanda;
-    @FXML
-    private Button botonMiembrosBanda;
-    @FXML
-    private Button botonPublicacionesBanda;
-    @FXML
     private ScrollPane scrollPanelPost;
     @FXML
-    private AnchorPane anchorPanelPost;
-    @FXML
-    private AnchorPane panelUsuarioFechaPost;
-    @FXML
-    private Circle fotoUsuarioPost;
-    @FXML
-    private Label nombreUsuarioPost;
-    @FXML
-    private Label fechaSubidaPost;
-    @FXML
-    private ImageView imagePost;
-    @FXML
-    private AnchorPane panelPieDeFoto;
-    @FXML
-    private Label piePublicacion;
-    @FXML
-    private Label fechaEscrituraPiePublicacion;
-    @FXML
     private AnchorPane anchorPaneBandasInside;
-    @FXML
     private AnchorPane publicacionesSubPane;
 
     /**
@@ -70,7 +41,6 @@ public class FXMLPublicacionesBandaController implements Initializable {
         // TODO
     }    
 
-    @FXML
     private void clickSubirABanda(ActionEvent event) {
          try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLSubirPartituraBanda.fxml"));
@@ -81,7 +51,6 @@ public class FXMLPublicacionesBandaController implements Initializable {
     }
     
 
-    @FXML
     private void clickPartiturasBanda(ActionEvent event) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartituraBanda.fxml"));
@@ -92,12 +61,7 @@ public class FXMLPublicacionesBandaController implements Initializable {
     }
     
 
-    @FXML
-    private void clickMiembrosBanda(ActionEvent event) {
-        
-    }
 
-    @FXML
     private void clickPublicacionesBanda(ActionEvent event) {
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
