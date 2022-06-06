@@ -54,8 +54,8 @@ public class FXMLPantallaPrincipalController implements Initializable {
         
         //Inicia el Anchor Pane de la página inicio
        try {
-            ScrollPane scp = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
-            this.PrincipalAP.getChildren().setAll(scp);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
+            this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -82,8 +82,8 @@ public class FXMLPantallaPrincipalController implements Initializable {
         
         //Switch a Anchor Pane inicio
         try {
-            ScrollPane scp = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
-            this.PrincipalAP.getChildren().setAll(scp);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
+            this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
