@@ -73,7 +73,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
                 Background fondoImagenUsuario = new Background(imagenUsuario);
                 this.imageButton.setBackground(fondoImagenUsuario);
                 Image fotoPerfil = new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg");
-       img.setImage(fotoPerfil);
+       //img.setImage(fotoPerfil);
     }    
 
     @FXML
