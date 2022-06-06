@@ -70,13 +70,13 @@ public class FXMLMisPartiturasController implements Initializable {
                 filas++;
         }
         
-        partituraGP.setPrefHeight(250*filas);
+        partituraGP.setPrefHeight(248*filas);
         
         
         //Define la cantidad de filas y su tamaño
         for (int i = 0; i < filas-1; i++) {
             RowConstraints rowConst = new RowConstraints();
-            rowConst.setPrefHeight(250);
+            rowConst.setPrefHeight(248);
             partituraGP.getRowConstraints().add(rowConst);    
         }
         
