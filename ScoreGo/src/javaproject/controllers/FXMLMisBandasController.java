@@ -107,7 +107,7 @@ public class FXMLMisBandasController implements Initializable {
                 Button b = new Button();
                 b.setPrefSize(200, 200);
                 //seleciona el fondo de los botones
-                BackgroundImage fondoBotonBanda = new BackgroundImage( new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                BackgroundImage fondoBotonBanda = new BackgroundImage( new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 190, 190, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
                 Background fondoImagenBanda = new Background(fondoBotonBanda);
                 b.setBackground(fondoImagenBanda);
                 
