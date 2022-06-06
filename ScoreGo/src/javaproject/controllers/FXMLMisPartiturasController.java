@@ -4,8 +4,10 @@
  */
 package javaproject.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,8 +22,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -33,6 +41,9 @@ import javaproject.clases.Post;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.PartituraModel;
+
+
+
 
 /**
  * FXML Controller class
@@ -52,6 +63,8 @@ public class FXMLMisPartiturasController implements Initializable {
     private ScrollPane scrollPanelMisPartituras;
     @FXML
     private GridPane partituraGP;
+    
+    
 
    
     @Override
@@ -91,6 +104,11 @@ public class FXMLMisPartiturasController implements Initializable {
                 //Crea un nuevo boton 
                 Button b = new Button();
                 b.setPrefSize(200, 200);
+                
+                
+                BackgroundImage fondoBotonPartitura = new BackgroundImage( new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 190, 190, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                Background fondoImagenPartitura = new Background(fondoBotonPartitura);
+                b.setBackground(fondoImagenPartitura);
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
                 //Añade la accion de ver la partitura al botton
