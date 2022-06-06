@@ -17,8 +17,8 @@ public class DBUtil {
 		
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			//this.conn = DriverManager.getConnection("jdbc:mysql://scorego.ddns.net/scor_godb", "scor_godbusr", "1234567");
-                        this.conn = DriverManager.getConnection("jdbc:mysql://localhost/scor_godb", "root", "");
+			this.conn = DriverManager.getConnection("jdbc:mysql://scorego.ddns.net/scor_godb", "scor_godbusr", "1234567");
+                        //this.conn = DriverManager.getConnection("jdbc:mysql://localhost/scor_godb", "root", "");
 			return this.conn;
 		} catch (SQLException e) {
 			e.printStackTrace();
