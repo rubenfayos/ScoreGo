@@ -15,6 +15,7 @@ public class Post {
     private Banda banda;
     private String título;
     private String texto;
+    private String fechaPublicacion;
     
     //Getters & Setters
 
@@ -56,6 +57,14 @@ public class Post {
 
     public void setTexto(String texto) {
         this.texto = texto;
+    }
+
+    public String getFechaPublicacion() {
+        return fechaPublicacion;
+    }
+
+    public void setFechaPublicacion(String fechaPublicacion) {
+        this.fechaPublicacion = fechaPublicacion;
     }
     
     //Costructor

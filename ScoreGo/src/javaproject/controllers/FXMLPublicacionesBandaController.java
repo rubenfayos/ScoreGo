@@ -18,7 +18,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.shape.Circle;
+import javaproject.clases.Banda;
+import javaproject.clases.Singleton;
+import javaproject.clases.Usuario;
+import javaproject.model.PostModel;
 
 /**
  * FXML Controller class
@@ -26,50 +31,27 @@ import javafx.scene.shape.Circle;
  * @author 1erDAM
  */
 public class FXMLPublicacionesBandaController implements Initializable {
+    
+    private PostModel psm = new PostModel();
+    private Singleton s = Singleton.getInstance();
+    private Usuario u = s.us;
+    private Banda b = s.b;
 
     @FXML
     private ScrollPane scrollPanelPost;
     @FXML
-    private AnchorPane anchorPaneBandasInside;
-    private AnchorPane publicacionesSubPane;
+    private GridPane postGP;
 
-    /**
-     * Initializes the controller class.
-     */
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+    
+        
+        
     }    
 
-    private void clickSubirABanda(ActionEvent event) {
-         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLSubirPartituraBanda.fxml"));
-            this.publicacionesSubPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
 
-    private void clickPartiturasBanda(ActionEvent event) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartituraBanda.fxml"));
-            this.publicacionesSubPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-
-
-    private void clickPublicacionesBanda(ActionEvent event) {
-        try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
-            this.anchorPaneBandasInside.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    } 
-    }
+}
     
 

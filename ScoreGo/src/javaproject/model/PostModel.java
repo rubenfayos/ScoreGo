@@ -4,8 +4,13 @@
  */
 package javaproject.model;
 
+import com.mysql.cj.xdevapi.Result;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Observable;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javaproject.clases.Banda;
 import javaproject.clases.Post;
 import javaproject.clases.Usuario;
@@ -85,8 +90,44 @@ public class PostModel extends DBUtil{
             }
     }
    
-    
-    
-    
-    
+    public ObservableList<Post> listarPostBanda(Banda b){
+        
+        ObservableList<Post> posts = FXCollections.observableArrayList();
+        
+        try{
+            
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM POST p, usuario u WHERE banda=? AND p.usuario=u.id");
+            
+                stmt.setInt(1, b.getId());
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while(rs.next()){
+                    
+                    Post p = new Post();
+                    Usuario u = new Usuario();
+                    u.setNombre(rs.getString("nombreUsuario"));
+                    
+                    p.setTítulo(rs.getString("titulo"));
+                    p.setTexto(rs.getString("texto"));
+                    p.setFechaPublicacion(rs.getString("fechaPublicacion").toString());
+                    p.setUsuario(u);
+                    
+                    posts.add(p);
+                    
+                }
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+        
+        return posts;
+    }
+      
 }
