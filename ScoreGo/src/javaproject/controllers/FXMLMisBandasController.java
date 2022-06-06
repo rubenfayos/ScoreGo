@@ -25,8 +25,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -100,6 +106,10 @@ public class FXMLMisBandasController implements Initializable {
                 Pane pa= new Pane();
                 Button b = new Button();
                 b.setPrefSize(200, 200);
+                //seleciona el fondo de los botones
+                BackgroundImage fondoBotonBanda = new BackgroundImage( new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg") ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                Background fondoImagenBanda = new Background(fondoBotonBanda);
+                b.setBackground(fondoImagenBanda);
                 
                 //Coge el id de la banda
                 b.setId(Integer.toString(bandas.get(cont).getId()));
