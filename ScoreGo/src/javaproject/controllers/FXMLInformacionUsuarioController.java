@@ -72,9 +72,9 @@ public class FXMLInformacionUsuarioController implements Initializable {
         this.infoNombreUsuario1.setText(us.getFechaNacimiento().toString());
         this.infoPais.setText(us.getNacionalidad());
         
-        //Image imag = new Image(us.get.toURI().toString());
+        Image img = new Image("ftp://admin_cloud:12345678@cloudscorego.ddns.net/public_html/data/admin/files/Usuarios/img/si.png;type=i");
         
-        //imagenUsuarioInfo.setImage(imag);
+        this.imagenUsuarioInfo.setImage(img);
         
         
     }    

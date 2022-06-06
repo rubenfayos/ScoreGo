@@ -14,6 +14,7 @@ public class Usuario{
     private String nombreUsuario;
     private String contraseña;
     private String correo;
+    private String img;
     private java.sql.Date fechaNacimiento;
     private String nacionalidad;
     private ArrayList<Partitura> partituras;
@@ -72,6 +73,13 @@ public class Usuario{
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getCorreo() {
         return correo;
