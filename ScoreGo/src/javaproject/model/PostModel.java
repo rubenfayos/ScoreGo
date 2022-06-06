@@ -16,18 +16,19 @@ import javaproject.clases.Usuario;
  */
 public class PostModel extends DBUtil{
     
-    public void subirPost(int id_u, int id_b, String titulo, String texto){
+    public void subirPost(Post p, Banda b,Usuario u){
         
         try{
             
                 //Vamos a comprobar que el usuario del login es correcto
-                String sql = "INSERT INTO post(usuario, banda, titulo, texto VALUES(?,?,?,?)";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
+                PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO post(usuario, banda, titulo, texto) VALUES(?,?,?,?)");
             
-                stmt.setInt(1, id_u);
-                stmt.setInt(2, id_b);
-                stmt.setString(3, titulo);
-                stmt.setString(4, texto); 
+                stmt.setInt(1, u.getId());
+                stmt.setInt(2, b.getId());
+                stmt.setString(3, p.getTítulo());
+                stmt.setString(4, p.getTexto()); 
+                
+                stmt.execute();
           
             
             }catch (SQLException e) {

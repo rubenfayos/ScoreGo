@@ -16,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javaproject.clases.Banda;
 import javaproject.clases.Partitura;
 import javaproject.clases.Post;
+import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 
 /**
@@ -24,6 +25,11 @@ import javaproject.clases.Usuario;
  * @author jnava
  */
 public class FXMLSubirPostController implements Initializable {
+  
+    PostModel pm = new PostModel();
+    private Singleton s = Singleton.getInstance();
+    private Banda b = s.b;
+    private Usuario u = s.us;
 
     @FXML
     private AnchorPane AP;
@@ -44,24 +50,18 @@ public class FXMLSubirPostController implements Initializable {
     @FXML
     private void SubirPost(ActionEvent event) {
      
-                
-         
-         String texto = String.valueOf(textoPost);
-         String titulo = String.valueOf(tituloPost);
-         
-        insertar(texto,titulo);
+
+       Post p = new Post();
+        
+       p.setTítulo(tituloPost.getText());
+       p.setTexto(textoPost.getText());
+       
+       
+       this.pm.subirPost(p, this.b, this.u);
+        
+   
+    
+    }
          
     }
-    public static void insertar(String texto, String titulo){
-        
-        Usuario u = new Usuario();
-        Banda b = new Banda();
-        PostModel pm = new PostModel();
-        
-      
-        
-        pm.subirPost(u.getId(),b.getId(), titulo, texto);
-        
-        
-    }
-}
+   
