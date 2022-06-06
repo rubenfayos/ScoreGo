@@ -16,7 +16,7 @@ import javaproject.clases.Usuario;
  */
 public class PostModel extends DBUtil{
     
-    public void subirPost(Post p, Usuario u, Banda b){
+    public void subirPost(int id_u, int id_b, String titulo, String texto){
         
         try{
             
@@ -24,10 +24,10 @@ public class PostModel extends DBUtil{
                 String sql = "INSERT INTO post(usuario, banda, titulo, texto VALUES(?,?,?,?)";
                 PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
-                stmt.setInt(1, u.getId());
-                stmt.setInt(2, u.getId());
-                stmt.setString(3, b.getNombre());
-                stmt.setString(4, p.getTexto()); 
+                stmt.setInt(1, id_u);
+                stmt.setInt(2, id_b);
+                stmt.setString(3, titulo);
+                stmt.setString(4, texto); 
           
             
             }catch (SQLException e) {
@@ -84,31 +84,7 @@ public class PostModel extends DBUtil{
                 this.cerrarConexion();
             }
     }
-    public void crearPost(Post p,Banda b,Usuario u){
-        
-        try{
-            
-                //Vamos a comprobar que el usuario del login es correcto
-                String sql  = "INSERT INTO post (usuario,banda,titulo,texto) VALUES (?,?,?,?);";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
-            
-                stmt.setInt(1, u.getId());
-                stmt.setInt(2,b.getId());
-                stmt.setString(3, p.getTítulo());
-                stmt.setString(4, p.getTexto());
-          
-            
-            }catch (SQLException e) {
-                e.printStackTrace();   
-            } 
-        
-            finally {
-                //Cerramos conexion
-                this.cerrarConexion();
-            }
-    }
-    public PostModel() {
-    }
+   
     
     
     
