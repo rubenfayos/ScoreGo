@@ -58,7 +58,7 @@ public class FXMLVerPartituraBandaController implements Initializable {
 
     @FXML
     private void reproducirMp3(ActionEvent event) {
-        this.mp3.reproductor();
+        this.mp3.reproductor("https://www.youtube.com/watch?v=2EVTAzDPlQQ");
     }
     public void alert() {
     

@@ -46,7 +46,7 @@ import javax.imageio.ImageIO;
 public class FXMLVerPartituraController implements Initializable {
     
     private FTPManager ftp = new FTPManager();
-    private mp3Player mp3 = new mp3Player();
+    private mp3Player mp3;
     private Partitura p = new Partitura();
     private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
@@ -105,7 +105,7 @@ public class FXMLVerPartituraController implements Initializable {
         this.tituloPartitura.setText(p.getNombre());
         this.autorPartitura.setText(p.getAutor());
         this.usuarioSubidaPartitura.setText(p.getUsuario().getNombreUsuario());
-        //this.fechaSubidaPartitura.setText(p.getFechaSubida().toString());
+        this.fechaSubidaPartitura.setText(p.getFechaSubida().toString());
         this.descripcionPartitura.setText(p.getDescripcion());
         
         Image image = new Image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.fotocommunity.com%2Fatardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg%3Fheight%3D1080&f=1&nofb=1");
@@ -118,8 +118,8 @@ public class FXMLVerPartituraController implements Initializable {
 
     @FXML
     private void reproducirMp3(ActionEvent event) {
-
         
+        //this.mp3.reproductor("https://www.youtube.com/watch?v=2EVTAzDPlQQ");
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
             this.mp3AP.getChildren().setAll(pane);

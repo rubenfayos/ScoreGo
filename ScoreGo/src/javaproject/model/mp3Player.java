@@ -28,6 +28,9 @@ import javafx.stage.Stage;
  */
 public class mp3Player implements Initializable {
     
+    private URL resource;
+    private String st;
+    
   
     @FXML
     private Button detenerButton;
@@ -42,18 +45,16 @@ public class mp3Player implements Initializable {
                     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        URL resource = getClass().getResource("media.mp3");
-            // wir legen das Mediaobjekt and und weisen unsere Resource zu
-        Media media = new Media(resource.toString());
-            // wir legen den Mediaplayer an und weisen ihm das Media Objekt zu
+           
+        Media media = new Media("https://www.youtube.com/watch?v=5ngWIDkPP3o");
+            
         this.mp = new MediaPlayer(media);
         
     }
     
 
     public void start(Stage primaryStage) {
-          
+    
     }
     
     @FXML
@@ -74,8 +75,10 @@ public class mp3Player implements Initializable {
         this.mp.stop();
     }
     
-    public void reproductor(){
+    public void reproductor(String url){
         
+        this.st = url;
+            
                
     }
 

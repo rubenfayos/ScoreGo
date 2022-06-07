@@ -240,12 +240,12 @@ public class PartituraModel extends DBUtil{
                 
                 u.setNombreUsuario(rs.getString("nombreUsuario"));
                 u.setId(rs.getInt("usuario"));
+                p.setUsuario(u);
             
                 p.setId(rs.getInt("id"));
                 p.setAutor(rs.getString("autor"));
                 p.setNombre(rs.getString("nombre"));
                 p.setDescripcion(rs.getString("descripcion"));
-                p.setUsuario(u);
                 p.setMp3(rs.getString("mp3"));
                 p.setSrc(rs.getString("src"));
             
@@ -288,6 +288,44 @@ public class PartituraModel extends DBUtil{
                 p.setNombre(rs.getString("nombre"));
                 p.setSrc(rs.getString("src"));
                 p.setMp3(rs.getString("mp3"));
+                partituras.add(p);
+            
+            }
+                
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+            
+            return partituras;
+       
+        }
+    
+    public ObservableList<Partitura> listarPartiturasInicio(){
+        
+        ObservableList<Partitura> partituras = FXCollections.observableArrayList();
+            
+            try{
+            
+            //Hacemos update con los nuevos datos del usuario sobre el id del usuario
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura ");
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+            
+                Partitura p = new Partitura();
+                p.setId(rs.getInt("id"));
+                p.setAutor(rs.getString("autor"));
+                p.setNombre(rs.getString("nombre"));
+                p.setSrc(rs.getString("src"));
+                //p.setMp3(rs.getString("mp3"));
                 partituras.add(p);
             
             }

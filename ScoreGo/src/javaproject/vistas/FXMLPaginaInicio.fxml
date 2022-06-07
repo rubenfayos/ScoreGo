@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLPaginaInicioController">
+<AnchorPane fx:id="AP" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLPaginaInicioController">
    <children>
       <Pane prefHeight="102.0" prefWidth="1100.0" style="-fx-background-color: #36D8AD;">
          <children>
@@ -25,12 +24,12 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Label layoutX="50.0" layoutY="416.0" text="Bandas recientes">
+      <Label layoutX="50.0" layoutY="416.0" text="Mis bandas">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <GridPane fx:id="PartiturasGP" gridLinesVisible="true" hgap="50.0" layoutX="50.0" layoutY="152.0" prefHeight="250.0" prefWidth="1000.0">
+      <GridPane fx:id="PartiturasGP" hgap="50.0" layoutX="50.0" layoutY="152.0" prefHeight="250.0" prefWidth="1000.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,7 +40,7 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
       </GridPane>
-      <GridPane fx:id="BandasGP" gridLinesVisible="true" hgap="50.0" layoutX="50.0" layoutY="456.0" prefHeight="250.0" prefWidth="1000.0">
+      <GridPane fx:id="BandasGP" hgap="50.0" layoutX="50.0" layoutY="456.0" prefHeight="250.0" prefWidth="1000.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
