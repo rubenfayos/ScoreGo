@@ -78,7 +78,6 @@ public class FXMLMisBandasController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         
-        
         ObservableList<Banda> bandas = this.bm.listarBandas(us);
         
         int filas = 0;

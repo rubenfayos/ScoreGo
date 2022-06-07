@@ -53,15 +53,15 @@ public class FXMLSubirPostController implements Initializable {
 
        Post p = new Post();
         
-       p.setTítulo(tituloPost.getText());
+       p.setTitulo(tituloPost.getText());
        p.setTexto(textoPost.getText());
        
        
-       this.pm.subirPost(p, this.b, this.u);
+       if(this.pm.subirPost(p, this.b, this.u) > 0){
+           
+       }
         
-   
+    }
     
-    }
-         
-    }
+}
    

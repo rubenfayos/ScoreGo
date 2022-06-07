@@ -21,7 +21,9 @@ import javaproject.clases.Usuario;
  */
 public class PostModel extends DBUtil{
     
-    public void subirPost(Post p, Banda b,Usuario u){
+    public int subirPost(Post p, Banda b,Usuario u){
+        
+        int i = 0;
         
         try{
             
@@ -30,10 +32,10 @@ public class PostModel extends DBUtil{
             
                 stmt.setInt(1, u.getId());
                 stmt.setInt(2, b.getId());
-                stmt.setString(3, p.getTítulo());
+                stmt.setString(3, p.getTitulo());
                 stmt.setString(4, p.getTexto()); 
                 
-                stmt.execute();
+                i=stmt.executeUpdate();
           
             
             }catch (SQLException e) {
@@ -44,6 +46,9 @@ public class PostModel extends DBUtil{
                 //Cerramos conexion
                 this.cerrarConexion();
             }
+        
+        return i;
+        
     }
 
     public void eliminarPost(Post p){
@@ -107,9 +112,9 @@ public class PostModel extends DBUtil{
                     
                     Post p = new Post();
                     Usuario u = new Usuario();
-                    u.setNombre(rs.getString("nombreUsuario"));
+                    u.setNombreUsuario(rs.getString("nombreUsuario"));
                     
-                    p.setTítulo(rs.getString("titulo"));
+                    p.setTitulo(rs.getString("titulo"));
                     p.setTexto(rs.getString("texto"));
                     p.setFechaPublicacion(rs.getString("fechaPublicacion").toString());
                     p.setUsuario(u);

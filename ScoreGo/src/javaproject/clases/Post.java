@@ -13,7 +13,7 @@ public class Post {
     private int id;
     private Usuario usuario;
     private Banda banda;
-    private String título;
+    private String titulo;
     private String texto;
     private String fechaPublicacion;
     
@@ -43,12 +43,12 @@ public class Post {
         this.banda = banda;
     }
 
-    public String getTítulo() {
-        return título;
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setTítulo(String título) {
-        this.título = título;
+    public void setTitulo(String título) {
+        this.titulo = título;
     }
 
     public String getTexto() {
@@ -69,10 +69,10 @@ public class Post {
     
     //Costructor
 
-    public Post(Usuario usuario, Banda banda, String título, String texto) {
+    public Post(Usuario usuario, Banda banda, String titulo, String texto) {
         this.usuario = usuario;
         this.banda = banda;
-        this.título = título;
+        this.titulo = titulo;
         this.texto = texto;
     }
 
