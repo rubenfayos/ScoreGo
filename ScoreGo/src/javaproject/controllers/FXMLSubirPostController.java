@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -94,7 +95,11 @@ public class FXMLSubirPostController implements Initializable {
        
        
        if(this.pm.subirPost(p, this.b, this.u) > 0){
-           
+           Alert ain = new Alert(Alert.AlertType.INFORMATION);
+                ain.setTitle("INFORMACIÓN");
+                ain.setHeaderText("Post subido");
+                ain.setContentText("Post subido correctamente");
+                ain.showAndWait();
        }
         
     }
