@@ -174,7 +174,12 @@ public class FXMLMisBandasController implements Initializable {
             ac2.setContentText("¿Desea ir a la banda?");
             ac2.showAndWait();
             if(ac2.getResult() == ButtonType.OK){
-              try {
+              Alert ai = new Alert(AlertType.INFORMATION);
+                ai.setTitle("INFORMACIÓN");
+                ai.setHeaderText("Esto es un mensaje informativo");
+                ai.setContentText("Te has unido a la banda correctamente");
+                ai.showAndWait();
+               try {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
                 this.AP.getChildren().setAll(pane);
                 } catch (IOException ex) {
@@ -182,11 +187,7 @@ public class FXMLMisBandasController implements Initializable {
                 }
             }
             
-            Alert ai = new Alert(AlertType.INFORMATION);
-            ai.setTitle("INFORMACIÓN");
-            ai.setHeaderText("Esto es un mensaje informativo");
-            ai.setContentText("Te has unido a la banda correctamente");
-            ai.showAndWait();
+            
         }
         
     }
