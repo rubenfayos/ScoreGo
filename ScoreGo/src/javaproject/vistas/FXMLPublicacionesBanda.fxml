@@ -1,79 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.shape.Circle?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="anchorPaneBandasInside" prefHeight="720.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLPublicacionesBandaController">
+<AnchorPane id="AnchorPane" fx:id="anchorPaneBandasInside" prefHeight="570.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLPublicacionesBandaController">
    <children>
-      <Separator layoutX="16.0" layoutY="70.0" prefHeight="0.0" prefWidth="911.0" />
-      <AnchorPane fx:id="anchorPaneBandasPost" prefHeight="71.0" prefWidth="950.0">
-         <children>
-            <Button fx:id="botonSubirBanda" layoutX="736.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickSubirABanda" prefHeight="43.0" prefWidth="157.0" style="-fx-background-color: #36D8AD;" text="Subir">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="botonPartiturasBanda" layoutX="516.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickPartiturasBanda" prefHeight="43.0" prefWidth="157.0" style="-fx-background-color: #36D8AD;" text="Partituras">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="botonMiembrosBanda" layoutX="291.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickMiembrosBanda" prefHeight="43.0" prefWidth="157.0" style="-fx-background-color: #36D8AD;" text="Miembros">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-            <Button fx:id="botonPublicacionesBanda" layoutX="70.0" layoutY="14.0" mnemonicParsing="false" onAction="#clickPublicacionesBanda" prefHeight="43.0" prefWidth="157.0" style="-fx-background-color: #36D8AD;" text="Publicaciones">
-               <font>
-                  <Font name="System Bold" size="19.0" />
-               </font>
-            </Button>
-         </children>
-      </AnchorPane>
-      <AnchorPane fx:id="publicacionesSubPane" layoutX="38.0" layoutY="71.0" prefHeight="649.0" prefWidth="868.0" style="-fx-background-color: white; -fx-background-radius: 6;">
-         <children>
-            <ScrollPane fx:id="scrollPanelPost" layoutX="135.0" layoutY="25.0" prefHeight="624.0" prefWidth="598.0">
-               <content>
-                  <AnchorPane fx:id="anchorPanelPost" prefHeight="746.0" prefWidth="583.0" style="-fx-background-color: lightgray;">
-                     <children>
-                        <AnchorPane fx:id="panelUsuarioFechaPost" layoutX="36.0" layoutY="67.0" prefHeight="90.0" prefWidth="512.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
-                           <children>
-                              <Circle fx:id="fotoUsuarioPost" fill="WHITE" layoutX="38.0" layoutY="45.0" radius="30.0" stroke="BLACK" strokeType="INSIDE" />
-                              <Label fx:id="nombreUsuarioPost" layoutX="76.0" layoutY="30.0" prefHeight="31.0" prefWidth="190.0" text="nombreUsuarioPost">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="fechaSubidaPost" layoutX="277.0" layoutY="37.0" prefHeight="17.0" prefWidth="71.0" text="fechaSubida" />
-                           </children>
-                        </AnchorPane>
-                        <ImageView fx:id="imagePost" fitHeight="384.0" fitWidth="512.0" layoutX="36.0" layoutY="157.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Desktop/Supra%20mk3.jpg" />
-                           </image>
-                        </ImageView>
-                        <AnchorPane fx:id="panelPieDeFoto" layoutX="36.0" layoutY="497.0" prefHeight="90.0" prefWidth="512.0" style="-fx-border-width: 1; -fx-border-color: black; -fx-background-color: white;">
-                           <children>
-                              <Label fx:id="piePublicacion" layoutX="14.0" layoutY="7.0" prefHeight="79.0" prefWidth="481.0" text="pieDepublicacion texto de pie de foto ">
-                                 <font>
-                                    <Font name="Arial Rounded MT Bold" size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="fechaEscrituraPiePublicacion" layoutX="389.0" layoutY="37.0" prefHeight="17.0" prefWidth="95.0" text="fechaEscritura" />
-                           </children>
-                        </AnchorPane>
-                     </children>
-                  </AnchorPane>
-               </content>
-            </ScrollPane>
-         </children>
-      </AnchorPane>
+      <ScrollPane fx:id="scrollPanelPost" prefHeight="570.0" prefWidth="1100.0" />
    </children>
 </AnchorPane>

@@ -4,7 +4,7 @@
  */
 package javaproject.controllers;
 
-import java.awt.Image;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -22,7 +22,13 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 /**
  * FXML Controller class
@@ -52,17 +58,22 @@ public class FXMLPantallaPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
+        
         //Inicia el Anchor Pane de la página inicio
        try {
-            ScrollPane scp = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
-            this.PrincipalAP.getChildren().setAll(scp);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
+            this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
        
-       this.imageButton.setGraphic(img);
        
+       BackgroundImage imagenUsuario = new BackgroundImage( new javafx.scene.image.Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 78, 80, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                Background fondoImagenUsuario = new Background(imagenUsuario);
+                this.imageButton.setBackground(fondoImagenUsuario);
+                Image fotoPerfil = new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg");
+       //img.setImage(fotoPerfil);
     }    
 
     @FXML
@@ -82,8 +93,8 @@ public class FXMLPantallaPrincipalController implements Initializable {
         
         //Switch a Anchor Pane inicio
         try {
-            ScrollPane scp = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
-            this.PrincipalAP.getChildren().setAll(scp);
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
+            this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }

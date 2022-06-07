@@ -16,6 +16,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javaproject.clases.Banda;
 import javaproject.clases.Singleton;
@@ -34,27 +35,17 @@ public class FXMLMiembrosBandaController implements Initializable {
     private Banda b = s.b;
 
     @FXML
-    private ImageView vistaFotoUsuario;
-    @FXML
     private TableView<Usuario> tablaMiembros;
-    @FXML
-    private Label nombreMiembro;
     @FXML
     private Label nombreUsuarioText;
     @FXML
-    private Label nombreMiembro1;
-    @FXML
     private Label nombreText;
-    @FXML
-    private Label nombreMiembro2;
     @FXML
     private Label apellidosText;
     @FXML
-    private Label nombreMiembro3;
-    @FXML
     private Label nacionalidadText;
     @FXML
-    private TableColumn<Usuario, String> nombre;
+    private TableColumn nombreColumn;
 
     /**
      * Initializes the controller class.
@@ -65,11 +56,24 @@ public class FXMLMiembrosBandaController implements Initializable {
         ObservableList<Usuario> usuarios = FXCollections.observableArrayList();
         usuarios = this.bm.listarUsuarios(b);
         
-        this.nombre.setCellValueFactory(new PropertyValueFactory("Nombre"));
+        this.nombreColumn.setCellValueFactory(new PropertyValueFactory("nombreUsuario"));
         
         this.tablaMiembros.setItems(usuarios);
         
         
+        
     }    
+
+    @FXML
+    private void mostrarUsuario(MouseEvent event) {
+        
+        Usuario u = this.tablaMiembros.getSelectionModel().getSelectedItem();
+        
+        nombreUsuarioText.setText(u.getNombreUsuario());
+        nombreText.setText(u.getNombre());
+        apellidosText.setText(u.getApellidos());
+        nacionalidadText.setText(u.getNacionalidad());
+        
+    }
     
 }

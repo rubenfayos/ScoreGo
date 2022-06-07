@@ -16,18 +16,19 @@ import javaproject.clases.Usuario;
  */
 public class PostModel extends DBUtil{
     
-    public void subirPost(Post p, Usuario u, Banda b){
+    public void subirPost(Post p, Banda b,Usuario u){
         
         try{
             
                 //Vamos a comprobar que el usuario del login es correcto
-                String sql = "INSERT INTO post(usuario, banda, titulo, texto VALUES(?,?,?,?)";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
+                PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO post(usuario, banda, titulo, texto) VALUES(?,?,?,?)");
             
                 stmt.setInt(1, u.getId());
-                stmt.setInt(2, u.getId());
-                stmt.setString(3, b.getNombre());
+                stmt.setInt(2, b.getId());
+                stmt.setString(3, p.getTítulo());
                 stmt.setString(4, p.getTexto()); 
+                
+                stmt.execute();
           
             
             }catch (SQLException e) {
@@ -84,31 +85,7 @@ public class PostModel extends DBUtil{
                 this.cerrarConexion();
             }
     }
-    public void crearPost(Post p,Banda b,Usuario u){
-        
-        try{
-            
-                //Vamos a comprobar que el usuario del login es correcto
-                String sql  = "INSERT INTO post (usuario,banda,titulo,texto) VALUES (?,?,?,?);";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
-            
-                stmt.setInt(1, u.getId());
-                stmt.setInt(2,b.getId());
-                stmt.setString(3, p.getTítulo());
-                stmt.setString(4, p.getTexto());
-          
-            
-            }catch (SQLException e) {
-                e.printStackTrace();   
-            } 
-        
-            finally {
-                //Cerramos conexion
-                this.cerrarConexion();
-            }
-    }
-    public PostModel() {
-    }
+   
     
     
     

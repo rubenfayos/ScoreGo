@@ -76,19 +76,6 @@ public class mp3Player implements Initializable {
     
     public void reproductor(){
         
-        try {
-            Stage newWindow = new Stage();
-            newWindow.setTitle("New Scene");
-            //Create view from FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
-            //Set view in window
-            newWindow.setScene(new Scene(loader.load()));
-            //Launch
-            newWindow.show();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(mp3Player.class.getName()).log(Level.SEVERE, null, ex);
-        }
                
     }
 
