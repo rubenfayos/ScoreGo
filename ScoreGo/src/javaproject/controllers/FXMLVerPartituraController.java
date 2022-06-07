@@ -103,13 +103,13 @@ public class FXMLVerPartituraController implements Initializable {
         
         
         this.tituloPartitura.setText(p.getNombre());
-        this.autorPartitura.setText(p.getAutor());
-        this.usuarioSubidaPartitura.setText(p.getUsuario().getNombreUsuario());
-        this.fechaSubidaPartitura.setText(p.getFechaSubida().toString());
+        this.autorPartitura.setText("Autor: " + p.getAutor());
+        this.usuarioSubidaPartitura.setText("Usuario: " + p.getUsuario().getNombreUsuario());
+        this.fechaSubidaPartitura.setText("Fecha de subida: " + p.getFechaSubida().toString());
         this.descripcionPartitura.setText(p.getDescripcion());
         
-        //Image image = new Image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.fotocommunity.com%2Fatardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg%3Fheight%3D1080&f=1&nofb=1");
-        //this.partituraVista.setImage(image);
+        Image image = new Image("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.fotocommunity.com%2Fatardeceres-1b2829bd-e28f-47e5-9a55-8d9988f8e184.jpg%3Fheight%3D1080&f=1&nofb=1");
+        this.partituraVista.setImage(image);
         
         
         

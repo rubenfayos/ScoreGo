@@ -53,7 +53,7 @@ public class FXMLVerPartiturasBandaController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<Partitura> partituras = this.pm.listarPartiturasUsuario(this.u);
+        ObservableList<Partitura> partituras = this.pm.listarPartiturasBanda(this.b);
         
         int filas = 0;
         

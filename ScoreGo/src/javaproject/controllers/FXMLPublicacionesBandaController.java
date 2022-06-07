@@ -40,7 +40,6 @@ import javafx.scene.shape.Circle;
 public class FXMLPublicacionesBandaController implements Initializable {
     
     private PostModel psm = new PostModel();
-    
     private Singleton s = Singleton.getInstance();
     private Banda b = s.b;
     private Usuario u = s.us;
@@ -49,8 +48,6 @@ public class FXMLPublicacionesBandaController implements Initializable {
     private ScrollPane scrollPanelPost;
     @FXML
     private GridPane postGP;
-    @FXML
-    private AnchorPane anchorPaneBandasInside;
 
     /**
      * Initializes the controller class.
@@ -83,10 +80,10 @@ public class FXMLPublicacionesBandaController implements Initializable {
             Label texto = new Label(p.getTexto());
             texto.setFont(new Font(14));
             
-            Label fecha = new Label(p.getFechaPublicacion());
+            Label fecha = new Label("Fecha subida: " + p.getFechaPublicacion());
             fecha.setFont(new Font(14));
             
-            Label usuario = new Label(p.getUsuario().getNombreUsuario());
+            Label usuario = new Label("Subido por: " + p.getUsuario().getNombreUsuario());
             fecha.setFont(new Font(12));
             
             Separator sp = new Separator(Orientation.HORIZONTAL);

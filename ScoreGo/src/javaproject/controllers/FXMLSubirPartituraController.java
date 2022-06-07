@@ -37,13 +37,13 @@ import javaproject.model.PartituraModel;
  */
 public class FXMLSubirPartituraController extends FXMLPantallaPrincipalController implements Initializable {
 
-    private PartituraModel partituraModel;
-    private Usuario us;
+    private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
+    private Usuario us =s.us;
     
-    private ArrayList<Integer> instrumentos ;
+    private ArrayList<Integer> instrumentos = new ArrayList<Integer>();
     
-    private FTPManager ftpManager;
+    private FTPManager ftpManager = new FTPManager();
     private File pdf;
     private File mp3;
     
@@ -87,14 +87,6 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        this.partituraModel = new PartituraModel();
-        
-        this.instrumentos = new ArrayList<Integer>();
-        
-        this.us=s.us;
-        
-        this.ftpManager = new FTPManager();
         
     }    
     
@@ -143,10 +135,10 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
         comprobarInstrumentos();
         p.setInstrumentos(this.instrumentos);
         
-        if(this.partituraModel.subirPartitura(p) == 1){
+        if(this.pm.subirPartitura(p) == 1){
             ai.showAndWait();
-            p=this.partituraModel.listarPartitura(p.getNombre(), this.us);
-            this.partituraModel.guardarPartitura(p, this.us);
+            p=this.pm.listarPartitura(p.getNombre(), this.us);
+            this.pm.guardarPartitura(p, this.us);
             try {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
                 this.AP.getChildren().setAll(pane);

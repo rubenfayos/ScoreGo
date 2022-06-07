@@ -12,6 +12,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javaproject.clases.Partitura;
 import javaproject.clases.Usuario;
+import javaproject.clases.Banda;
 import jdk.nashorn.internal.objects.NativeRegExp;
 
 /**
@@ -20,9 +21,9 @@ import jdk.nashorn.internal.objects.NativeRegExp;
  */
 public class PartituraModel extends DBUtil{
     
-        public int subirPartitura(Partitura p){
+    public int subirPartitura(Partitura p){
             
-            int comp = 0;
+        int comp = 0;
         
             try{
             
@@ -70,7 +71,7 @@ public class PartituraModel extends DBUtil{
         
         }
         
-        public int guardarPartitura(Partitura p, Usuario u){
+    public int guardarPartitura(Partitura p, Usuario u){
             
             int i = 0;
             
@@ -96,7 +97,7 @@ public class PartituraModel extends DBUtil{
             return i;
         }
          
-        public void borrarPartitura(Partitura p){
+    public void borrarPartitura(Partitura p){
         
             try{
             
@@ -117,7 +118,7 @@ public class PartituraModel extends DBUtil{
         
         }
         
-        public int editarPartitura(Usuario u, Partitura newPartitura, Partitura oldPartitura){
+    public int editarPartitura(Usuario u, Partitura newPartitura, Partitura oldPartitura){
             
         int i = 0;
         
@@ -149,9 +150,9 @@ public class PartituraModel extends DBUtil{
         
     }
         
-        public Partitura listarPartitura(String nombre, Usuario u){
+    public Partitura listarPartitura(String nombre, Usuario u){
             
-            Partitura p = new Partitura();
+        Partitura p = new Partitura();
             
             try{
             
@@ -190,9 +191,9 @@ public class PartituraModel extends DBUtil{
        
         }
         
-        public ArrayList<Integer> instrumentos(Partitura p){
+    public ArrayList<Integer> instrumentos(Partitura p){
             
-            ArrayList<Integer> ins = new ArrayList<Integer>();
+        ArrayList<Integer> ins = new ArrayList<Integer>();
                     
         try{
         
@@ -245,6 +246,7 @@ public class PartituraModel extends DBUtil{
                 p.setId(rs.getInt("id"));
                 p.setAutor(rs.getString("autor"));
                 p.setNombre(rs.getString("nombre"));
+                p.setFechaSubida(rs.getDate("fechaSubida"));
                 p.setDescripcion(rs.getString("descripcion"));
                 p.setMp3(rs.getString("mp3"));
                 p.setSrc(rs.getString("src"));
@@ -314,7 +316,7 @@ public class PartituraModel extends DBUtil{
             try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura ");
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura ORDER BY fechaSubida DESC");
             
             ResultSet rs = stmt.executeQuery();
             
@@ -325,7 +327,7 @@ public class PartituraModel extends DBUtil{
                 p.setAutor(rs.getString("autor"));
                 p.setNombre(rs.getString("nombre"));
                 p.setSrc(rs.getString("src"));
-                //p.setMp3(rs.getString("mp3"));
+                p.setMp3(rs.getString("mp3"));
                 partituras.add(p);
             
             }
@@ -343,6 +345,74 @@ public class PartituraModel extends DBUtil{
             
             return partituras;
        
-        }
+    }
+    
+    public ObservableList<Partitura> listarPartiturasBanda(Banda b){
+        
+        ObservableList<Partitura> partituras = FXCollections.observableArrayList();
+            
+            try{
+            
+            //Seleccionamos la partitura de la banda
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.* FROM partitura_banda pb, partitura p WHERE p.id=pb.partitura AND pb.banda = ?;");
+            
+            stmt.setInt(1, b.getId());
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next()){
+            
+                Partitura p = new Partitura();
+                p.setId(rs.getInt("id"));
+                p.setAutor(rs.getString("autor"));
+                p.setNombre(rs.getString("nombre"));
+                p.setSrc(rs.getString("src"));
+                p.setMp3(rs.getString("mp3"));
+                partituras.add(p);
+            
+            }
+                
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+            
+            return partituras;
+          
+    }
+    
+    public int guardarPartituraBanda(Partitura p, Banda b){
+     
+        int i = 0;
+        
+        try{
+            
+            //Hacemos update con los nuevos datos del usuario sobre el id del usuario
+            PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO partitura_banda VALUES(?,?);");
+            
+            stmt.setInt(1, p.getId());
+            stmt.setInt(2, b.getId());
+            
+            i = stmt.executeUpdate();
+                         
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+        
+        return i;
+    }
+    
+    
           
 }

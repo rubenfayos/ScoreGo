@@ -14,13 +14,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -29,6 +26,8 @@ import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
 import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javaproject.clases.Singleton;
+import javaproject.clases.Usuario;
 
 /**
  * FXML Controller class
@@ -37,9 +36,8 @@ import javafx.scene.image.Image;
  */
 public class FXMLPantallaPrincipalController implements Initializable {
     
-    Stage stage;
-    private Scene scene;
-    private Parent root;
+    private Singleton s = Singleton.getInstance();
+    private Usuario u = s.us;
     
     private AnchorPane AP;
     @FXML
@@ -69,11 +67,11 @@ public class FXMLPantallaPrincipalController implements Initializable {
        
        
        
-       BackgroundImage imagenUsuario = new BackgroundImage( new javafx.scene.image.Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 78, 80, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-                Background fondoImagenUsuario = new Background(imagenUsuario);
-                this.imageButton.setBackground(fondoImagenUsuario);
-                Image fotoPerfil = new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg");
-       //img.setImage(fotoPerfil);
+        BackgroundImage imagenUsuario = new BackgroundImage( new javafx.scene.image.Image(this.u.getImg(), 78, 80, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background fondoImagenUsuario = new Background(imagenUsuario);
+            this.imageButton.setBackground(fondoImagenUsuario);
+            Image fotoPerfil = new Image(this.u.getImg());
+            img.setImage(fotoPerfil);
     }    
 
     @FXML
