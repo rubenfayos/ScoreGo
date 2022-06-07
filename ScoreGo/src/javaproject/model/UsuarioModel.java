@@ -25,7 +25,7 @@ public class UsuarioModel extends DBUtil{
             
             //Creación de usuario añadiendolo a la tabla
             String sql = "";
-            PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO usuario(nombreUsuario, nombre, apellidos, contraseña, fechaNacimiento, correo, nacionalidad) VALUES (?,?,?,?,?,?,?);");
+            PreparedStatement stmt = this.getConexion().prepareStatement("INSERT INTO usuario(nombreUsuario, nombre, apellidos, contraseña, fechaNacimiento, correo, nacionalidad, img) VALUES (?,?,?,?,?,?,?,?);");
             
             stmt.setString(1, u.getNombreUsuario());
             stmt.setString(2, u.getNombre());
@@ -34,6 +34,7 @@ public class UsuarioModel extends DBUtil{
             stmt.setDate(5, u.getFechaNacimiento());
             stmt.setString(6, u.getCorreo());
             stmt.setString(7, u.getNacionalidad());
+            stmt.setString(8, u.getImg());
             
             i = stmt.executeUpdate(); 
             

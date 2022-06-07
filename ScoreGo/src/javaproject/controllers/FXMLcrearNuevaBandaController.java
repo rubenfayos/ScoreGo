@@ -5,7 +5,6 @@
  */
 package javaproject.controllers;
 
-import java.beans.EventHandler;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +29,6 @@ import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.BandasModel;
 import javafx.scene.image.Image;
-import javafx.stage.Window;
 import javaproject.model.FTPManager;
 
 /**
@@ -97,9 +95,11 @@ public class FXMLcrearNuevaBandaController implements Initializable {
         
         if(crearNombreDeBanda.getText().isEmpty() || crearDescripcionDeBanda.getText().isEmpty() || contraseñaBanda.getText().isEmpty()){
             ae.show();
+            
         }else if(previsualizacion.getImage() == null){
             ae2.show();
-        } else if(crearNombreDeBanda.getText() != null && crearDescripcionDeBanda.getText() != null && contraseñaBanda.getText() != null && previsualizacion.getImage() != null){
+            
+        }else if(crearNombreDeBanda.getText() != null && crearDescripcionDeBanda.getText() != null && contraseñaBanda.getText() != null && previsualizacion.getImage() != null){
             
             Banda b = new Banda();
         
@@ -109,22 +109,21 @@ public class FXMLcrearNuevaBandaController implements Initializable {
             //b.setImg(this.ftp.subirIMG(this.img.getAbsolutePath(), this.img.getName()));
             b.setAdministrador(this.u);
         
-            this.bm.crearBanda(b);
+            if(this.bm.crearBanda(b) > 0){
             
-            this.bm.unirseBanda(b.getNombre(), b.getContraseña(), this.u);
+                this.bm.unirseBanda(b.getNombre(), b.getContraseña(), this.u);
+
+                ai.showAndWait();
+
+                this.s.b=b;
+
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBanda.fxml"));
+                    this.anchorPaneCrearBanda.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
             
-            ai.showAndWait();
-            
-            crearNombreDeBanda.setText(""); 
-            crearDescripcionDeBanda.setText("");
-            contraseñaBanda.setText("");
-            previsualizacion.setImage(null);
-            
-            try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
-                this.anchorPaneCrearBanda.getChildren().setAll(pane);
-            } catch (IOException ex) {
-                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
     
         }

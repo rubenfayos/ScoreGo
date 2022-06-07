@@ -4,6 +4,7 @@
  */
 package javaproject.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -21,10 +22,14 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
 import javaproject.clases.Usuario;
+import javaproject.model.FTPManager;
 import javaproject.model.UsuarioModel;
+import org.apache.commons.net.ftp.FTPClient;
 
 /**
  * FXML Controller class
@@ -34,6 +39,8 @@ import javaproject.model.UsuarioModel;
 public class FXMLCrearUsuarioController implements Initializable {
     
     private UsuarioModel usuarioModel;
+    private FTPManager ftp = new FTPManager();
+    private File img;
 
     @FXML
     private Button añadirUsuarioBoton;
@@ -98,10 +105,13 @@ public class FXMLCrearUsuarioController implements Initializable {
             
             //Coge los datos del usuario de los campos
             Usuario u = new Usuario(add_nombre_usuario.getText(), add_apellido_usuario.getText(), add_id_usuario.getText(), add_contraseña_usuario.getText(), add_correo_usuario.getText(), java.sql.Date.valueOf(add_date_usuario.getValue()) ,add_nacionalidad_usuario.getValue().toString());
-        
+            this.ftp.makeDirectory(u.getNombreUsuario());
+            u.setImg(this.ftp.subirIMG(this.img.getAbsolutePath(), this.img.getName(), u.getNombreUsuario()));
+            
             //Comprueba que la insercion SQL sea correcta
             if(this.usuarioModel.crearUsuario(u) >0){
                 ac.showAndWait();
+                
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
                     this.AP.getChildren().setAll(pane);
@@ -126,4 +136,28 @@ public class FXMLCrearUsuarioController implements Initializable {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         } 
     } 
+
+    @FXML
+    private void subirImagen(ActionEvent event) {
+        
+        fileChooserIMG();
+    }
+    
+    
+    public void fileChooserIMG(){
+        
+        //Crea un file chooser para imagenes
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("img", "*.png", "*.jpg"));
+        this.img = fileChooser.showOpenDialog(null);
+        
+        if(this.img != null){
+        
+            Image imag = new Image(this.img.toURI().toString());
+
+            imagenPerfil.setImage(imag);
+        
+        }
+        
+    }
 }

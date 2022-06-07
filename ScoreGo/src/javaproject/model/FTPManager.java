@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Scanner;
+import javaproject.clases.Usuario;
 
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
@@ -32,9 +33,9 @@ public class FTPManager {
     
     public void getConexion(){
         
-        String server = "cloudscorego.ddns.net";
+        String server = "scorego.ddns.net";
         int port = 21;
-        String user = "admin_cloud";
+        String user = "admin_scorego";
         String pass = "12345678";
         
         this.ftpClient = new FTPClient();
@@ -102,7 +103,7 @@ public class FTPManager {
     	
     }
     
-    public String subirIMG(String archivoLocal, String nombre) throws IOException {
+    public String subirIMG(String archivoLocal, String nombre, String usuario) throws IOException {
         
         this.getConexion();
     	
@@ -110,8 +111,7 @@ public class FTPManager {
         File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
-        String firstRemoteFile = "/public_html/data/admin/files/";
-        firstRemoteFile+=nombre.toString();
+        String firstRemoteFile = "/scoregoFiles/usuarios/" + usuario + "/" + nombre;
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
 
@@ -148,5 +148,28 @@ public class FTPManager {
         
         return done;
         
-    }   	  	
+    }
+
+    public void makeDirectory(String dir){
+        
+        boolean done = false;
+        
+        this.getConexion();
+        
+        try {
+            //Crea el directorio del usuario
+            done = this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir);
+            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras");
+            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras/pdf");
+            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras/mp3");
+
+            if(done){
+                System.out.println("Carpeta del usuario creada.");
+            }
+                
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
 }

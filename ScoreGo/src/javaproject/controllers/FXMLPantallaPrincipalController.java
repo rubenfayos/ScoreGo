@@ -65,13 +65,14 @@ public class FXMLPantallaPrincipalController implements Initializable {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
        
-       
-       
-        BackgroundImage imagenUsuario = new BackgroundImage( new javafx.scene.image.Image(this.u.getImg(), 78, 80, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        if(this.u.getImg() != null){
+            
+            Image img = new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 80, 80, false, true);
+            BackgroundImage imagenUsuario = new BackgroundImage( img ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
             Background fondoImagenUsuario = new Background(imagenUsuario);
-            this.imageButton.setBackground(fondoImagenUsuario);
-            Image fotoPerfil = new Image(this.u.getImg());
-            img.setImage(fotoPerfil);
+            imageButton.setBackground(fondoImagenUsuario);
+            
+        }
     }    
 
     @FXML
