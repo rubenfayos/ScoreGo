@@ -59,7 +59,7 @@ public class FXMLBandaController implements Initializable {
     private void partiturasBanda(ActionEvent event) {
         
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartiturasBanda.fxml"));
             this.AP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
