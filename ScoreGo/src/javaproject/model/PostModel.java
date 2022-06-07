@@ -51,17 +51,19 @@ public class PostModel extends DBUtil{
         
     }
 
-    public void eliminarPost(Post p){
+    public void eliminarPost(Post p,Usuario u,Banda b){
         
         try{
             
                 //elimina el post
-                String sql  = "DELETE from post WHERE id=1";
+                String sql  = "DELETE from post WHERE usuario = 1, banda = 2,titulo=3";
                 PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
-                stmt.setInt(1, p.getId());
+                stmt.setInt(1, u.getId());
+                stmt.setInt(2, b.getId());
+                stmt.setString(3, p.getTitulo());
                 
-          
+                 stmt.execute();
             
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -84,7 +86,37 @@ public class PostModel extends DBUtil{
             
                 stmt.setInt(1, u.getId());
                 
-          
+          stmt.execute();
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+    }
+    public void editarPost(Post p,Banda b,Usuario u){
+        
+        try{
+            
+                //ve post por la id del usuario
+                String sql  = "UPDATE post\n" +
+                                "  SET titulo=? , texto=?\n" +
+                                "  WHERE titulo=? or texto=? and usuario=? and banda=?";
+                        
+                      
+                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
+            
+                stmt.setString(1, p.getTitulo());
+                stmt.setString(2, p.getTexto());
+                stmt.setString(3, p.getTitulo());
+                stmt.setString(4, p.getTexto());
+                stmt.setInt(5, u.getId());
+                stmt.setInt(6, b.getId());
+                        
+          stmt.execute();
             
             }catch (SQLException e) {
                 e.printStackTrace();   

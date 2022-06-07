@@ -83,32 +83,6 @@ public class BandasModel extends DBUtil{
         return i;
     }
     
-    public int eliminarUsuarioBanda(Usuario u, Banda b){
-        
-        int i = 0;
-        
-        try{
-        
-        //Vamos a comprobar que el usuario del login es correcto
-        PreparedStatement stmt = this.getConexion().prepareStatement("DELETE from usuarios_banda WHERE usuario=? AND banda =?;");
-        stmt.setInt(1, u.getId());
-        stmt.setInt(2, b.getId());
-        
-        i = stmt.executeUpdate();
-
-        }catch (SQLException e) {
-            e.printStackTrace();   
-        } 
-
-        finally {
-            //Cerramos conexion
-            this.cerrarConexion();
-        }
-        
-        return i;
-        
-    }
-    
     public Banda listarBanda(int id){
         
         Banda b = new Banda();
@@ -122,11 +96,6 @@ public class BandasModel extends DBUtil{
         ResultSet rs = stmt.executeQuery();
         
         while(rs.next()){
-            
-        Usuario u = new Usuario();
-        
-        u.setId(rs.getInt("administrador"));
-        b.setAdministrador(u);
         
         b.setId(rs.getInt("id"));
         b.setNombre(rs.getString("nombre"));

@@ -33,18 +33,17 @@ import javaproject.clases.Post;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.PostModel;
+import javafx.scene.shape.Circle;
 
-/**
- * FXML Controller class
- *
- * @author 1erDAM
- */
+
+
 public class FXMLPublicacionesBandaController implements Initializable {
     
     private PostModel psm = new PostModel();
+    
     private Singleton s = Singleton.getInstance();
-    private Usuario u = s.us;
     private Banda b = s.b;
+    private Usuario u = s.us;
 
     @FXML
     private ScrollPane scrollPanelPost;
@@ -53,7 +52,9 @@ public class FXMLPublicacionesBandaController implements Initializable {
     @FXML
     private AnchorPane anchorPaneBandasInside;
 
-
+    /**
+     * Initializes the controller class.
+     */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         

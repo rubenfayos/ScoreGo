@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
@@ -10,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="AP" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="570.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLMiembrosBandaController">
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="570.0" prefWidth="1110.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLMiembrosBandaController">
    <children>
       <Label layoutX="88.0" layoutY="27.0" text="Miembros de la banda">
          <font>
@@ -31,14 +30,14 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Pane layoutX="571.0" layoutY="99.0" prefHeight="340.0" prefWidth="491.0">
+      <Pane layoutX="571.0" layoutY="99.0" prefHeight="340.0" prefWidth="525.0">
          <children>
             <Label layoutX="14.0" layoutY="14.0" prefHeight="31.0" prefWidth="256.0" text="Nombre de usuario">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="nombreUsuarioText" layoutX="14.0" layoutY="45.0" prefHeight="27.0" prefWidth="179.0">
+            <Label fx:id="nombreUsuarioText" layoutX="14.0" layoutY="45.0" prefHeight="27.0" prefWidth="179.0" text="NombreUsuario">
                <font>
                   <Font size="14.0" />
                </font>
@@ -48,7 +47,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="nombreText" layoutX="14.0" layoutY="119.0" prefHeight="27.0" prefWidth="179.0">
+            <Label fx:id="nombreText" layoutX="14.0" layoutY="119.0" prefHeight="27.0" prefWidth="179.0" text="Nombre">
                <font>
                   <Font size="14.0" />
                </font>
@@ -58,7 +57,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="apellidosText" layoutX="14.0" layoutY="188.0" prefHeight="27.0" prefWidth="179.0">
+            <Label fx:id="apellidosText" layoutX="14.0" layoutY="188.0" prefHeight="27.0" prefWidth="179.0" text="Apellidos">
                <font>
                   <Font size="14.0" />
                </font>
@@ -68,7 +67,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="nacionalidadText" layoutX="14.0" layoutY="257.0" prefHeight="27.0" prefWidth="179.0">
+            <Label fx:id="nacionalidadText" layoutX="14.0" layoutY="257.0" prefHeight="27.0" prefWidth="179.0" text="Nacionalidad">
                <font>
                   <Font size="14.0" />
                </font>
@@ -77,11 +76,6 @@
             <Separator layoutX="14.0" layoutY="118.0" prefWidth="200.0" />
             <Separator layoutX="14.0" layoutY="187.0" prefWidth="200.0" />
             <Separator layoutX="14.0" layoutY="256.0" prefWidth="200.0" />
-            <Button fx:id="eliminarUsuarioButton" layoutX="14.0" layoutY="301.0" mnemonicParsing="false" onAction="#eliminarUsuario" opacity="0.6" style="-fx-background-color: red;" text="Eliminar usuario" textFill="WHITE" visible="false">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
          </children>
       </Pane>
    </children>

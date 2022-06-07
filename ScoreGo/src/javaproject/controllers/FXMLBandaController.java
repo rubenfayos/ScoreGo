@@ -40,9 +40,8 @@ public class FXMLBandaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    
-    this.s.b = this.bm.listarBanda(s.b.getId());
-    this.b = s.b;
+        
+    this.b = this.bm.listarBanda(s.b.getId());
         
     nombreBandaText.setText(this.b.getNombre());
         
