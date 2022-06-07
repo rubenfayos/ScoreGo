@@ -13,32 +13,32 @@
    <children>
       <Label layoutX="189.0" layoutY="128.0" text="Nombre">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="nombrePartitura" layoutX="189.0" layoutY="158.0" prefWidth="200.0" />
+      <TextField fx:id="nombrePartitura" layoutX="189.0" layoutY="158.0" prefWidth="200.0" promptText="Nombre de la partitura" />
       <Label layoutX="189.0" layoutY="208.0" text="Autor">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TextField fx:id="autorPartitura" layoutX="189.0" layoutY="238.0" prefWidth="200.0" />
+      <TextField fx:id="autorPartitura" layoutX="189.0" layoutY="238.0" prefWidth="200.0" promptText="Autor de la partitura" />
       <Label layoutX="189.0" layoutY="288.0" text="Archivo de la partitura">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="189.0" layoutY="368.0" text="Audio de la partitura">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="639.0" layoutY="128.0" text="Instrumentos">
+      <Label layoutX="591.0" layoutY="128.0" text="Instrumentos">
          <font>
-            <Font size="18.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <ScrollPane layoutX="591.0" layoutY="184.0" prefHeight="200.0" prefWidth="200.0">
+      <ScrollPane layoutX="591.0" layoutY="163.0" prefHeight="200.0" prefWidth="200.0">
          <content>
           <AnchorPane fx:id="tablaInstrumentos" minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="180.0">
                <children>
@@ -52,7 +52,7 @@
                   <CheckBox fx:id="TrombonCB" layoutX="15.0" layoutY="224.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="94.0" text="Trombón" />
                   <CheckBox fx:id="TrompaCB" layoutX="15.0" layoutY="284.0" mnemonicParsing="false" text="Trompa" />
                   <CheckBox fx:id="PercusionCB" layoutX="15.0" layoutY="314.0" mnemonicParsing="false" text="Percusion" />
-                  <CheckBox fx:id="SaxoCB" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" text="d" />
+                  <CheckBox fx:id="SaxoCB" layoutX="15.0" layoutY="45.0" mnemonicParsing="false" text="Saxo" />
                </children>
             </AnchorPane>
          </content>
@@ -73,7 +73,7 @@
       </Pane>
       <Button layoutX="189.0" layoutY="318.0" mnemonicParsing="false" onAction="#SubirArchivo" style="-fx-background-color: #36d8ad;" text="Examinar" />
       <Button layoutX="189.0" layoutY="398.0" mnemonicParsing="false" onAction="#SubirAudio" style="-fx-background-color: #36d8ad;" text="Examinar" />
-      <Label fx:id="archivoText" layoutX="264.0" layoutY="322.0" prefHeight="17.0" prefWidth="125.0" text="." />
-      <Label fx:id="audioText" layoutX="264.0" layoutY="402.0" prefHeight="17.0" prefWidth="125.0" text="." />
+      <Label fx:id="archivoText" layoutX="264.0" layoutY="322.0" prefHeight="17.0" prefWidth="125.0" />
+      <Label fx:id="audioText" layoutX="264.0" layoutY="402.0" prefHeight="17.0" prefWidth="125.0" />
    </children>
 </AnchorPane>

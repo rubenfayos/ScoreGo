@@ -51,19 +51,19 @@ public class PostModel extends DBUtil{
         
     }
 
-    public void eliminarPost(Post p,Usuario u,Banda b){
+    public int eliminarPost(Post p){
+        
+        int i = 0;
         
         try{
             
                 //elimina el post
-                String sql  = "DELETE from post WHERE usuario = 1, banda = 2,titulo=3";
+                String sql  = "DELETE from post WHERE id=?";
                 PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
-                stmt.setInt(1, u.getId());
-                stmt.setInt(2, b.getId());
-                stmt.setString(3, p.getTitulo());
+                stmt.setInt(1, p.getId());
                 
-                 stmt.execute();
+                i=stmt.executeUpdate();
             
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -73,7 +73,11 @@ public class PostModel extends DBUtil{
                 //Cerramos conexion
                 this.cerrarConexion();
             }
+        
+        return i;     
     }
+    
+    
     public void verPost(Post p,Banda b,Usuario u){
         
         try{
@@ -97,26 +101,19 @@ public class PostModel extends DBUtil{
                 this.cerrarConexion();
             }
     }
-    public void editarPost(Post p,Banda b,Usuario u){
+    public int editarPost(Post np, Post ap){
+        
+        int i = 0;
         
         try{
             
-                //ve post por la id del usuario
-                String sql  = "UPDATE post\n" +
-                                "  SET titulo=? , texto=?\n" +
-                                "  WHERE titulo=? or texto=? and usuario=? and banda=?";
-                        
-                      
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
+                PreparedStatement stmt = this.getConexion().prepareStatement("UPDATE post SET titulo=?, texto=? WHERE id=?");
             
-                stmt.setString(1, p.getTitulo());
-                stmt.setString(2, p.getTexto());
-                stmt.setString(3, p.getTitulo());
-                stmt.setString(4, p.getTexto());
-                stmt.setInt(5, u.getId());
-                stmt.setInt(6, b.getId());
+                stmt.setString(1, np.getTitulo());
+                stmt.setString(2, np.getTexto());
+                stmt.setInt(3, ap.getId());
                         
-          stmt.execute();
+                i = stmt.executeUpdate();
             
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -126,7 +123,10 @@ public class PostModel extends DBUtil{
                 //Cerramos conexion
                 this.cerrarConexion();
             }
+        
+        return i;    
     }
+    
    
     public ObservableList<Post> listarPostBanda(Banda b){
         
@@ -166,6 +166,47 @@ public class PostModel extends DBUtil{
             }
         
         return posts;
+    }
+    
+    
+    public ObservableList<Post> listarPostUsuario(Usuario u){
+        
+        ObservableList<Post> posts = FXCollections.observableArrayList();
+        
+        try{
+            
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM POST WHERE usuario=?");
+            
+                stmt.setInt(1, u.getId());
+                
+                ResultSet rs = stmt.executeQuery();
+                
+                while(rs.next()){
+                    
+                    Post p = new Post();
+                    
+                    p.setId(rs.getInt("id"));
+                    p.setTitulo(rs.getString("titulo"));
+                    p.setTexto(rs.getString("texto"));
+                    p.setFechaPublicacion(rs.getString("fechaPublicacion").toString());
+                    p.setUsuario(u);
+                    
+                    posts.add(p);
+                    
+                }
+                
+            
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+        
+        return posts;
+             
     }
       
 }

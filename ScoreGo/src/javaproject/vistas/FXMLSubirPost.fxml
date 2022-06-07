@@ -2,9 +2,14 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" fx:id="AP" prefHeight="570.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLSubirPostController">
@@ -17,39 +22,21 @@
       <TextField fx:id="tituloPost" layoutX="48.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post" />
       <Label layoutX="48.0" layoutY="285.0" text="Texto">
          <font>
-            <Font size="22.0" />
+            <Font size="19.0" />
          </font>
       </Label>
-      <Button layoutX="63.0" layoutY="431.0" mnemonicParsing="false" onAction="#SubirPost" style="-fx-background-color: #36d8ad;" text="Publicar">
+      <Button layoutX="48.0" layoutY="431.0" mnemonicParsing="false" onAction="#SubirPost" style="-fx-background-color: #36d8ad;" text="Publicar">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <TextArea fx:id="textoPost" layoutX="48.0" layoutY="314.0" prefHeight="89.0" prefWidth="252.0" promptText="Texto del post" />
-      <TextField fx:id="tituloEliminar" layoutX="670.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post a eliminar" />
-      <Label layoutX="670.0" layoutY="195.0" text="Título a eliminar">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Button layoutX="757.0" layoutY="431.0" mnemonicParsing="false" onAction="#eliminarPost" style="-fx-background-color: #36d8ad;" text="Eliminar">
+      <Button fx:id="eliminarButton" layoutX="813.0" layoutY="466.0" mnemonicParsing="false" onAction="#eliminarPost" opacity="0.71" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" visible="false">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
-      <Label layoutX="424.0" layoutY="195.0" text="Editat título">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="424.0" layoutY="285.0" text="Editat texto">
-         <font>
-            <Font size="22.0" />
-         </font>
-      </Label>
-      <TextField fx:id="editarTítulo" layoutX="365.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post" />
-      <TextArea fx:id="EditarPost" layoutX="365.0" layoutY="317.0" prefHeight="89.0" prefWidth="252.0" promptText="Texto del post" />
-      <Button layoutX="441.0" layoutY="431.0" mnemonicParsing="false" onAction="#editarPost" style="-fx-background-color: #36d8ad;" text="Editar">
+      <Button fx:id="editarButton" layoutX="734.0" layoutY="466.0" mnemonicParsing="false" onAction="#editarPost" style="-fx-background-color: #36d8ad;" text="Editar" visible="false">
          <font>
             <Font size="16.0" />
          </font>
@@ -59,5 +46,50 @@
             <Font name="System Bold" size="32.0" />
          </font>
       </Label>
+      <Label layoutX="48.0" layoutY="151.0" text="Subir post">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Separator layoutX="348.0" layoutY="130.0" orientation="VERTICAL" prefHeight="391.0" prefWidth="0.0" />
+      <Label layoutX="450.0" layoutY="151.0" text="Mis post">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <ScrollPane layoutX="387.0" layoutY="214.0" prefHeight="273.0" prefWidth="222.0">
+         <content>
+            <TableView fx:id="postTV" onMouseClicked="#mostrarPost" prefHeight="300.0" prefWidth="207.0">
+              <columns>
+                <TableColumn fx:id="tituloColumn" prefWidth="129.0" text="Titulo" />
+                  <TableColumn fx:id="fechaColumn" prefWidth="77.0" text="Fecha" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Separator layoutX="662.0" layoutY="130.0" orientation="VERTICAL" prefHeight="391.0" prefWidth="0.0" />
+      <Pane layoutX="734.0" layoutY="172.0" prefHeight="282.0" prefWidth="286.0">
+         <children>
+            <Label layoutY="46.0" text="Titulo">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <Label layoutY="126.0" text="Texto">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="mostrarTitulo" layoutY="79.0" prefHeight="25.0" prefWidth="241.0">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label fx:id="mostrarTexto" alignment="TOP_LEFT" layoutY="153.0" prefHeight="77.0" prefWidth="241.0" />
+            <TextField fx:id="nuevoTitulo" layoutY="79.0" prefHeight="25.0" prefWidth="241.0" promptText="Introduce el nuevo título" visible="false" />
+            <TextArea fx:id="nuevoTextoPost" layoutY="153.0" prefHeight="89.0" prefWidth="241.0" promptText="Introduce el nuevo texto" visible="false" />
+            <Button fx:id="confirmarEditar" layoutY="249.0" mnemonicParsing="false" onAction="#confirmarEditar" opacity="0.74" style="-fx-background-color: #003c12;" text="Confirmar" textFill="WHITE" visible="false" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
