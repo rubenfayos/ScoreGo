@@ -10,31 +10,59 @@
 
 <AnchorPane id="AnchorPane" fx:id="AP" prefHeight="570.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLSubirPostController">
    <children>
-      <Label layoutX="350.0" layoutY="201.0" text="Titulo">
+      <Label layoutX="48.0" layoutY="195.0" text="Título">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="tituloPost" layoutX="350.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post" />
-      <Label layoutX="350.0" layoutY="283.0" text="Texto">
+      <TextField fx:id="tituloPost" layoutX="48.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post" />
+      <Label layoutX="48.0" layoutY="285.0" text="Texto">
          <font>
             <Font size="22.0" />
          </font>
       </Label>
-      <Button layoutX="350.0" layoutY="423.0" mnemonicParsing="false" onAction="#SubirPost" style="-fx-background-color: #36d8ad;" text="Publicar">
+      <Button layoutX="63.0" layoutY="431.0" mnemonicParsing="false" onAction="#SubirPost" style="-fx-background-color: #36d8ad;" text="Publicar">
          <font>
             <Font size="16.0" />
          </font>
       </Button>
       <Pane layoutX="-4.0" layoutY="-8.0" prefHeight="102.0" prefWidth="1100.0" style="-fx-background-color: #36D8AD;">
          <children>
-            <Label layoutX="109.0" layoutY="32.0" text="Subir un post">
+            <Label layoutX="109.0" layoutY="32.0" text="Post">
                <font>
                   <Font name="Arial Rounded MT Bold" size="32.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <TextArea fx:id="textoPost" layoutX="350.0" layoutY="316.0" prefHeight="89.0" prefWidth="252.0" promptText="Texto del post" />
+      <TextArea fx:id="textoPost" layoutX="48.0" layoutY="314.0" prefHeight="89.0" prefWidth="252.0" promptText="Texto del post" />
+      <TextField fx:id="tituloEliminar" layoutX="670.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post a eliminar" />
+      <Label layoutX="670.0" layoutY="195.0" text="Título a eliminar">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="757.0" layoutY="431.0" mnemonicParsing="false" onAction="#eliminarPost" style="-fx-background-color: #36d8ad;" text="Eliminar">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="424.0" layoutY="195.0" text="Editat título">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="424.0" layoutY="285.0" text="Editat texto">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField fx:id="editarTítulo" layoutX="365.0" layoutY="236.0" prefHeight="25.0" prefWidth="252.0" promptText="Titulo del post" />
+      <TextArea fx:id="EditarPost" layoutX="365.0" layoutY="317.0" prefHeight="89.0" prefWidth="252.0" promptText="Texto del post" />
+      <Button layoutX="441.0" layoutY="431.0" mnemonicParsing="false" onAction="#editarPost" style="-fx-background-color: #36d8ad;" text="Editar">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

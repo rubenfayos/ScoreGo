@@ -37,6 +37,12 @@ public class FXMLSubirPostController implements Initializable {
     private TextField tituloPost;
     @FXML
     private TextArea textoPost;
+    @FXML
+    private TextField tituloEliminar;
+    @FXML
+    private TextField editarTítulo;
+    @FXML
+    private TextArea EditarPost;
 
     /**
      * Initializes the controller class.
@@ -61,6 +67,28 @@ public class FXMLSubirPostController implements Initializable {
         
    
     
+    }
+
+    @FXML
+    private void eliminarPost(ActionEvent event) {
+        
+               Post p = new Post();
+
+               
+               p.setTexto(tituloEliminar.getText());
+    
+               this.pm.eliminarPost(p, this.u, this.b);
+    
+    }
+
+    @FXML
+    private void editarPost(ActionEvent event) {
+        Post p = new Post();
+        
+        p.setTexto(EditarPost.getText());
+        p.setTítulo(editarTítulo.getText());
+        
+        this.pm.editarPost(p, this.b, this.u);
     }
          
     }
