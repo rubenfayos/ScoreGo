@@ -82,6 +82,8 @@ public class FXMLVerPartituraController implements Initializable {
     private TextField editarAutor;
     @FXML
     private TextArea editarDescripcion;
+    @FXML
+    private AnchorPane AP;
 
 
     /**
@@ -130,7 +132,9 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void eliminar(ActionEvent event) {
         
-        
+        Alert ai = new Alert(Alert.AlertType.INFORMATION);
+        ai.setTitle("Eliminar partitura");
+        ai.setContentText("La partitura se ha eliminado correctamente");
         
         //alerta de confirmación para eliminar partitura en una banda
         
@@ -139,14 +143,23 @@ public class FXMLVerPartituraController implements Initializable {
         ac.setHeaderText("Eliminar partitura");
         ac.setContentText("¿Seguro que deseas eliminar la partitura?");
         Optional<ButtonType> result = ac.showAndWait();
-        ac.show();
+        
         if (result.get() == ButtonType.OK) {
-            this.pm.borrarPartitura(p);
-           //falta el codigo de eliminación para que esto funcione, de momento la alerta solo se cerrará
-           ac.close();
+            if(this.pm.borrarPartitura(p) > 0){
+                ai.showAndWait();
+                
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
+                    this.AP.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            }    
         }
+        
         else {
-            ac.close();
+            
         } 
     }
     

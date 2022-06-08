@@ -46,8 +46,6 @@ public class FXMLPantallaPrincipalController implements Initializable {
     private AnchorPane PrincipalAP;
     @FXML
     private Button imageButton;
-    @FXML
-    private ImageView img;
 
 
     /**
@@ -139,6 +137,13 @@ public class FXMLPantallaPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+    }
+
+    @FXML
+    private void switchToBuscadorPartituras(ActionEvent event) {
+        
+        
         
     }
 

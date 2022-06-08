@@ -97,15 +97,17 @@ public class PartituraModel extends DBUtil{
             return i;
         }
          
-    public void borrarPartitura(Partitura p){
+    public int borrarPartitura(Partitura p){
+        
+        int i = 0;
         
             try{
             
-                //Vamos a comprobar que el usuario del login es correcto
-                String sql = "DELETE FROM partitura WHERE id=?;";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
+                PreparedStatement stmt = this.getConexion().prepareStatement("DELETE FROM partitura WHERE id=?;");
             
                 stmt.setInt(1, p.getId()); 
+                
+                i=stmt.executeUpdate();
           
             }catch (SQLException e) {
                 e.printStackTrace();   
@@ -115,8 +117,10 @@ public class PartituraModel extends DBUtil{
                 //Cerramos conexion
                 this.cerrarConexion();
             }
+            
+        return i;
         
-        }
+    }
         
     public int editarPartitura(Partitura newPartitura, Partitura oldPartitura){
             

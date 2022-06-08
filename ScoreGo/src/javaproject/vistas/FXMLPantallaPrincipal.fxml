@@ -41,7 +41,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button layoutY="213.0" mnemonicParsing="false" onAction="#switchToInicio" prefHeight="37.0" prefWidth="180.0" style="-fx-background-color: #c3c3c3; -fx-border-width: 0px;" text="~ ">
+            <Button layoutY="213.0" mnemonicParsing="false" onAction="#switchToBuscadorPartituras" prefHeight="37.0" prefWidth="180.0" style="-fx-background-color: #c3c3c3; -fx-border-width: 0px;" text="Buscador partituras">
                <font>
                   <Font size="16.0" />
                </font>
