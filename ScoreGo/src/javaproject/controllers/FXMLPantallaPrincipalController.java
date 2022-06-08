@@ -86,7 +86,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
         
         //Switch a Anchor Pane ajustes
         try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustes.fxml"));
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustesUsuario.fxml"));
             this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);

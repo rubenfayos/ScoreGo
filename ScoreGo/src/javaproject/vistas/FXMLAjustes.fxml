@@ -11,21 +11,11 @@
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1100.0">
          <children>
-            <HBox layoutX="300.0" layoutY="41.0" prefHeight="45.0" prefWidth="500.0" style="-fx-background-color: white;">
+            <HBox alignment="BASELINE_CENTER" layoutX="354.0" layoutY="41.0" prefHeight="45.0" prefWidth="327.0" style="-fx-background-color: white;">
                <children>
-                  <Button mnemonicParsing="false" onAction="#aparienciaAjustes" prefHeight="59.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Apariencia">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
                   <Separator opacity="0.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="25.0" style="-fx-background-color: white;" />
-                  <Button fx:id="usuarioAjustes" mnemonicParsing="false" onAction="#usuarioAjustes" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Usuario">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Button>
                   <Separator maxWidth="30.0" opacity="0.0" orientation="VERTICAL" prefHeight="100.0" prefWidth="25.0" style="-fx-background-color: white;" />
-                  <Button mnemonicParsing="false" onAction="#Configuracion" prefHeight="58.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Ajustes">
+                  <Button fx:id="usuarioAjustes" mnemonicParsing="false" onAction="#usuarioAjustes" prefHeight="60.0" prefWidth="150.0" style="-fx-background-color: #36D8AD; -fx-border-radius: 10px;" text="Usuario">
                      <font>
                         <Font size="20.0" />
                      </font>

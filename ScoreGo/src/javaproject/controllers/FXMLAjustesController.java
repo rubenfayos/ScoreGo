@@ -51,7 +51,6 @@ public class FXMLAjustesController implements Initializable {
         
     }
 
-    @FXML
     private void Configuracion(ActionEvent event) {
         
         //Switch Anchor Pane configuracion
@@ -76,7 +75,6 @@ public class FXMLAjustesController implements Initializable {
          
     }
 
-    @FXML
     private void aparienciaAjustes(ActionEvent event) {
         
         try {

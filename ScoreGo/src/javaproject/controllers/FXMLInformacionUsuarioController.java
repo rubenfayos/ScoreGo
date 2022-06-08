@@ -82,6 +82,7 @@ public class FXMLInformacionUsuarioController implements Initializable {
     @FXML
     private void clickBotonCerrarSesion(ActionEvent event) throws IOException, Exception {
         
+        //alerta de cerrar sesión
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("INFORMATION DIALOG");
         ac.setHeaderText("Cerrar sesión");
@@ -107,19 +108,13 @@ public class FXMLInformacionUsuarioController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
-    try {
-            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustes.fxml"));
-            this.AnchorPane.getChildren().setAll(pane);
-        } catch (IOException ex) {
-            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
     }
+    
+    
 
     @FXML
     private void clickAccesoWeb(ActionEvent event) {
+        //Accede a la pagina web de scoreGo
         try {
     Desktop.getDesktop().browse(new URL("https://scorego.ddns.net/").toURI());
 } catch (IOException e) {
