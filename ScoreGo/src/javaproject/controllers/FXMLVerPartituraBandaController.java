@@ -4,6 +4,7 @@
  */
 package javaproject.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -19,7 +20,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
+import javafx.stage.Stage;
 import javaproject.clases.Partitura;
+import javaproject.model.FTPManager;
 import javaproject.model.mp3Player;
 
 /**
@@ -47,6 +51,8 @@ public class FXMLVerPartituraBandaController implements Initializable {
     private Label descripcionPartitura;
     
     private Alert ac;
+    
+    private FTPManager ftp = new FTPManager();
     
     
     /**
@@ -98,7 +104,32 @@ public class FXMLVerPartituraBandaController implements Initializable {
 
     @FXML
     private void descargar(ActionEvent event) {
+        //Crea un directory chooser
+        DirectoryChooser dirChooser = new DirectoryChooser();
+        dirChooser.setTitle("Elige la carpeta de  descarga");
+        File selectedDir = dirChooser.showDialog(new Stage());
         
+        //Coge la ruta de descarga
+        String selectedDirPath = selectedDir.toString() + "\\" + this.p.getNombre() + ".pdf";
+        
+        //Descarga el archivo
+        if(this.ftp.downloadFile("/public_html" + p.getSrc(), selectedDirPath)){
+            //muestra una alerta si la descarga funciona
+            Alert alertaDescarga = new Alert(Alert.AlertType.INFORMATION);
+            alertaDescarga.setTitle("INFORMACIÓN");
+            alertaDescarga.setHeaderText("Archivo descargado");
+            alertaDescarga.setContentText("Descarga completada");
+            alertaDescarga.showAndWait();
+            
+                        
+        }else{
+            //muestra una alerta si la descarga falla
+            Alert alertaDescargaError = new Alert(Alert.AlertType.ERROR);
+            alertaDescargaError.setTitle("INFORMACIÓN");
+            alertaDescargaError.setHeaderText("Archivo descargado");
+            alertaDescargaError.setContentText("Descarga completada");
+            alertaDescargaError.showAndWait();
+        }
     }
     
 }
