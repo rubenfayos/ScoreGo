@@ -177,16 +177,45 @@ public class FXMLSubirPostController implements Initializable {
         nuevoPost.setTitulo(nuevoTitulo.getText());
         nuevoPost.setTexto(nuevoTextoPost.getText());
         
-        if(this.pm.editarPost(nuevoPost, this.p) > 0){
-            Alert aep = new Alert(Alert.AlertType.INFORMATION);
-                aep.setTitle("INFORMACIÓN");
-                aep.setHeaderText("Post editado");
-                aep.setContentText("Post editado correctamente");
-                aep.showAndWait();
-        }   
+        
+            if(nuevoTitulo.getText().isEmpty() & nuevoTextoPost.getText().isEmpty()){
+            Alert aev = new Alert(Alert.AlertType.ERROR);
+                aev.setTitle("INFORMACIÓN");
+                aev.setHeaderText("Campos vacíos");
+                aev.setContentText("El titulo y el texto son campos oblicatorios");
+                aev.showAndWait();
+            } else {
+            
+            if (nuevoTitulo.getText().isEmpty() & !nuevoTextoPost.getText().isEmpty()){
+                Alert aev2 = new Alert(Alert.AlertType.ERROR);
+                aev2.setTitle("INFORMACIÓN");
+                aev2.setHeaderText("Campos vacíos");
+                aev2.setContentText("El titulo es un campo oblicatorio");
+                aev2.showAndWait();
+            } else {
+                
+            if(!nuevoTitulo.getText().isEmpty() & nuevoTextoPost.getText().isEmpty()){
+                Alert aev3 = new Alert(Alert.AlertType.ERROR);
+                aev3.setTitle("INFORMACIÓN");
+                aev3.setHeaderText("Campos vacíos");
+                aev3.setContentText("El texto es un campo oblicatorio");
+                aev3.showAndWait();
+            } else {
+           if(this.pm.editarPost(nuevoPost, this.p) > 0){
+               Alert aipo = new Alert(Alert.AlertType.INFORMATION);
+                aipo.setTitle("INFORMACIÓN");
+                aipo.setHeaderText("Post editado");
+                aipo.setContentText("Post editado satisfactoriamente");
+                aipo.showAndWait();
+           } else {
+               System.out.println("El if no funciona");
+           }
         
         
         
     }        
+}
+}
+}
 }
    
