@@ -17,7 +17,7 @@ public class Banda {
     private Usuario administrador;
     private String img;
     
-
+    //getters y setters
     public int getId() {
         return id;
     }
@@ -93,9 +93,11 @@ public class Banda {
      * @param descripcion breve descripción de la banda
      * @param contraseña contraseña de la banda
      * @param administrador un usuario el cual administrará la banda
+     * @param img imagen de la banda
      * 
      */
     
+    //constructor de Banda
     public Banda(int id, String nombre, ArrayList<Partitura> partituras, String descripcion, String contraseña, Usuario administrador, String img){
         this.id=id;
         this.nombre=nombre;

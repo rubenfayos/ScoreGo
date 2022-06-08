@@ -49,9 +49,10 @@ public class FXMLBandaController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    
+    //Consigue el id de la banda
     this.b = this.bm.listarBanda(s.b.getId());
-        
+    
     nombreBandaText.setText(this.b.getNombre());
         
     try {
@@ -67,6 +68,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void partiturasBanda(ActionEvent event) {
         
+        //Cambio de escena a partituras banda
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartiturasBanda.fxml"));
             this.AP.getChildren().setAll(pane);
@@ -79,6 +81,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void miembrosBanda(ActionEvent event) {
         
+        //Cambio de escena a miembros banda
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMiembrosBanda.fxml"));
             this.AP.getChildren().setAll(pane);
@@ -91,6 +94,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void publicacionesBanda(ActionEvent event) {
         
+        //Cambio de escena a publicaciones banda
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
             this.AP.getChildren().setAll(pane);
@@ -103,6 +107,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void subirPartituraBanda(ActionEvent event) {
         
+        //Cambio de escena a subir partitura a banda
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLSubirPartituraBanda.fxml"));
             this.AP.getChildren().setAll(pane);
@@ -115,6 +120,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void subirPostBanda(ActionEvent event) {
         
+        //Cambio de escena a subir post a banda
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLSubirPost.fxml"));
             this.AP.getChildren().setAll(pane);
