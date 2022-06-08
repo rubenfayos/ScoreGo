@@ -17,7 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
@@ -44,15 +50,13 @@ public class FXMLBuscadorPartiturasController implements Initializable {
     @FXML
     private GridPane PartiturasGP;
 
-    /**
-     * Inicia la clase del controlador.
-     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         String num = "";
         //Coge las partituras de la base de datos
-        ObservableList<Partitura> partituras = this.pm.listarPartiturasUsuario(this.u);
+        ObservableList<Partitura> partituras = this.pm.listarPartiturasInicio();
         
         int filas = 0;
         
@@ -83,6 +87,12 @@ public class FXMLBuscadorPartiturasController implements Initializable {
                 //Crea un nuevo boton 
                 Button b = new Button();
                 b.setPrefSize(200, 200);
+                
+                Image img = new Image("https://scorego.ddns.net/scoregoFiles/partitura.jpg", 200, 200, false, true);
+                    BackgroundImage fondoBotonBanda = new BackgroundImage( img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                    Background fondoImagenBanda = new Background(fondoBotonBanda);
+                    b.setBackground(fondoImagenBanda);
+                    
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
                 //Añade la accion de ver la partitura al botton
@@ -101,7 +111,7 @@ public class FXMLBuscadorPartiturasController implements Initializable {
                 PartiturasGP.add(pa, x, i);
                 cont++;
                 
-                if(cont == partituras.size()){
+                if(cont == partituras.size() || cont == 28){
                     x=4;
                     i=(int) filas;
                 }

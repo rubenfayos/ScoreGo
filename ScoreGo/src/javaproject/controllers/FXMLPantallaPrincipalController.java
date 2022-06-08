@@ -13,17 +13,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
@@ -134,7 +130,14 @@ public class FXMLPantallaPrincipalController implements Initializable {
     }
 
     @FXML
-    private void switchToBuscadorPartituras(ActionEvent event) {
+    private void switchToBuscadorPartituras(ActionEvent event){ 
+            
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBuscadorPartituras.fxml"));
+            this.PrincipalAP.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

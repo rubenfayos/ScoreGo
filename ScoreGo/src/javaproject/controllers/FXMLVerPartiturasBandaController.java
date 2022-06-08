@@ -10,15 +10,19 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.ColumnConstraints;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.RowConstraints;
@@ -84,6 +88,12 @@ public class FXMLVerPartiturasBandaController implements Initializable {
                 //Crea un nuevo boton 
                 Button b = new Button();
                 b.setPrefSize(200, 200);
+                
+                Image img = new Image("https://scorego.ddns.net/scoregoFiles/partitura.jpg", 200, 200, false, true);
+                    BackgroundImage fondoBotonBanda = new BackgroundImage( img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                    Background fondoImagenBanda = new Background(fondoBotonBanda);
+                    b.setBackground(fondoImagenBanda);
+                
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
                 //Añade la accion de ver la partitura al botton
