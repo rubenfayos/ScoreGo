@@ -170,9 +170,17 @@ public class FXMLVerPartituraController implements Initializable {
         
         //Descarga el archivo
         if(this.ftp.downloadFile("/public_html" + p.getSrc(), selectedDirPath) == true){
-            System.out.print("si");
+             Alert alertaDescarga = new Alert(Alert.AlertType.INFORMATION);
+            alertaDescarga.setTitle("INFORMACIÓN");
+            alertaDescarga.setHeaderText("Archivo descargado");
+            alertaDescarga.setContentText("Descarga completada");
+            alertaDescarga.showAndWait();
         }else{
-            System.out.print("Descarga fallida");
+            Alert alertaDescargaError = new Alert(Alert.AlertType.ERROR);
+            alertaDescargaError.setTitle("INFORMACIÓN");
+            alertaDescargaError.setHeaderText("Archivo descargado");
+            alertaDescargaError.setContentText("Descarga completada");
+            alertaDescargaError.showAndWait();
         }
         
     }
