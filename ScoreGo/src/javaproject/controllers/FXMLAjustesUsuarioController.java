@@ -29,6 +29,7 @@ import javaproject.model.UsuarioModel;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 
+
 /**
  * FXML Controller class
  *
@@ -165,6 +166,7 @@ public class FXMLAjustesUsuarioController implements Initializable {
         if (ac.getResult() == ButtonType.OK) {
             if (this.usuarioModel.eliminarUsuario(this.usuario) > 0) {
                 ae.showAndWait();
+                //se devuelve al usuario a la pantalla de inicio tras eliminar al usuario 
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
                     this.AjustesUsuario.getChildren().setAll(pane);
@@ -176,7 +178,10 @@ public class FXMLAjustesUsuarioController implements Initializable {
             }
         }
     }
+    //creamos un efecto de brillo
     Glow glow = new Glow();
+    
+
 
     @FXML
    
@@ -188,6 +193,21 @@ public class FXMLAjustesUsuarioController implements Initializable {
 
     @FXML
     private void modificarDatosUsuarioExit(MouseEvent event) {
+        //se anula el efecto al sacar el raton del área del boton
         modificarBoton.setEffect(null);
+    }
+
+    @FXML
+    //aplicar un efecto de sombra al boton
+    private void eliminarMouseExited(MouseEvent event) {
+        //se anula el efecto al sacar el raton del área del boton
+        EliminarButton.setEffect(null);
+    }
+
+    @FXML
+     
+    private void eliminarMouseEntered(MouseEvent event) {
+        //efecto mientras el raton esté dentro del boton "eliminar"
+        EliminarButton.setEffect(glow);
     }
 }

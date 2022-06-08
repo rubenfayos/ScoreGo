@@ -4,7 +4,6 @@
  */
 package javaproject.controllers;
 
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -35,10 +34,10 @@ import javaproject.clases.Usuario;
  * @author 1erDAM
  */
 public class FXMLPantallaPrincipalController implements Initializable {
-    
+
     private Singleton s = Singleton.getInstance();
     private Usuario u = s.us;
-    
+
     private AnchorPane AP;
     @FXML
     private AnchorPane SideBar;
@@ -47,24 +46,21 @@ public class FXMLPantallaPrincipalController implements Initializable {
     @FXML
     private Button imageButton;
 
-
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-        
+
         //Inicia el Anchor Pane de la página inicio
-       try {
+        try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
             this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
-       
-       /*
+
+        /*
         if(this.u.getImg() != null){
             
             Image imag = new Image(u.getImg(), 80, 80, false, true);
@@ -76,12 +72,17 @@ public class FXMLPantallaPrincipalController implements Initializable {
             
         }
 
-        */
-    }    
+         */
+        Image img = new Image(u.getImg(), 80, 80, false, true);
+        BackgroundImage fondoBotonBanda = new BackgroundImage(img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background fondoImagenUsuario = new Background(fondoBotonBanda);
+        imageButton.setBackground(fondoImagenUsuario);
+
+    }
 
     @FXML
     private void switchToAjustes(ActionEvent event) throws IOException {
-        
+
         //Switch a Anchor Pane ajustes
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLAjustesUsuario.fxml"));
@@ -93,7 +94,7 @@ public class FXMLPantallaPrincipalController implements Initializable {
 
     @FXML
     private void switchToInicio(ActionEvent event) {
-        
+
         //Switch a Anchor Pane inicio
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPaginaInicio.fxml"));
@@ -101,50 +102,48 @@ public class FXMLPantallaPrincipalController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void switchToPartituras(ActionEvent event) {
-        
+
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
             this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void switchToBandas(ActionEvent event) {
-        
+
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisBandas.fxml"));
             this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void switchToUsuario(ActionEvent event) {
-        
+
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLInformacion.fxml"));
             this.PrincipalAP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
 
     @FXML
     private void switchToBuscadorPartituras(ActionEvent event) {
-        
-        
-        
+
     }
 
 }

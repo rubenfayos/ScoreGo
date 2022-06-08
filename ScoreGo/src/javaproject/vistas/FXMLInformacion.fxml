@@ -12,7 +12,7 @@
    <children>
       <AnchorPane fx:id="anchorPaneBandasPost" prefHeight="102.0" prefWidth="1100.0" style="-fx-background-color: #36d8ad;">
          <children>
-            <Label layoutX="49.0" layoutY="25.0" prefHeight="53.0" prefWidth="429.0" text="Informacion usuario">
+            <Label layoutX="49.0" layoutY="25.0" prefHeight="53.0" prefWidth="429.0" text="Información usuario">
                <font>
                   <Font name="Arial Rounded MT Bold" size="41.0" />
                </font>

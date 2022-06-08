@@ -5,18 +5,19 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="AjustesUsuario" prefHeight="620.0" prefWidth="1100.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLAjustesUsuarioController">
          <children>
-            <Label layoutX="449.0" layoutY="14.0" text="Modificar datos usuario">
+            <Label layoutX="449.0" layoutY="21.0" text="Modificar datos usuario">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="287.0" layoutY="40.0" text="Puedes cambiar los siguientes datos, introduce los campos que quieras cambiar">
+            <Label layoutX="287.0" layoutY="56.0" text="Puedes cambiar los siguientes datos, introduce los campos que quieras cambiar">
                <font>
                   <Font size="15.0" />
                </font>
@@ -56,23 +57,26 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Label layoutX="375.0" layoutY="379.0" prefWidth="150.0" text="Eliminar usuario">
+            <Label layoutX="475.0" layoutY="391.0" prefWidth="150.0" text="Eliminar usuario">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <Label layoutX="375.0" layoutY="404.0" prefWidth="250.0" text="Eliminar tú usuario y todos los datos">
+            <Label layoutX="416.0" layoutY="418.0" prefWidth="250.0" text="Elimina tú usuario y todos tus datos">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Button fx:id="EliminarButton" layoutX="375.0" layoutY="489.0" mnemonicParsing="false" onAction="#EliminarUsuario" opacity="0.75" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: red; -fx-border-width: 0;" text="Eliminar" textFill="WHITE">
+            <Button fx:id="EliminarButton" layoutX="476.0" layoutY="520.0" mnemonicParsing="false" onAction="#EliminarUsuario" onMouseEntered="#eliminarMouseEntered" onMouseExited="#eliminarMouseExited" prefHeight="40.0" prefWidth="130.0" style="-fx-background-color: red; -fx-border-width: 0;" text="Eliminar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <TextField fx:id="ContraseñaEliminarText" layoutX="375.0" layoutY="454.0" prefHeight="25.0" prefWidth="150.0" />
-            <Label layoutX="375.0" layoutY="429.0" prefWidth="150.0" text="Contraseña">
+            <TextField fx:id="ContraseñaEliminarText" layoutX="466.0" layoutY="488.0" prefHeight="25.0" prefWidth="150.0" promptText="(esta accion no es reversible)" style="-fx-border-color: red; -fx-border-radius: 3;">
+         <font>
+            <Font size="10.0" />
+         </font></TextField>
+            <Label layoutX="498.0" layoutY="448.0" prefHeight="25.0" prefWidth="85.0" text="Contraseña">
                <font>
                   <Font size="16.0" />
                </font>
@@ -83,5 +87,6 @@
                </font>
             </Label>
             <ChoiceBox fx:id="Nacionalidad" layoutX="575.0" layoutY="264.0" prefWidth="150.0" />
+      <Separator layoutX="34.0" layoutY="368.0" prefHeight="0.0" prefWidth="1013.0" />
          </children>
       </AnchorPane>
