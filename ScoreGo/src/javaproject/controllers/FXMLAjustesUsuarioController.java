@@ -21,10 +21,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javaproject.clases.Singleton;
 import javaproject.clases.Usuario;
 import javaproject.model.UsuarioModel;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
 
 /**
  * FXML Controller class
@@ -32,11 +35,11 @@ import javaproject.model.UsuarioModel;
  * @author 1erDAM
  */
 public class FXMLAjustesUsuarioController implements Initializable {
-    
+
     private UsuarioModel usuarioModel;
-    
+
     private Usuario usuario;
-    
+
     private Singleton s = Singleton.getInstance();
 
     @FXML
@@ -57,124 +60,134 @@ public class FXMLAjustesUsuarioController implements Initializable {
     private TextField ContraseñaEliminarText;
     @FXML
     private ChoiceBox<String> Nacionalidad;
+    @FXML
+    private Button modificarBoton;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         this.usuarioModel = new UsuarioModel();
-        
+
         Nacionalidad.getItems().setAll("España", "Francia", "México", "Italia", "Portugal");
-        
+
         //Asigna el usuario
         this.usuario = s.us;
-        
-    }    
+
+    }
 
     @FXML
     private void modificarUsuario(ActionEvent event) {
-        
-        
+
         //Alerta confirmación creación usuario
         Alert ac = new Alert(Alert.AlertType.INFORMATION);
         ac.setTitle("INFORMATION DIALOG");
         ac.setHeaderText("Modificación usuario");
         ac.setContentText("El usuario ha sido modificado correctamente");
-        
-        
+
         Alert ai = new Alert(Alert.AlertType.ERROR);
         ai.setTitle("INFORMATION DIALOG");
         ai.setHeaderText("Error");
         ai.setContentText("No has introducido la contraseña o es incorrecta");
-        
-        if(this.usuario.getContraseña().equals(ContraseñaModifyText.getText())){
 
-                Usuario newUsr = this.usuario;
+        if (this.usuario.getContraseña().equals(ContraseñaModifyText.getText())) {
 
-                if(!nombreText.getText().isEmpty())
-                    newUsr.setNombre(nombreText.getText());
-                if(!ApellidosText.getText().isEmpty())
-                    newUsr.setApellidos(ApellidosText.getText());
-                if(!CorreoText.getText().isEmpty())
-                     newUsr.setCorreo(CorreoText.getText());
-                if(FechaNacimientoText.getValue() == null){
+            Usuario newUsr = this.usuario;
 
-                }else{
-                    newUsr.setFechaNacimiento(java.sql.Date.valueOf(FechaNacimientoText.getValue()));
-                }
+            if (!nombreText.getText().isEmpty()) {
+                newUsr.setNombre(nombreText.getText());
+            }
+            if (!ApellidosText.getText().isEmpty()) {
+                newUsr.setApellidos(ApellidosText.getText());
+            }
+            if (!CorreoText.getText().isEmpty()) {
+                newUsr.setCorreo(CorreoText.getText());
+            }
+            if (FechaNacimientoText.getValue() == null) {
 
-                if(Nacionalidad.getValue() == null){
+            } else {
+                newUsr.setFechaNacimiento(java.sql.Date.valueOf(FechaNacimientoText.getValue()));
+            }
 
-                }else{
-                    newUsr.setNacionalidad(Nacionalidad.getValue().toString());
-                }
+            if (Nacionalidad.getValue() == null) {
 
-                //Comprueba si la modificación es correcta
-                if(this.usuarioModel.editarUsuario(newUsr, this.usuario) > 0){
-                    ac.showAndWait();
-                }else{
+            } else {
+                newUsr.setNacionalidad(Nacionalidad.getValue().toString());
+            }
 
-                }
-        }else{
+            //Comprueba si la modificación es correcta
+            if (this.usuarioModel.editarUsuario(newUsr, this.usuario) > 0) {
+                ac.showAndWait();
+            } else {
+
+            }
+        } else {
             ai.show();
-        }    
+        }
     }
 
     @FXML
     private void EliminarUsuario(ActionEvent event) throws IOException {
-        
+
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("Eliminar usuario");
         ac.setHeaderText("¿Desea eliminar definitivamente el usuario?");
         ac.setContentText("Esta accion es irreversible");
-        
+
         Alert ai = new Alert(Alert.AlertType.ERROR);
         ai.setTitle("Error");
         ai.setHeaderText("Error");
         ai.setContentText("La contraseña o es incorrecta");
-        
+
         //Alerta confirmación creación usuario
         Alert ae = new Alert(Alert.AlertType.INFORMATION);
         ae.setTitle("Usuario aliminado");
         ae.setHeaderText("Eliminación usuario");
         ae.setContentText("El usuario se ha eliminado satisfactoriamente");
-        
-        //Alerta de campo contraseña vacío
 
+        //Alerta de campo contraseña vacío
         Alert av = new Alert(Alert.AlertType.INFORMATION);
         av.setTitle("Contraseña vacía");
         av.setHeaderText("Contraseña vacía");
         av.setContentText("El campo contraseña está vacío");
-        
-            
-        if(this.usuario.getContraseña().equals(ContraseñaEliminarText.getText())){
-            
+
+        if (this.usuario.getContraseña().equals(ContraseñaEliminarText.getText())) {
+
             ac.showAndWait();
-        
-        }
-        else if(ContraseñaEliminarText.getText().isEmpty()){
-            
+
+        } else if (ContraseñaEliminarText.getText().isEmpty()) {
+
             av.showAndWait();
         }
-            
-            if(ac.getResult() == ButtonType.OK){           
-                if(this.usuarioModel.eliminarUsuario(this.usuario) > 0){
-                    ae.showAndWait();
-                    try {
-                            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
-                            this.AjustesUsuario.getChildren().setAll(pane);
-                        } catch (IOException ex) {
-                            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-                    }   
+
+        if (ac.getResult() == ButtonType.OK) {
+            if (this.usuarioModel.eliminarUsuario(this.usuario) > 0) {
+                ae.showAndWait();
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
+                    this.AjustesUsuario.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                else {
-                    ai.show();
+            } else {
+                ai.show();
             }
-}
+        }
+    }
+    Glow glow = new Glow();
+
+    @FXML
+   
+    //Aplicar un efecto de brillo al boton
+    private void modificarDatosUsuarioHover(MouseEvent event) {
+        //effecto mientras el raton esté dentro del boton "modificar"
+        modificarBoton.setEffect(glow);
+    }
+
+    @FXML
+    private void modificarDatosUsuarioExit(MouseEvent event) {
+        modificarBoton.setEffect(null);
     }
 }
-        
-
-
