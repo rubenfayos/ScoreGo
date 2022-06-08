@@ -174,27 +174,30 @@ public class FXMLMisBandasController implements Initializable {
     @FXML
     private void UnirseBanda(ActionEvent event) {
         
-        //Te une a la banda
-        if(this.bm.unirseBanda(unirseNombre.getText(), unirseContraseña.getText(), this.us) > 0){
-            Alert ac2 = new Alert(Alert.AlertType.CONFIRMATION);
-            ac2.setTitle("CONFIRMATION");
-            ac2.setHeaderText("Esto es un mensaje de confirmación");
-            ac2.setContentText("¿Desea ir a la banda?");
-            ac2.showAndWait();
-            if(ac2.getResult() == ButtonType.OK){
-              Alert ai = new Alert(AlertType.INFORMATION);
-                ai.setTitle("INFORMACIÓN");
-                ai.setHeaderText("Esto es un mensaje informativo");
-                ai.setContentText("Te has unido a la banda correctamente");
-                ai.showAndWait();
-               try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
-                this.AP.getChildren().setAll(pane);
-                } catch (IOException ex) {
-                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+        
+        Alert ac2 = new Alert(Alert.AlertType.CONFIRMATION);
+        ac2.setTitle("CONFIRMATION");
+        ac2.setHeaderText("Esto es un mensaje de confirmación");
+        ac2.setContentText("¿Desea unirse a la banda?");
+        ac2.showAndWait();
             
+            if(ac2.getResult() == ButtonType.OK){
+                //Te une a la banda
+                if(this.bm.unirseBanda(unirseNombre.getText(), unirseContraseña.getText(), this.us) > 0){
+            
+                    Alert ai = new Alert(AlertType.INFORMATION);
+                    ai.setTitle("INFORMACIÓN");
+                    ai.setHeaderText("Esto es un mensaje informativo");
+                    ai.setContentText("Te has unido a la banda correctamente");
+                    ai.showAndWait();
+
+                   try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisBandas.fxml"));
+                    this.AP.getChildren().setAll(pane);
+                    } catch (IOException ex) {
+                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                    } 
+            }
             
         }
         

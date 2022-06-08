@@ -7,7 +7,6 @@ package javaproject.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,9 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -29,7 +26,6 @@ import javafx.stage.FileChooser;
 import javaproject.clases.Usuario;
 import javaproject.model.FTPManager;
 import javaproject.model.UsuarioModel;
-import org.apache.commons.net.ftp.FTPClient;
 
 /**
  * FXML Controller class
@@ -106,7 +102,9 @@ public class FXMLCrearUsuarioController implements Initializable {
             //Coge los datos del usuario de los campos
             Usuario u = new Usuario(add_nombre_usuario.getText(), add_apellido_usuario.getText(), add_id_usuario.getText(), add_contraseña_usuario.getText(), add_correo_usuario.getText(), java.sql.Date.valueOf(add_date_usuario.getValue()) ,add_nacionalidad_usuario.getValue().toString());
             this.ftp.makeDirectory(u.getNombreUsuario());
-            u.setImg(this.ftp.subirIMGUsuario(this.img.getAbsolutePath(), this.img.getName(), u.getNombreUsuario()));
+            
+            if(this.img != null)
+                u.setImg(this.ftp.subirIMGUsuario(this.img.getAbsolutePath(), this.img.getName(), u.getNombreUsuario()));
             
             //Comprueba que la insercion SQL sea correcta
             if(this.usuarioModel.crearUsuario(u) >0){

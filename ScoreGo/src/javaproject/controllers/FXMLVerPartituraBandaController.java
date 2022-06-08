@@ -132,7 +132,7 @@ public class FXMLVerPartituraBandaController implements Initializable {
         
         //alerta de confirmación para eliminar partitura en una banda
         
-         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
+        Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("Eliminar partitura");
         ac.setHeaderText("Eliminar partitura");
         ac.setContentText("¿Seguro que deseas eliminar la partitura?");

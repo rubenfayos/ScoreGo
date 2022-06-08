@@ -124,6 +124,10 @@ public class BandasModel extends DBUtil{
         ResultSet rs = stmt.executeQuery();
         
         while(rs.next()){
+            
+        Usuario u = new Usuario();
+        u.setId(rs.getInt("administrador"));
+        b.setAdministrador(u);
         
         b.setId(rs.getInt("id"));
         b.setNombre(rs.getString("nombre"));
@@ -223,6 +227,36 @@ public class BandasModel extends DBUtil{
         
          
         return usuarios;
+    }
+    
+    public int eliminarBanda(Banda b){
+        
+        
+        int i = 0;
+        
+        try{
+            
+                //Vamos a comprobar que el usuario del login es correcto
+                PreparedStatement stmt = this.getConexion().prepareStatement("DELETE FROM banda WHERE id=?;");
+                
+                stmt.setInt(1, b.getId());
+                
+                //Inserta la partitura
+                i=stmt.executeUpdate();
+                 
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+        
+        
+        return i;
+        
+        
     }
     
     

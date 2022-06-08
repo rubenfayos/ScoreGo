@@ -350,7 +350,7 @@ public class PartituraModel extends DBUtil{
             try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura ORDER BY fechaSubida DESC");
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM partitura WHERE id NOT IN(SELECT partitura FROM partitura_banda) ORDER BY fechaSubida DESC");
             
             ResultSet rs = stmt.executeQuery();
             

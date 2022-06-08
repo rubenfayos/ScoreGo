@@ -4,6 +4,7 @@
  */
 package javaproject.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -28,6 +29,10 @@ import javaproject.clases.Usuario;
 import javaproject.model.UsuarioModel;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.FileChooser;
+import javaproject.model.FTPManager;
 
 
 /**
@@ -37,11 +42,14 @@ import javafx.scene.effect.Glow;
  */
 public class FXMLAjustesUsuarioController implements Initializable {
 
-    private UsuarioModel usuarioModel;
-
-    private Usuario usuario;
+    private UsuarioModel usuarioModel = new UsuarioModel();
 
     private Singleton s = Singleton.getInstance();
+    private Usuario usuario = s.us;
+    private FTPManager ftp = new FTPManager();
+    private File img;
+
+    
 
     @FXML
     private AnchorPane AjustesUsuario;
@@ -63,6 +71,8 @@ public class FXMLAjustesUsuarioController implements Initializable {
     private ChoiceBox<String> Nacionalidad;
     @FXML
     private Button modificarBoton;
+    @FXML
+    private ImageView Imagen;
 
     /**
      * Initializes the controller class.
@@ -70,17 +80,13 @@ public class FXMLAjustesUsuarioController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-        this.usuarioModel = new UsuarioModel();
-
         Nacionalidad.getItems().setAll("España", "Francia", "México", "Italia", "Portugal");
 
-        //Asigna el usuario
-        this.usuario = s.us;
 
     }
 
     @FXML
-    private void modificarUsuario(ActionEvent event) {
+    private void modificarUsuario(ActionEvent event) throws IOException {
 
         //Alerta confirmación modificacion usuario
         Alert ac = new Alert(Alert.AlertType.INFORMATION);
@@ -117,9 +123,14 @@ public class FXMLAjustesUsuarioController implements Initializable {
             } else {
                 newUsr.setNacionalidad(Nacionalidad.getValue().toString());
             }
+            
+            if(this.img != null){
+                    newUsr.setImg(this.ftp.subirIMGUsuario(this.img.getAbsolutePath(), this.img.getName(), newUsr.getNombreUsuario()));
+                }      
 
             //Comprueba si la modificación es correcta
             if (this.usuarioModel.editarUsuario(newUsr, this.usuario) > 0) {
+                
                 ac.showAndWait();
             } else {
 
@@ -212,5 +223,29 @@ public class FXMLAjustesUsuarioController implements Initializable {
     private void eliminarMouseEntered(MouseEvent event) {
         //Efecto mientras el raton esté dentro del boton "eliminar"
         EliminarButton.setEffect(glow);
+    }
+
+    @FXML
+    private void EditarImagen(ActionEvent event) {
+        
+        fileChooserIMG();
+    }
+    
+    
+    public void fileChooserIMG(){
+        
+        //Crea un file chooser para imagenes
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("img", "*.png", "*.jpg"));
+        this.img = fileChooser.showOpenDialog(null);
+        
+        if(this.img != null){
+        
+            Image imag = new Image(this.img.toURI().toString());
+
+            this.Imagen.setImage(imag);
+        
+        }
+        
     }
 }

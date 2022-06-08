@@ -38,7 +38,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private AnchorPane AP;
     @FXML
-    private Label nombreBandaText;
+    private Button nombreBandaText;
     @FXML
     private Button bottonAbandonar;
     @FXML
@@ -133,14 +133,7 @@ public class FXMLBandaController implements Initializable {
     @FXML
     private void AbandonarBanda(ActionEvent event) {
         
-        try {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisBandas.fxml"));
-                this.MenuAP.getChildren().setAll(pane);
-                } catch (IOException ex) {
-                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-                this.AP.setVisible(false);
+        
         
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("¿Deseas abandonar la banda?");
@@ -159,10 +152,30 @@ public class FXMLBandaController implements Initializable {
                     aepa.setContentText("Se ha abandonado la banda");
                     aepa.showAndWait();
 
+                try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisBandas.fxml"));
+                this.MenuAP.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
+                this.AP.setVisible(false);
 
             }
         
+        }
+        
+    }
+
+    @FXML
+    private void InfoBanda(ActionEvent event) {
+        
+        
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBandaInfo.fxml"));
+            this.AP.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }

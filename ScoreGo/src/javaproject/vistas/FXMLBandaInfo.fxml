@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="520.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLBandaInfoController">
+   <children>
+      <Label layoutX="183.0" layoutY="97.0" text="Descripcion de la banda">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="desc" alignment="TOP_LEFT" layoutX="184.0" layoutY="136.0" prefHeight="82.0" prefWidth="341.0" />
+      <Separator layoutX="184.0" layoutY="123.0" prefHeight="0.0" prefWidth="229.0" />
+      <Label layoutX="183.0" layoutY="233.0" text="Total miembros:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalMiembros" layoutX="324.0" layoutY="233.0" prefHeight="25.0" prefWidth="34.0" text="1">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="183.0" layoutY="260.0" text="Total partituras:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPartituras" layoutX="324.0" layoutY="260.0" prefHeight="25.0" prefWidth="34.0" text="0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="285.0" text="Total post:">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="totalPost" layoutX="324.0" layoutY="285.0" prefHeight="25.0" prefWidth="34.0" text="0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button fx:id="eliminarButton" layoutX="183.0" layoutY="372.0" mnemonicParsing="false" onAction="#eliminarBanda" style="-fx-background-color: red;" text="Eliminar banda" textFill="WHITE" visible="false">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

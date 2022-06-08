@@ -58,7 +58,6 @@ public class UsuarioModel extends DBUtil{
         try{
             
             //Vamos a comprobar que el usuario del login es correcto
-            String sql = "";
             PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM usuario WHERE nombreUsuario=? AND contraseña=?");
             
             stmt.setString(1, nombreUsuario);
@@ -96,7 +95,7 @@ public class UsuarioModel extends DBUtil{
         try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            String sql = "UPDATE usuario SET nombre=?, apellidos=?, fechaNacimiento=?, correo=?, nacionalidad=?"
+            String sql = "UPDATE usuario SET nombre=?, apellidos=?, fechaNacimiento=?, correo=?, nacionalidad=?, img=?"
                     + "WHERE id=?";
             PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
@@ -105,7 +104,8 @@ public class UsuarioModel extends DBUtil{
             stmt.setDate(3, newUsuario.getFechaNacimiento());
             stmt.setString(4, newUsuario.getCorreo());
             stmt.setString(5, newUsuario.getNacionalidad());
-            stmt.setInt(6, oldUsuario.getId());
+            stmt.setString(6, newUsuario.getImg());
+            stmt.setInt(7, oldUsuario.getId());
             
             //Ejecutamos el sql y recogemos si el resultado es correcto
             i = stmt.executeUpdate();
