@@ -45,14 +45,13 @@ public class FXMLBuscadorPartiturasController implements Initializable {
     private GridPane PartiturasGP;
 
     /**
-     * Initializes the controller class.
+     * Inicia la clase del controlador.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
         String num = "";
-
-        //Coge las partiturasd de la base de datos
+        //Coge las partituras de la base de datos
         ObservableList<Partitura> partituras = this.pm.listarPartiturasUsuario(this.u);
         
         int filas = 0;
@@ -65,8 +64,8 @@ public class FXMLBuscadorPartiturasController implements Initializable {
         
         PartiturasGP.setPrefHeight(248*filas);
         
-        
         //Define la cantidad de filas y su tamaño
+        
         for (int i = 0; i < filas-1; i++) {
             RowConstraints rowConst = new RowConstraints();
             rowConst.setPrefHeight(248);
