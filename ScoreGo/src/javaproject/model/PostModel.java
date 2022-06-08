@@ -134,7 +134,7 @@ public class PostModel extends DBUtil{
         
         try{
             
-                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM POST p, usuario u WHERE banda=? AND p.usuario=u.id");
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM post p, usuario u WHERE banda=? AND p.usuario=u.id");
             
                 stmt.setInt(1, b.getId());
                 
@@ -148,7 +148,7 @@ public class PostModel extends DBUtil{
                     
                     p.setTitulo(rs.getString("titulo"));
                     p.setTexto(rs.getString("texto"));
-                    p.setFechaPublicacion(rs.getString("fechaPublicacion").toString());
+                    p.setFechaPublicacion(rs.getDate("fechaPublicacion").toString());
                     p.setUsuario(u);
                     
                     posts.add(p);
@@ -175,7 +175,7 @@ public class PostModel extends DBUtil{
         
         try{
             
-                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM POST WHERE usuario=?");
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM post WHERE usuario=?");
             
                 stmt.setInt(1, u.getId());
                 

@@ -111,7 +111,7 @@ public class FTPManager {
         File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
-        String firstRemoteFile = "/scoregoFiles/usuarios/" + usuario + "/" + nombre;
+        String firstRemoteFile = "/public_html/scoregoFiles/usuarios/" + usuario + "/" + nombre;
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
 
@@ -158,10 +158,10 @@ public class FTPManager {
         
         try {
             //Crea el directorio del usuario
-            done = this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir);
-            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras");
-            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras/pdf");
-            this.ftpClient.makeDirectory("/scoregoFiles/usuarios/" + dir + "/partituras/mp3");
+            done = this.ftpClient.makeDirectory("/public_html/scoregoFiles/usuarios/" + dir);
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/usuarios/" + dir + "/partituras");
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/usuarios/" + dir + "/partituras/pdf");
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/usuarios/" + dir + "/partituras/mp3");
 
             if(done){
                 System.out.println("Carpeta del usuario creada.");
