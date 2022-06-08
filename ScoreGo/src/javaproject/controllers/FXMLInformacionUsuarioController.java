@@ -97,7 +97,7 @@ public class FXMLInformacionUsuarioController implements Initializable {
         ac.showAndWait();
             
         if(ac.getResult() == ButtonType.OK){
-            
+          //Cerrar la ventana actual y abrir una nueva  
           Node source = (Node) event.getSource();
           Stage stage = (Stage) source.getScene().getWindow();
         stage.close();
