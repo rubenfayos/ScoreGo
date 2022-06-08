@@ -16,10 +16,18 @@ import javaproject.clases.Post;
 import javaproject.clases.Usuario;
 
 /**
- *
+ * The user model for the database
  * @author Fayos
  */
 public class PostModel extends DBUtil{
+    
+    /**
+     * Upload the post
+     * @param p The post
+     * @param b The Banda
+     * @param u The user that uploads the post
+     * @return an int for the check
+     */
     
     public int subirPost(Post p, Banda b,Usuario u){
         
@@ -50,6 +58,12 @@ public class PostModel extends DBUtil{
         return i;
         
     }
+    
+    /**
+     * Delete the post in the database
+     * @param p The post
+     * @return an int for the check
+     */
 
     public int eliminarPost(Post p){
         
@@ -77,30 +91,13 @@ public class PostModel extends DBUtil{
         return i;     
     }
     
+    /**
+     * Modify a post
+     * @param np New post
+     * @param ap Old post
+     * @return an int for the check
+     */
     
-    public void verPost(Post p,Banda b,Usuario u){
-        
-        try{
-            
-                //ve post por la id del usuario
-                String sql  = "SELECT u.nombre,b.nombre,p.titulo,p.texto,p.fechaPublicacion\n" +
-                              "FROM usuario u,banda b,post p\n" +
-                              "WHERE u.id=p.usuario AND b.id=p.banda AND u.id=?";
-                PreparedStatement stmt = this.getConexion().prepareStatement(sql);
-            
-                stmt.setInt(1, u.getId());
-                
-          stmt.execute();
-            
-            }catch (SQLException e) {
-                e.printStackTrace();   
-            } 
-        
-            finally {
-                //Cerramos conexion
-                this.cerrarConexion();
-            }
-    }
     public int editarPost(Post np, Post ap){
         
         int i = 0;
@@ -127,6 +124,11 @@ public class PostModel extends DBUtil{
         return i;    
     }
     
+    /**
+     * 
+     * @param b The band for the posts
+     * @return An observable list with the post of the band
+     */
    
     public ObservableList<Post> listarPostBanda(Banda b){
         
@@ -168,6 +170,12 @@ public class PostModel extends DBUtil{
         return posts;
     }
     
+    /**
+     * 
+     * @param u The user
+     * @param b The band
+     * @return An observable list with the post of an user in the band
+     */
     
     public ObservableList<Post> listarPostUsuario(Usuario u, Banda b){
         

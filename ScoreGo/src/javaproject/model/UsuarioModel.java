@@ -12,10 +12,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
+ * The user model for the database
  * @author 1erDAM
  */
 public class UsuarioModel extends DBUtil{
+    
+    /**
+     * Creates an user in the DataBase
+     * @param u The user to create in the DB
+     * @return 
+     */
     
     public int crearUsuario(Usuario u){
         
@@ -50,6 +56,13 @@ public class UsuarioModel extends DBUtil{
         return i;
         
     }
+    
+    /**
+     * Check if the user's login credentials are fine
+     * @param nombreUsuario The username for the login
+     * @param contraseña The password for the login
+     * @return the user
+     */
     
     public Usuario iniciarSesion(String nombreUsuario, String contraseña){
         
@@ -88,6 +101,13 @@ public class UsuarioModel extends DBUtil{
               
     }
     
+    /**
+     * Modify the user in the database
+     * @param newUsuario The new user's data
+     * @param oldUsuario The old user's data
+     * @return an int for the check
+     */
+    
     public int editarUsuario(Usuario newUsuario, Usuario oldUsuario){
         
         int i = 0;
@@ -122,6 +142,12 @@ public class UsuarioModel extends DBUtil{
         return i;
         
     }
+    
+    /**
+     * Deletes the user
+     * @param u The user to delete in the database
+     * @return an int for the check
+     */
     
     public int eliminarUsuario(Usuario u){
         

@@ -21,6 +21,12 @@ import jdk.nashorn.internal.objects.NativeRegExp;
  */
 public class PartituraModel extends DBUtil{
     
+    /**
+     * Upload the score
+     * @param p The Score
+     * @return an int for the check
+     */
+    
     public int subirPartitura(Partitura p){
             
         int comp = 0;
@@ -70,7 +76,14 @@ public class PartituraModel extends DBUtil{
             return comp;
         
         }
-        
+      
+    /**
+     * Saves the score for the user
+     * @param p The score
+     * @param u The user
+     * @return an int for the check
+     */
+    
     public int guardarPartitura(Partitura p, Usuario u){
             
             int i = 0;

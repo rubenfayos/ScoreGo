@@ -24,6 +24,12 @@ public class BandasModel extends DBUtil{
         
     }
     
+    /**
+     * Creates a band in the database
+     * @param b The band
+     * @return an int for the check
+     */
+    
     public int crearBanda(Banda b){
         
         int comp = 0;
@@ -54,6 +60,14 @@ public class BandasModel extends DBUtil{
         
     }
     
+    /**
+     * Joins the user to a band
+     * @param nombre The name of the band
+     * @param contraseña The password of the band
+     * @param u The user
+     * @return an int for the check
+     */
+    
     public int unirseBanda(String nombre, String contraseña, Usuario u){
         
         int i = 0;
@@ -83,6 +97,13 @@ public class BandasModel extends DBUtil{
         return i;
     }
     
+    /**
+     * Leaves the user from a band in the database
+     * @param b The band
+     * @param u The user
+     * @return an int for the check
+     */
+    
     public int AbandonarBanda(Banda b, Usuario u){
         
         int i = 0;
@@ -110,6 +131,12 @@ public class BandasModel extends DBUtil{
         
         return i;
     }
+    
+    /**
+     * 
+     * @param id Id of a band
+     * @return A band
+     */
     
     public Banda listarBanda(int id){
         
@@ -151,6 +178,12 @@ public class BandasModel extends DBUtil{
         
     }
     
+    /**
+     * 
+     * @param u The user
+     * @return An observable list with the bands of a user
+     */
+    
     public ObservableList<Banda> listarBandas(Usuario u){
         
         ObservableList<Banda> bandas = FXCollections.observableArrayList();
@@ -190,6 +223,12 @@ public class BandasModel extends DBUtil{
         return bandas;
     }
     
+    /**
+     * 
+     * @param b The band
+     * @return An observable list with all the users of a band
+     */
+    
     public ObservableList<Usuario> listarUsuarios(Banda b){
         
         ObservableList<Usuario> usuarios = FXCollections.observableArrayList();
@@ -228,6 +267,12 @@ public class BandasModel extends DBUtil{
          
         return usuarios;
     }
+    
+    /**
+     * Delete a band in the database
+     * @param b The band
+     * @return an int for the check
+     */
     
     public int eliminarBanda(Banda b){
         

@@ -34,10 +34,16 @@ public class mp3Player implements Initializable {
     private Button button;
     @FXML
     private Button pauseButton;
+    @FXML
+    private Label label;
     
     private MediaPlayer mp;
                     
-   
+   /**
+    * Assign a mp3 for the mediaPlayer
+    * @param url
+    * @param rb 
+    */
                     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -53,18 +59,32 @@ public class mp3Player implements Initializable {
     
     }
     
-    @FXML
-    private Label label;
+    
+    
+    /**
+     * Starts the mp3
+     * 
+     */
     
     @FXML
     public void handleButtonAction(ActionEvent event) {
       this.mp.play();
     }
+    
+    /**
+     * Pause the mp3
+     * @param event 
+     */
 
     @FXML
     private void handlePauseButton(ActionEvent event) { 
         this.mp.pause();
     }
+    
+    /**
+     * Stops completely the mp3
+     * @param event 
+     */
 
     @FXML
     private void handleDetenerButton(ActionEvent event) {
