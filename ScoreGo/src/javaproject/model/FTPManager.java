@@ -30,7 +30,7 @@ public class FTPManager {
     public FTPManager(){
         
     }
-    
+    //Método para conectarse al FTP
     public void getConexion(){
         
         String server = "scorego.ddns.net";
@@ -71,6 +71,7 @@ public class FTPManager {
         System.out.println("Subiendo el archivo...");
         boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
         inputStream.close();
+        //indicador de que el archivo ha sido subido con exito
         if (done) {
             System.out.println("Archivo subido");
         }
@@ -91,11 +92,12 @@ public class FTPManager {
         firstRemoteFile+=nombre;
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
-
+        
         System.out.println("Subiendo el archivo...");
         boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
         inputStream.close();
         if (done) {
+        //indicador de que el archivo ha sido subido con exito
             System.out.println("Archivo subido");
         }
         
@@ -119,6 +121,7 @@ public class FTPManager {
         boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
         inputStream.close();
         if (done) {
+        //indicador de que el archivo ha sido subido con exito
             System.out.println("Archivo subido");
         }
         
@@ -142,6 +145,7 @@ public class FTPManager {
         boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
         inputStream.close();
         if (done) {
+        //indicador de que el archivo ha sido subido con exito
             System.out.println("Archivo subido");
         }
         
@@ -215,7 +219,7 @@ public class FTPManager {
             e.printStackTrace();
         }   
     }
-    
+    //Método para cambiar la ruta de los pdfs al renombrarlos
     public String renamePdf(String viejo, String usuario, String partitura) throws IOException{
         
         boolean done = false;
