@@ -178,7 +178,11 @@ public class FXMLSubirPostController implements Initializable {
         nuevoPost.setTexto(nuevoTextoPost.getText());
         
         if(this.pm.editarPost(nuevoPost, this.p) > 0){
-            
+            Alert aep = new Alert(Alert.AlertType.INFORMATION);
+                aep.setTitle("INFORMACIÓN");
+                aep.setHeaderText("Post editado");
+                aep.setContentText("Post editado correctamente");
+                aep.showAndWait();
         }   
         
         
