@@ -86,9 +86,6 @@ public class FXMLSubirPostController implements Initializable {
 
     @FXML
     private void SubirPost(ActionEvent event) {
-     
-
-       this.p = new Post();
         
        this.p.setTitulo(tituloPost.getText());
        this.p.setTexto(textoPost.getText());
@@ -116,6 +113,7 @@ public class FXMLSubirPostController implements Initializable {
                 ain.setHeaderText("Post subido");
                 ain.setContentText("Post subido correctamente");
                 ain.showAndWait();
+                this.p = new Post();
                    }
        }
 
