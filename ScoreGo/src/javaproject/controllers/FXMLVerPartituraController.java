@@ -191,7 +191,11 @@ public class FXMLVerPartituraController implements Initializable {
         //newP.setMp3(mp3);
         
         if(this.pm.editarPartitura(u, newP, this.p) > 0){
-            
+            Alert aepa = new Alert(Alert.AlertType.INFORMATION);
+                aepa.setTitle("INFORMACIÓN");
+                aepa.setHeaderText("Partitura editada");
+                aepa.setContentText("Partitura editada correctamente");
+                aepa.showAndWait();
         }
         
     }

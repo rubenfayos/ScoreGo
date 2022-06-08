@@ -4,12 +4,16 @@
  */
 package javaproject.controllers;
 
+import java.io.IOException;
 import javaproject.model.PostModel;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -34,12 +38,12 @@ import javaproject.clases.Usuario;
  * @author jnava
  */
 public class FXMLSubirPostController implements Initializable {
-  
+
     PostModel pm = new PostModel();
     private Singleton s = Singleton.getInstance();
     private Banda b = s.b;
     private Usuario u = s.us;
-    
+
     private Post p = new Post();
 
     @FXML
@@ -75,118 +79,142 @@ public class FXMLSubirPostController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+    
         ObservableList<Post> posts = this.pm.listarPostUsuario(this.u, this.b);
         
         this.tituloColumn.setCellValueFactory(new PropertyValueFactory("titulo"));
         this.fechaColumn.setCellValueFactory(new PropertyValueFactory("fechaPublicacion"));
-        
+
         this.postTV.setItems(posts);
-        
-    }    
+
+    }
 
     @FXML
     private void SubirPost(ActionEvent event) {
-        
-       this.p.setTitulo(tituloPost.getText());
-       this.p.setTexto(textoPost.getText());
-       
-       if(tituloPost.getText().isEmpty()) {
-           Alert ae = new Alert(Alert.AlertType.ERROR);
-                ae.setTitle("ERROR");
-                ae.setHeaderText("Error");
-                ae.setContentText("El campo del titulo está vacío");
-                ae.showAndWait();
-       }
-       if(textoPost.getText().isEmpty()) {
-       Alert at = new Alert(Alert.AlertType.ERROR);
-                at.setTitle("ERROR");
-                at.setHeaderText("Error");
-                at.setContentText("Escriba un texto del post");
-                at.showAndWait();
-    
-       
-       }
-           else if(this.pm.subirPost(p, this.b, this.u) > 0) {
-           
-           Alert ain = new Alert(Alert.AlertType.INFORMATION);
-                ain.setTitle("INFORMACIÓN");
-                ain.setHeaderText("Post subido");
-                ain.setContentText("Post subido correctamente");
-                ain.showAndWait();
-                this.p = new Post();
-                   }
-       }
 
+        this.p.setTitulo(tituloPost.getText());
+        this.p.setTexto(textoPost.getText());
 
-        
+        if (tituloPost.getText().isEmpty()) {
+            Alert ae = new Alert(Alert.AlertType.ERROR);
+            ae.setTitle("ERROR");
+            ae.setHeaderText("Error");
+            ae.setContentText("El campo del titulo está vacío");
+            ae.showAndWait();
+        }
+        if (textoPost.getText().isEmpty()) {
+            Alert at = new Alert(Alert.AlertType.ERROR);
+            at.setTitle("ERROR");
+            at.setHeaderText("Error");
+            at.setContentText("Escriba un texto del post");
+            at.showAndWait();
+
+        } else if (this.pm.subirPost(p, this.b, this.u) > 0) {
+
+            Alert ain = new Alert(Alert.AlertType.INFORMATION);
+            ain.setTitle("INFORMACIÓN");
+            ain.setHeaderText("Post subido");
+            ain.setContentText("Post subido correctamente");
+            ain.showAndWait();
+            this.p = new Post();
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPublicacionesBanda.fxml"));
+                this.AP.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     @FXML
     private void eliminarPost(ActionEvent event) {
-        
-        
+
         Alert ace = new Alert(Alert.AlertType.CONFIRMATION);
-            ace.setTitle("CONFIRMATION");
-            ace.setHeaderText("Confirmar eliminación de post");
-            ace.setContentText("¿Desea eliminar el post?");
-            ace.showAndWait();
-            if(ace.getResult() == ButtonType.OK){
-              Alert aip = new Alert(Alert.AlertType.INFORMATION);
-                aip.setTitle("INFORMACIÓN");
-                aip.setHeaderText("Post eliminado");
-                aip.setContentText("El post ha sido eliminado correctamente");
-                aip.showAndWait();
-        this.pm.eliminarPost(this.p);
-            }
+        ace.setTitle("CONFIRMATION");
+        ace.setHeaderText("Confirmar eliminación de post");
+        ace.setContentText("¿Desea eliminar el post?");
+        ace.showAndWait();
+        if (ace.getResult() == ButtonType.OK) {
+            Alert aip = new Alert(Alert.AlertType.INFORMATION);
+            aip.setTitle("INFORMACIÓN");
+            aip.setHeaderText("Post eliminado");
+            aip.setContentText("El post ha sido eliminado correctamente");
+            aip.showAndWait();
+            this.pm.eliminarPost(this.p);
+        }
     }
 
     @FXML
     private void editarPost(ActionEvent event) {
-        
-        if(!nuevoTitulo.isVisible()){
+
+        if (!nuevoTitulo.isVisible()) {
             nuevoTitulo.setVisible(true);
             nuevoTextoPost.setVisible(true);
             confirmarEditar.setVisible(true);
-        }else{
+        } else {
             nuevoTitulo.setVisible(false);
             nuevoTextoPost.setVisible(false);
             confirmarEditar.setVisible(false);
         }
-        
-        
+
     }
 
     @FXML
     private void mostrarPost(MouseEvent event) {
-        
+
         this.p = this.postTV.getSelectionModel().getSelectedItem();
-        
+
         mostrarTitulo.setText(p.getTitulo());
         mostrarTexto.setText(p.getTexto());
-        
+
         eliminarButton.setVisible(true);
         editarButton.setVisible(true);
-        
+
     }
 
     @FXML
     private void confirmarEditar(ActionEvent event) {
-        
+
         Post nuevoPost = this.p;
-        
+
         nuevoPost.setTitulo(nuevoTitulo.getText());
         nuevoPost.setTexto(nuevoTextoPost.getText());
-        
-        if(this.pm.editarPost(nuevoPost, this.p) > 0){
-            Alert aep = new Alert(Alert.AlertType.INFORMATION);
-                aep.setTitle("INFORMACIÓN");
-                aep.setHeaderText("Post editado");
-                aep.setContentText("Post editado correctamente");
-                aep.showAndWait();
-        }   
-        
-        
-        
-    }        
+
+        if (nuevoTitulo.getText().isEmpty() & nuevoTextoPost.getText().isEmpty()) {
+            Alert aev = new Alert(Alert.AlertType.ERROR);
+            aev.setTitle("INFORMACIÓN");
+            aev.setHeaderText("Campos vacíos");
+            aev.setContentText("El titulo y el texto son campos oblicatorios");
+            aev.showAndWait();
+        } else {
+
+            if (nuevoTitulo.getText().isEmpty() & !nuevoTextoPost.getText().isEmpty()) {
+                Alert aev2 = new Alert(Alert.AlertType.ERROR);
+                aev2.setTitle("INFORMACIÓN");
+                aev2.setHeaderText("Campos vacíos");
+                aev2.setContentText("El titulo es un campo oblicatorio");
+                aev2.showAndWait();
+            } else {
+
+                if (!nuevoTitulo.getText().isEmpty() & nuevoTextoPost.getText().isEmpty()) {
+                    Alert aev3 = new Alert(Alert.AlertType.ERROR);
+                    aev3.setTitle("INFORMACIÓN");
+                    aev3.setHeaderText("Campos vacíos");
+                    aev3.setContentText("El texto es un campo oblicatorio");
+                    aev3.showAndWait();
+                } else {
+                    if (this.pm.editarPost(nuevoPost, this.p) > 0) {
+                        Alert aipo = new Alert(Alert.AlertType.INFORMATION);
+                        aipo.setTitle("INFORMACIÓN");
+                        aipo.setHeaderText("Post editado");
+                        aipo.setContentText("Post editado satisfactoriamente");
+                        aipo.showAndWait();
+                    } else {
+                        System.out.println("El if no funciona");
+                    }
+
+                }
+            }
+        }
+    }
 }
-   
