@@ -83,6 +83,34 @@ public class BandasModel extends DBUtil{
         return i;
     }
     
+    public int AbandonarBanda(Banda b, Usuario u){
+        
+        int i = 0;
+        
+        try{
+            
+                //Vamos a comprobar que el usuario del login es correcto
+                PreparedStatement stmt = this.getConexion().prepareStatement("DELETE FROM usuarios_banda WHERE banda=? AND usuario=?;");
+                
+                stmt.setInt(1, b.getId());
+                stmt.setInt(2, u.getId());
+                
+                //Inserta la partitura
+                i=stmt.executeUpdate();
+                 
+            }catch (SQLException e) {
+                e.printStackTrace();   
+            } 
+        
+            finally {
+                //Cerramos conexion
+                this.cerrarConexion();
+            }
+        
+        
+        return i;
+    }
+    
     public Banda listarBanda(int id){
         
         Banda b = new Banda();
@@ -196,6 +224,7 @@ public class BandasModel extends DBUtil{
          
         return usuarios;
     }
+    
     
     
 }

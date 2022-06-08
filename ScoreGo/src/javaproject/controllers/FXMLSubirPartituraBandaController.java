@@ -115,53 +115,50 @@ public class FXMLSubirPartituraBandaController implements Initializable {
             ae2.show();
         }else{
 
-            //Crea la partitura y le asigna los datos
-            Partitura p = new Partitura();
-
-            p.setAutor(autorPartitura.getText());
-            p.setNombre(nombrePartitura.getText());
-            p.setUsuario(this.us);
-
-            //Sube el mp3 al servidor
-            p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName(), this.us.getNombreUsuario()));
+        Partitura p = new Partitura();
         
-            //Sube el pdf al servidor
-            p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName(), this.us.getNombreUsuario()));
+        p.setAutor(autorPartitura.getText());
+        p.setNombre(nombrePartitura.getText());
+        p.setUsuario(this.us);
+        
+        //Sube el mp3 al servidor
+        p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), p.getNombre() + ".mp3", this.us.getNombreUsuario()));
+        
+        //Sube el pdf al servidor
+        p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), p.getNombre() + ".pdf", this.us.getNombreUsuario()));
+       
+        comprobarInstrumentos();
+        p.setInstrumentos(this.instrumentos);
+        
+        if(this.pm.subirPartitura(p) == 1){
+            ai.showAndWait();
+            p=this.pm.listarPartitura(p.getNombre(), this.us);
+            this.pm.guardarPartitura(p, this.us);
+            this.pm.guardarPartituraBanda(p, this.b);
             
-            //Comprueba los instrumentos del choicebox y los asigna
-            comprobarInstrumentos();
-            p.setInstrumentos(this.instrumentos);
-
-            if(this.pm.subirPartitura(p) == 1){
-                
-                ai.showAndWait();
-                p=this.pm.listarPartitura(p.getNombre(), this.us);
-                this.pm.guardarPartitura(p, this.us);
-                this.pm.guardarPartituraBanda(p, b);
-                
-                try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLVerPartiturasBanda.fxml"));
-                    this.AP.getChildren().setAll(pane);
-                } catch (IOException ex) {
-                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
-                }     
+            try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
+                this.AP.getChildren().setAll(pane);
+            } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
+        }
+        
         }
         
     }
-
+    
     @FXML
     private void SubirArchivo(ActionEvent event) {
         
-        fileChooserPDF();
-        
+        fileChooserPDF();   
     }
 
     @FXML
     private void SubirAudio(ActionEvent event) {
         
         fileChooserMP3();
-        
     }
     
     private void comprobarInstrumentos(){

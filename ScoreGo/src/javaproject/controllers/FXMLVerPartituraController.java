@@ -99,7 +99,7 @@ public class FXMLVerPartituraController implements Initializable {
         if(this.u.getId() == this.p.getUsuario().getId()){
             editarButton.setVisible(true);
             eliminarButton.setVisible(true);
-        }else
+        }else if(this.pm.comprobarPartituraGuardad(p, u) == 0)
             guardarButton.setVisible(true); 
         
         
@@ -228,6 +228,13 @@ public class FXMLVerPartituraController implements Initializable {
                 aepa.setHeaderText("Partitura editada");
                 aepa.setContentText("Partitura editada correctamente");
                 aepa.showAndWait();
+                
+                try {
+                    AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisPartituras.fxml"));
+                    this.AP.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                    Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
         
     }
@@ -235,8 +242,16 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void guardar(ActionEvent event) {
         
-        this.pm.guardarPartitura(p, u);
-        
+        if(this.pm.guardarPartitura(p, u) > 0){
+            
+             Alert aepa = new Alert(Alert.AlertType.INFORMATION);
+             
+                aepa.setTitle("INFORMACIÓN");
+                aepa.setHeaderText("Partitura Guarda");
+                aepa.setContentText("La partitura se ha guardado correctamente");
+                aepa.showAndWait();
+                
+        }    
     }
 
     @FXML

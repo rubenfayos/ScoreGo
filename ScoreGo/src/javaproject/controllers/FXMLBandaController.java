@@ -13,10 +13,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javaproject.clases.Banda;
 import javaproject.clases.Singleton;
+import javaproject.clases.Usuario;
 import javaproject.model.BandasModel;
 
 /**
@@ -28,12 +32,17 @@ public class FXMLBandaController implements Initializable {
 
     private Singleton s = Singleton.getInstance();
     private Banda b = s.b;
+    private Usuario u = s.us;
     private BandasModel bm = new BandasModel();
     
     @FXML
     private AnchorPane AP;
     @FXML
     private Label nombreBandaText;
+    @FXML
+    private Button bottonAbandonar;
+    @FXML
+    private AnchorPane MenuAP;
 
     /**
      * Initializes the controller class.
@@ -111,6 +120,43 @@ public class FXMLBandaController implements Initializable {
             this.AP.getChildren().setAll(pane);
         } catch (IOException ex) {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    @FXML
+    private void AbandonarBanda(ActionEvent event) {
+        
+        try {
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLMisBandas.fxml"));
+                this.MenuAP.getChildren().setAll(pane);
+                } catch (IOException ex) {
+                Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+                this.AP.setVisible(false);
+        
+        Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
+        ac.setTitle("¿Deseas abandonar la banda?");
+        ac.setContentText("Esta accion es irreversible");
+        
+        ac.showAndWait();
+        
+        if (ac.getResult() == ButtonType.OK) {
+        
+            if(this.bm.AbandonarBanda(b, this.u) > 0){
+
+                Alert aepa = new Alert(Alert.AlertType.INFORMATION);
+
+                    aepa.setTitle("INFORMACIÓN");
+                    aepa.setHeaderText("Abandonar banda");
+                    aepa.setContentText("Se ha abandonado la banda");
+                    aepa.showAndWait();
+
+                
+
+            }
+        
         }
         
     }

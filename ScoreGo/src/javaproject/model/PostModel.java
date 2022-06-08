@@ -175,9 +175,10 @@ public class PostModel extends DBUtil{
         
         try{
             
-                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.* FROM post p, banda b WHERE usuario=? AND p.banda=b.id;");
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.* FROM post p, banda b WHERE usuario=? AND p.banda=b.id AND b.id=?;");
             
                 stmt.setInt(1, u.getId());
+                stmt.setInt(2, b.getId());
                 
                 ResultSet rs = stmt.executeQuery();
                 
