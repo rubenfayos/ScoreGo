@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -122,9 +123,21 @@ public class FXMLSubirPostController implements Initializable {
 
     @FXML
     private void eliminarPost(ActionEvent event) {
-
+        
+        
+        Alert ace = new Alert(Alert.AlertType.CONFIRMATION);
+            ace.setTitle("CONFIRMATION");
+            ace.setHeaderText("Confirmar eliminación de post");
+            ace.setContentText("¿Desea eliminar el post?");
+            ace.showAndWait();
+            if(ace.getResult() == ButtonType.OK){
+              Alert aip = new Alert(Alert.AlertType.INFORMATION);
+                aip.setTitle("INFORMACIÓN");
+                aip.setHeaderText("Post eliminado");
+                aip.setContentText("El post ha sido eliminado correctamente");
+                aip.showAndWait();
         this.pm.eliminarPost(this.p);
-    
+            }
     }
 
     @FXML
