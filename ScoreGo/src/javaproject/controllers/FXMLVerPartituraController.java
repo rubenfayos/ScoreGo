@@ -158,19 +158,16 @@ public class FXMLVerPartituraController implements Initializable {
         
         
         
-        this.p.setSrc("/public_html/data/admin/files/Partituras/pdf/RutinaPPL.pdf");
-        
         //Crea un directory chooser
         DirectoryChooser dirChooser = new DirectoryChooser();
         dirChooser.setTitle("Elige la carpeta de  descarga");
         File selectedDir = dirChooser.showDialog(new Stage());
-        //Coge la ruta de descarga
-        String selectedDirPath = selectedDir.toString() + "\\si.pdf";
         
-        System.out.println(selectedDirPath);
+        //Coge la ruta de descarga
+        String selectedDirPath = selectedDir.toString() + "\\" + this.p.getNombre() + ".pdf";
         
         //Descarga el archivo
-        if(this.ftp.downloadFile(this.p.getSrc().toString(), selectedDirPath) == true){
+        if(this.ftp.downloadFile("/public_html" + p.getSrc(), selectedDirPath) == true){
             System.out.print("si");
         }else{
             System.out.print("Descarga fallida");

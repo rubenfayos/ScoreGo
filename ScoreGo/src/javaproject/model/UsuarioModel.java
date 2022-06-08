@@ -70,7 +70,7 @@ public class UsuarioModel extends DBUtil{
             if(rs.next()){
                 
             //Recoge los datos de usuario para guardarlos como el usuario        
-            u = new Usuario(rs.getString("nombre"), rs.getString("apellidos"), rs.getString("id"), rs.getString("contraseña"), rs.getString("correo"), rs.getDate("fechaNacimiento"), rs.getString("correo"));
+            u = new Usuario(rs.getString("nombre"), rs.getString("apellidos"), rs.getString("nombreUsuario"), rs.getString("contraseña"), rs.getString("correo"), rs.getDate("fechaNacimiento"), rs.getString("correo"));
             u.setId(rs.getInt(1));
             u.setImg(rs.getString("img"));
 

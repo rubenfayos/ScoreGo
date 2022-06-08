@@ -55,7 +55,7 @@ public class FTPManager {
         
     }
     
-    public String subirPDF(String archivoLocal, String nombre) throws IOException {
+    public String subirPDF(String archivoLocal, String nombre, String usuario) throws IOException {
         
         this.getConexion();
     	
@@ -63,8 +63,8 @@ public class FTPManager {
         File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
-        String firstRemoteFile = "/public_html/data/admin/files/Partituras/pdf/";
-        firstRemoteFile+=nombre.toString();
+        String firstRemoteFile = "/public_html/scoregoFiles/usuarios/" + usuario + "/partituras/pdf/";
+        firstRemoteFile+=nombre;
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
 
@@ -75,11 +75,11 @@ public class FTPManager {
             System.out.println("Archivo subido");
         }
         
-        return firstRemoteFile;
+        return "/scoregoFiles/usuarios/" + usuario + "/partituras/pdf/" + nombre;
     	
     }
     
-    public String subirMP3(String archivoLocal, String nombre) throws IOException {
+    public String subirMP3(String archivoLocal, String nombre, String usuario) throws IOException {
         
         this.getConexion();
     	
@@ -87,8 +87,8 @@ public class FTPManager {
         File firstLocalFile = new File(archivoLocal.toString());
 
         //Ruta donde se subirá el archivo en el servidor
-        String firstRemoteFile = "/public_html/data/admin/files/Partituras/mp3/";
-        firstRemoteFile+=nombre.toString();
+        String firstRemoteFile = "/public_html/scoregoFiles/usuarios/" + usuario + "/partituras/mp3/";
+        firstRemoteFile+=nombre;
         InputStream inputStream = new FileInputStream(firstLocalFile);
 		
 
@@ -99,7 +99,7 @@ public class FTPManager {
             System.out.println("Archivo subido");
         }
         
-        return firstRemoteFile;
+        return "/scoregoFiles/usuarios/" + usuario + "/partituras/mp3/" + nombre;
     	
     }
     
@@ -159,7 +159,7 @@ public class FTPManager {
         try (FileOutputStream fos = new FileOutputStream(rutaLocal)) {
             
             //Recibe el archivo
-            done = this.ftpClient.retrieveFile(rutaRemota, fos);
+            done = this.ftpClient.retrieveFile("/public_html/scoregoFiles/usuarios/si/partituras/pdf/si.pdf", fos);
 
             if(done){
                 System.out.println("The file was downloaded successfully.");

@@ -125,12 +125,10 @@ public class FXMLSubirPartituraController extends FXMLPantallaPrincipalControlle
         p.setUsuario(this.us);
         
         //Sube el mp3 al servidor
-        //p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName()));
-        p.setMp3("jaja");
-        p.setSrc("jaja");
+        p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), p.getNombre() + ".mp3", this.us.getNombreUsuario()));
         
         //Sube el pdf al servidor
-        //p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName()));
+        p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), p.getNombre() + ".pdf", this.us.getNombreUsuario()));
        
         comprobarInstrumentos();
         p.setInstrumentos(this.instrumentos);

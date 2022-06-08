@@ -90,7 +90,7 @@ public class FXMLSubirPartituraBandaController implements Initializable {
     }    
 
     @FXML
-    private void SubirPartituraABanda(ActionEvent event) {
+    private void SubirPartituraABanda(ActionEvent event) throws IOException {
         
         Alert ae = new Alert(Alert.AlertType.ERROR);
         ae.setTitle("ERROR");
@@ -123,12 +123,10 @@ public class FXMLSubirPartituraBandaController implements Initializable {
             p.setUsuario(this.us);
 
             //Sube el mp3 al servidor
-            //p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName()));
-            p.setMp3("jaja");
-            p.setSrc("jaja");
-
+            p.setMp3(this.ftpManager.subirMP3(this.mp3.getAbsolutePath(), this.mp3.getName(), this.us.getNombreUsuario()));
+        
             //Sube el pdf al servidor
-            //p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName()));
+            p.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), this.pdf.getName(), this.us.getNombreUsuario()));
             
             //Comprueba los instrumentos del choicebox y los asigna
             comprobarInstrumentos();
