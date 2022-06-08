@@ -20,8 +20,14 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -93,6 +99,12 @@ public class FXMLMisPartiturasController implements Initializable {
                 b.setPrefSize(200, 200);
                 //Coge el id de la partitura
                 b.setId(Integer.toString(partituras.get(cont).getId()));
+                
+                Image img = new Image("https://scorego.ddns.net/scoregoFiles/partitura.jpg", 200, 200, false, true);
+                    BackgroundImage fondoBotonBanda = new BackgroundImage( img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                    Background fondoImagenBanda = new Background(fondoBotonBanda);
+                    b.setBackground(fondoImagenBanda);
+                
                 //Añade la accion de ver la partitura al botton
                 b.setOnAction((event) -> {
                     
