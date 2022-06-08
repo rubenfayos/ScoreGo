@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -97,11 +98,15 @@ public class FXMLInformacionUsuarioController implements Initializable {
             
         if(ac.getResult() == ButtonType.OK){
             
+          Node source = (Node) event.getSource();
+          Stage stage = (Stage) source.getScene().getWindow();
+        stage.close();
+}
             ScoreGo sc = new ScoreGo();
             sc.start(new Stage());
             
         }           
-    }
+    
 
     @FXML
     private void clickBotonEditarDatos(ActionEvent event) {

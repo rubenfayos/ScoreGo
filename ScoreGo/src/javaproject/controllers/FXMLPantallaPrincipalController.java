@@ -70,10 +70,6 @@ public class FXMLPantallaPrincipalController implements Initializable {
             Background fondoImagenUsuario = new Background(fondoBotonBanda);
             imageButton.setBackground(fondoImagenUsuario);
 
-        
-        
-            
-
     }
 
     @FXML
