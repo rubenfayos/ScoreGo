@@ -93,16 +93,34 @@ public class FXMLSubirPostController implements Initializable {
        this.p.setTitulo(tituloPost.getText());
        this.p.setTexto(textoPost.getText());
        
+       if(tituloPost.getText().isEmpty()) {
+           Alert ae = new Alert(Alert.AlertType.ERROR);
+                ae.setTitle("ERROR");
+                ae.setHeaderText("Error");
+                ae.setContentText("El campo del titulo está vacío");
+                ae.showAndWait();
+       }
+       if(textoPost.getText().isEmpty()) {
+       Alert at = new Alert(Alert.AlertType.ERROR);
+                at.setTitle("ERROR");
+                at.setHeaderText("Error");
+                at.setContentText("Escriba un texto del post");
+                at.showAndWait();
+    
        
-       if(this.pm.subirPost(p, this.b, this.u) > 0){
+       }
+           else if(this.pm.subirPost(p, this.b, this.u) > 0) {
+           
            Alert ain = new Alert(Alert.AlertType.INFORMATION);
                 ain.setTitle("INFORMACIÓN");
                 ain.setHeaderText("Post subido");
                 ain.setContentText("Post subido correctamente");
                 ain.showAndWait();
+                   }
        }
+
+
         
-    }
 
     @FXML
     private void eliminarPost(ActionEvent event) {
