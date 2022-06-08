@@ -4,10 +4,8 @@
  */
 package javaproject.controllers;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -27,7 +25,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -37,7 +34,6 @@ import javaproject.clases.Usuario;
 import javaproject.model.FTPManager;
 import javaproject.model.PartituraModel;
 import javaproject.model.mp3Player;
-import javax.imageio.ImageIO;
 
 /**
  * FXML Controller class
@@ -192,13 +188,28 @@ public class FXMLVerPartituraController implements Initializable {
         
         Partitura newP = this.p;
         
-        newP.setNombre(editarTitulo.getText());
-        newP.setAutor(editarAutor.getText());
-        newP.setDescripcion(editarDescripcion.getText());
-        newP.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), p.getNombre() + ".pdf", this.u.getNombreUsuario()));
-        newP.setMp3(this.ftpManager.subirMP3(this.newMp3.getAbsolutePath(), p.getNombre() + ".mp3", this.u.getNombreUsuario()));
+        if(!editarTitulo.getText().isEmpty()){
+            newP.setNombre(editarTitulo.getText());
+            
+            //Renombra el nombre de los archivos
+            newP.setSrc(this.ftp.renamePdf(newP.getSrc(), this.u.getNombreUsuario(), newP.getNombre()));
+            newP.setMp3(this.ftp.renameMp3(newP.getMp3(), this.u.getNombreUsuario(), newP.getNombre()));
+            
+        }
         
-        if(this.pm.editarPartitura(u, newP, this.p) > 0){
+        if(!editarAutor.getText().isEmpty())       
+            newP.setAutor(editarAutor.getText());
+        if(!editarDescripcion.getText().isEmpty())
+            newP.setDescripcion(editarDescripcion.getText());
+        
+        if(this.pdf != null)
+            newP.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), newP.getNombre() + ".pdf", this.u.getNombreUsuario()));
+        
+        if(this.newMp3 != null)
+            newP.setMp3(this.ftpManager.subirMP3(this.newMp3.getAbsolutePath(), newP.getNombre() + ".mp3", this.u.getNombreUsuario()));
+        
+        
+        if(this.pm.editarPartitura(newP, this.p) > 0){
             Alert aepa = new Alert(Alert.AlertType.INFORMATION);
                 aepa.setTitle("INFORMACIÓN");
                 aepa.setHeaderText("Partitura editada");
@@ -241,6 +252,7 @@ public class FXMLVerPartituraController implements Initializable {
     
     private void fileChooserPDF(){
          
+        this.pdf = null;
         
         //Crea un file chooser para pdf
         FileChooser fileChooser = new FileChooser();
@@ -250,6 +262,8 @@ public class FXMLVerPartituraController implements Initializable {
     }
     
     private void fileChooserMP3(){
+        
+        this.mp3 = null;
         
         //Crea un file chooser para mp3
         FileChooser fileChooser = new FileChooser();

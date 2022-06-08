@@ -169,8 +169,7 @@ public class FTPManager {
             e.printStackTrace();
         }
         
-        return done;
-        
+        return done;    
     }
 
     public void makeDirectory(String dir){
@@ -192,8 +191,7 @@ public class FTPManager {
                 
         } catch (IOException e) {
             e.printStackTrace();
-        }
-        
+        }    
     }
     
     public void makeDirectoryBanda(String dir){
@@ -215,8 +213,42 @@ public class FTPManager {
                 
         } catch (IOException e) {
             e.printStackTrace();
-        }
+        }   
+    }
+    
+    public String renamePdf(String viejo, String usuario, String partitura) throws IOException{
         
+        boolean done = false;
+        
+        this.getConexion();
+        
+        String nuevaRuta = "/scoregoFiles/usuarios/" + usuario + "/partituras/pdf/" + partitura + ".pdf";
+        
+        boolean success = ftpClient.rename("/public_html/" + viejo, "/public_html" + nuevaRuta);
+        
+            if(done)
+                System.out.println("si");
+          
+         return nuevaRuta;
+            
+    }
+    
+    public String renameMp3(String viejo, String usuario, String mp3) throws IOException{
+        
+        boolean done = false;
+        
+        this.getConexion();
+        
+        String nuevaRuta = "/scoregoFiles/usuarios/" + usuario + "/partituras/mp3/" + mp3 + ".mp3";
+        
+        boolean success = ftpClient.rename("/public_html/" + viejo, "/public_html" + nuevaRuta);
+        
+            if(done)
+                System.out.println("");
+            
+        return nuevaRuta;
+            
+            
     }
     
 }
