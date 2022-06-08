@@ -73,10 +73,12 @@ public class FXMLPantallaPrincipalController implements Initializable {
         }
 
          */
+        //foto de perfil funcional
         Image img = new Image(u.getImg(), 80, 80, false, true);
         BackgroundImage fondoBotonBanda = new BackgroundImage(img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background fondoImagenUsuario = new Background(fondoBotonBanda);
         imageButton.setBackground(fondoImagenUsuario);
+        
 
     }
 
