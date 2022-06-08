@@ -72,11 +72,16 @@ public class FXMLInformacionUsuarioController implements Initializable {
         this.infoNombreUsuario1.setText(us.getFechaNacimiento().toString());
         this.infoPais.setText(us.getNacionalidad());
         
-        Image img = new Image(us.getImg());
+        if(this.us.getImg() == null){
+            us.setImg("https://scorego.ddns.net/scoregoFiles/usuarios/UserImg.jpg");
+        }
         
-        this.imagenUsuarioInfo.setImage(img);
+            Image img = new Image(us.getImg());
+
+            this.imagenUsuarioInfo.setImage(img);
         
         
+             
     }    
 
     @FXML

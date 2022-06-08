@@ -60,23 +60,19 @@ public class FXMLPantallaPrincipalController implements Initializable {
             Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /*
-        if(this.u.getImg() != null){
-            
-            Image imag = new Image(u.getImg(), 80, 80, false, true);
-            BackgroundImage imagenUsuario = new BackgroundImage( imag ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-            Background fondoImagenUsuario = new Background(imagenUsuario);
-            imageButton.setBackground(fondoImagenUsuario);
-            this.img.setImage(imag);
-            
-            
+        
+        if(this.u.getImg() == null){
+            u.setImg("https://scorego.ddns.net/scoregoFiles/usuarios/UserImg.jpg");
         }
+            
+            Image img = new Image(u.getImg(), 80, 80, false, true);
+            BackgroundImage fondoBotonBanda = new BackgroundImage(img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+            Background fondoImagenUsuario = new Background(fondoBotonBanda);
+            imageButton.setBackground(fondoImagenUsuario);
 
-         */
-        Image img = new Image(u.getImg(), 80, 80, false, true);
-        BackgroundImage fondoBotonBanda = new BackgroundImage(img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Background fondoImagenUsuario = new Background(fondoBotonBanda);
-        imageButton.setBackground(fondoImagenUsuario);
+        
+        
+            
 
     }
 
