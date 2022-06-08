@@ -93,6 +93,7 @@ public class Banda {
      * @param descripcion breve descripción de la banda
      * @param contraseña contraseña de la banda
      * @param administrador un usuario el cual administrará la banda
+     * @param img imagen de la banda
      * 
      */
     
