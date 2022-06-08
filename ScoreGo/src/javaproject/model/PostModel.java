@@ -169,13 +169,13 @@ public class PostModel extends DBUtil{
     }
     
     
-    public ObservableList<Post> listarPostUsuario(Usuario u){
+    public ObservableList<Post> listarPostUsuario(Usuario u, Banda b){
         
         ObservableList<Post> posts = FXCollections.observableArrayList();
         
         try{
             
-                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT * FROM post WHERE usuario=?");
+                PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.* FROM post p, banda b WHERE usuario=? AND p.banda=b.id;");
             
                 stmt.setInt(1, u.getId());
                 

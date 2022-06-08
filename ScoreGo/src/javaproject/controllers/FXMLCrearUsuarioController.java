@@ -106,7 +106,7 @@ public class FXMLCrearUsuarioController implements Initializable {
             //Coge los datos del usuario de los campos
             Usuario u = new Usuario(add_nombre_usuario.getText(), add_apellido_usuario.getText(), add_id_usuario.getText(), add_contraseña_usuario.getText(), add_correo_usuario.getText(), java.sql.Date.valueOf(add_date_usuario.getValue()) ,add_nacionalidad_usuario.getValue().toString());
             this.ftp.makeDirectory(u.getNombreUsuario());
-            u.setImg(this.ftp.subirIMG(this.img.getAbsolutePath(), this.img.getName(), u.getNombreUsuario()));
+            u.setImg(this.ftp.subirIMGUsuario(this.img.getAbsolutePath(), this.img.getName(), u.getNombreUsuario()));
             
             //Comprueba que la insercion SQL sea correcta
             if(this.usuarioModel.crearUsuario(u) >0){

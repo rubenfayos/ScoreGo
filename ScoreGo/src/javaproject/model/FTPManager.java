@@ -103,7 +103,7 @@ public class FTPManager {
     	
     }
     
-    public String subirIMG(String archivoLocal, String nombre, String usuario) throws IOException {
+    public String subirIMGUsuario(String archivoLocal, String nombre, String usuario) throws IOException {
         
         this.getConexion();
     	
@@ -122,7 +122,30 @@ public class FTPManager {
             System.out.println("Archivo subido");
         }
         
-        return firstRemoteFile;
+        return "https://scorego.ddns.net/scoregoFiles/usuarios/" + usuario + "/" + nombre;
+    	
+    }
+    
+    public String subirIMGBanda(String archivoLocal, String nombre, String banda) throws IOException {
+        
+        this.getConexion();
+    	
+    	//Archivo que se quiere subir en local
+        File firstLocalFile = new File(archivoLocal.toString());
+
+        //Ruta donde se subirá el archivo en el servidor
+        String firstRemoteFile = "/public_html/scoregoFiles/bandas/" + banda + "/" + nombre;
+        InputStream inputStream = new FileInputStream(firstLocalFile);
+		
+
+        System.out.println("Subiendo el archivo...");
+        boolean done = this.ftpClient.storeFile(firstRemoteFile, inputStream);
+        inputStream.close();
+        if (done) {
+            System.out.println("Archivo subido");
+        }
+        
+        return "https://scorego.ddns.net/scoregoFiles/bandas/" + banda + "/" + nombre;
     	
     }
     	
@@ -172,4 +195,28 @@ public class FTPManager {
         }
         
     }
+    
+    public void makeDirectoryBanda(String dir){
+        
+        boolean done = false;
+        
+        this.getConexion();
+        
+        try {
+            //Crea el directorio del usuario
+            done = this.ftpClient.makeDirectory("/public_html/scoregoFiles/bandas/" + dir);
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/bandas/" + dir + "/partituras");
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/bandas/" + dir + "/partituras/pdf");
+            this.ftpClient.makeDirectory("/public_html/scoregoFiles/bandas/" + dir + "/partituras/mp3");
+
+            if(done){
+                System.out.println("Carpeta del usuario creada.");
+            }
+                
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+    }
+    
 }

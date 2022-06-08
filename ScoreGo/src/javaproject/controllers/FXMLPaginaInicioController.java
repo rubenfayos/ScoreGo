@@ -121,10 +121,14 @@ public class FXMLPaginaInicioController implements Initializable {
             Pane pa= new Pane();
             Button b = new Button();
             b.setPrefSize(200, 200);
+            
             //seleciona el fondo de los botones
-            //BackgroundImage fondoBotonBanda = new BackgroundImage( new Image("https://imagenes.elpais.com/resizer/GCZ-g8TivYpeM5dCIbrlC5d6I2I=/1200x0/cloudfront-eu-central-1.images.arcpublishing.com/prisa/5OZUGSTV3ZFRTFVRZSTYIOGDZY.jpg", 190, 190, true, true) ,BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-            //Background fondoImagenBanda = new Background(fondoBotonBanda);
-            //b.setBackground(fondoImagenBanda);
+            if(!bandas.get(x).getImg().isEmpty()){
+                    Image img = new Image(bandas.get(x).getImg(), 200, 200, false, true);
+                    BackgroundImage fondoBotonBanda = new BackgroundImage( img, BackgroundRepeat.SPACE, BackgroundRepeat.SPACE, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+                    Background fondoImagenBanda = new Background(fondoBotonBanda);
+                    b.setBackground(fondoImagenBanda);
+            }
 
             //Coge el id de la banda
             b.setId(Integer.toString(bandas.get(x).getId()));

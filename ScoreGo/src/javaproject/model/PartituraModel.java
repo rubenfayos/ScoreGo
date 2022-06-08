@@ -231,7 +231,7 @@ public class PartituraModel extends DBUtil{
             try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM partitura p, usuario u, usuario_partitura up WHERE up.usuario=u.id AND p.id=up.partitura AND p.id = ?;");
+            PreparedStatement stmt = this.getConexion().prepareStatement("SELECT p.*, u.nombreUsuario FROM partitura p, usuario u WHERE p.id = ? AND p.usuario = u.id;");
             
             stmt.setInt(1, id);
             

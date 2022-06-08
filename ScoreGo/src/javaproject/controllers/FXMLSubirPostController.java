@@ -76,7 +76,7 @@ public class FXMLSubirPostController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<Post> posts = this.pm.listarPostUsuario(this.u);
+        ObservableList<Post> posts = this.pm.listarPostUsuario(this.u, this.b);
         
         this.tituloColumn.setCellValueFactory(new PropertyValueFactory("titulo"));
         this.fechaColumn.setCellValueFactory(new PropertyValueFactory("fechaPublicacion"));

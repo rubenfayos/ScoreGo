@@ -106,8 +106,10 @@ public class FXMLcrearNuevaBandaController implements Initializable {
             b.setNombre(crearNombreDeBanda.getText());
             b.setContraseña(contraseñaBanda.getText());
             b.setDescripcion(crearDescripcionDeBanda.getText());
-            //b.setImg(this.ftp.subirIMG(this.img.getAbsolutePath(), this.img.getName()));
             b.setAdministrador(this.u);
+            this.ftp.makeDirectoryBanda(b.getNombre());
+            
+            b.setImg(this.ftp.subirIMGBanda(this.img.getAbsolutePath(), this.img.getName(), b.getNombre()));
         
             if(this.bm.crearBanda(b) > 0){
             
