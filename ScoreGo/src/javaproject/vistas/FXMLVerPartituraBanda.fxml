@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="verPartituraBandaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="649.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLVerPartituraBandaController">
+<AnchorPane fx:id="verPartituraBandaPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaproject.controllers.FXMLVerPartituraBandaController">
    <children>
       <AnchorPane fx:id="anchorPaneBandasPost" prefHeight="102.0" prefWidth="1100.0">
          <children>
@@ -32,18 +32,19 @@
             </Label>
          </children>
       </AnchorPane>
-      <ImageView fx:id="partituraVista" fitHeight="500.0" fitWidth="1000.0" layoutX="27.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="partituraVista" fitHeight="388.0" fitWidth="943.0" layoutX="27.0" layoutY="123.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="descripcionPartitura" layoutX="27.0" layoutY="568.0" prefHeight="19.0" prefWidth="693.0" text="Descripcion breve de la partitura">
          <font>
             <Font size="13.0" />
          </font>
       </Label>
-      <Button layoutX="844.0" layoutY="565.0" mnemonicParsing="false" onAction="#reproducirMp3" style="-fx-background-color: lightblue;" text="Reproducir audio" />
-      <Button layoutX="968.0" layoutY="565.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.78" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" />
-      <Button layoutX="751.0" layoutY="565.0" mnemonicParsing="false" onAction="#descargar" style="-fx-background-color: #36d8ad;" text="Descargar">
+      <Button layoutX="860.0" layoutY="515.0" mnemonicParsing="false" onAction="#reproducirMp3" style="-fx-background-color: lightblue;" text="Reproducir audio" />
+      <Button layoutX="985.0" layoutY="515.0" mnemonicParsing="false" onAction="#eliminar" opacity="0.78" style="-fx-background-color: red;" text="Eliminar" textFill="WHITE" />
+      <Button layoutX="771.0" layoutY="515.0" mnemonicParsing="false" onAction="#descargar" style="-fx-background-color: #36d8ad;" text="Descargar">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <AnchorPane fx:id="mp3AP" layoutX="774.0" layoutY="430.0" prefHeight="65.0" prefWidth="281.0" />
    </children>
 </AnchorPane>

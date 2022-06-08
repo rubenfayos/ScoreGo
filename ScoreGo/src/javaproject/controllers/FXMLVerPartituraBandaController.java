@@ -4,11 +4,15 @@
  */
 package javaproject.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -50,6 +54,8 @@ public class FXMLVerPartituraBandaController implements Initializable {
      */
     private mp3Player mp3;
     private Partitura p;
+    @FXML
+    private AnchorPane mp3AP;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO 
@@ -58,7 +64,14 @@ public class FXMLVerPartituraBandaController implements Initializable {
 
     @FXML
     private void reproducirMp3(ActionEvent event) {
-        this.mp3.reproductor("https://www.youtube.com/watch?v=2EVTAzDPlQQ");
+        try {
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
+            this.mp3AP.getChildren().setAll(pane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLPantallaPrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }
     public void alert() {
     
@@ -67,18 +80,18 @@ public class FXMLVerPartituraBandaController implements Initializable {
     @FXML
     private void eliminar(ActionEvent event) {
         //alerta de confirmación para eliminar una partitura dentro de una banda
-        Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
-        ac.setTitle("Eliminar partitura");
-        ac.setHeaderText("Eliminar partitura");
-        ac.setContentText("¿Seguro que deseas eliminar la partitura?");
-        Optional<ButtonType> result = ac.showAndWait();
-        ac.show();
+        Alert acp = new Alert(Alert.AlertType.CONFIRMATION);
+        acp.setTitle("Eliminar partitura");
+        acp.setHeaderText("Eliminar partitura");
+        acp.setContentText("¿Seguro que deseas eliminar la partitura?");
+        Optional<ButtonType> result = acp.showAndWait();
+        acp.show();
         if (result.get() == ButtonType.OK) {
            //falta el codigo de eliminación para que esto funcione, de momento la alerta solo se cerrará
-           ac.close();
+           acp.close();
         }
         else {
-            ac.close();
+            acp.close();
         } 
     }
 
