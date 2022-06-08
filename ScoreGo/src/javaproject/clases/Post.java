@@ -10,6 +10,7 @@ import javaproject.clases.Usuario;
  */
 public class Post {
     
+    //atributos
     private int id;
     private Usuario usuario;
     private Banda banda;

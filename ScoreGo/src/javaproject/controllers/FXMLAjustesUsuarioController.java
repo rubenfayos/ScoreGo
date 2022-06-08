@@ -82,12 +82,12 @@ public class FXMLAjustesUsuarioController implements Initializable {
     @FXML
     private void modificarUsuario(ActionEvent event) {
 
-        //Alerta confirmación creación usuario
+        //Alerta confirmación modificacion usuario
         Alert ac = new Alert(Alert.AlertType.INFORMATION);
         ac.setTitle("INFORMATION DIALOG");
         ac.setHeaderText("Modificación usuario");
         ac.setContentText("El usuario ha sido modificado correctamente");
-
+        //Alerta error en modificacion del usuario
         Alert ai = new Alert(Alert.AlertType.ERROR);
         ai.setTitle("INFORMATION DIALOG");
         ai.setHeaderText("Error");
@@ -130,19 +130,22 @@ public class FXMLAjustesUsuarioController implements Initializable {
     }
 
     @FXML
+    //Método para eliminar el usuario
     private void EliminarUsuario(ActionEvent event) throws IOException {
-
+        
+        //Alerta confirmación de eliminación usuario
         Alert ac = new Alert(Alert.AlertType.CONFIRMATION);
         ac.setTitle("Eliminar usuario");
         ac.setHeaderText("¿Desea eliminar definitivamente el usuario?");
         ac.setContentText("Esta accion es irreversible");
-
+        
+        //Alerta error en eliminación usuario
         Alert ai = new Alert(Alert.AlertType.ERROR);
         ai.setTitle("Error");
         ai.setHeaderText("Error");
         ai.setContentText("La contraseña o es incorrecta");
 
-        //Alerta confirmación creación usuario
+        //Alerta confirmación eliminación usuario
         Alert ae = new Alert(Alert.AlertType.INFORMATION);
         ae.setTitle("Usuario aliminado");
         ae.setHeaderText("Eliminación usuario");
@@ -166,7 +169,7 @@ public class FXMLAjustesUsuarioController implements Initializable {
         if (ac.getResult() == ButtonType.OK) {
             if (this.usuarioModel.eliminarUsuario(this.usuario) > 0) {
                 ae.showAndWait();
-                //se devuelve al usuario a la pantalla de inicio tras eliminar al usuario 
+                //Se devuelve al usuario a la pantalla de inicio tras eliminar al usuario 
                 try {
                     AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLPantallaInicio.fxml"));
                     this.AjustesUsuario.getChildren().setAll(pane);
@@ -178,7 +181,7 @@ public class FXMLAjustesUsuarioController implements Initializable {
             }
         }
     }
-    //creamos un efecto de brillo
+    //Creamos un efecto de brillo
     Glow glow = new Glow();
     
 
@@ -187,18 +190,18 @@ public class FXMLAjustesUsuarioController implements Initializable {
    
     //Aplicar un efecto de brillo al boton
     private void modificarDatosUsuarioHover(MouseEvent event) {
-        //effecto mientras el raton esté dentro del boton "modificar"
+        //Efecto mientras el raton esté dentro del boton "modificar"
         modificarBoton.setEffect(glow);
     }
 
     @FXML
     private void modificarDatosUsuarioExit(MouseEvent event) {
-        //se anula el efecto al sacar el raton del área del boton
+        //Se anula el efecto al sacar el raton del área del boton
         modificarBoton.setEffect(null);
     }
 
     @FXML
-    //aplicar un efecto de sombra al boton
+    //Aplicar un efecto de brillo al boton
     private void eliminarMouseExited(MouseEvent event) {
         //se anula el efecto al sacar el raton del área del boton
         EliminarButton.setEffect(null);
@@ -207,7 +210,7 @@ public class FXMLAjustesUsuarioController implements Initializable {
     @FXML
      
     private void eliminarMouseEntered(MouseEvent event) {
-        //efecto mientras el raton esté dentro del boton "eliminar"
+        //Efecto mientras el raton esté dentro del boton "eliminar"
         EliminarButton.setEffect(glow);
     }
 }

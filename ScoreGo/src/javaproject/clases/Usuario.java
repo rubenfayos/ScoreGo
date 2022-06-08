@@ -124,6 +124,7 @@ public class Usuario{
     public Usuario(){
         
     }
+    //Contructor
     
     public Usuario(String nombre, String apellidos, String nombreUsuario, String contraseña, String correo, java.sql.Date fechaNacimiento, String nacionalidad){
         this.nombre=nombre;
