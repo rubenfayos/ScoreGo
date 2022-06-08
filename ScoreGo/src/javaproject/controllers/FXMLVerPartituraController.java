@@ -27,6 +27,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.media.Media;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -46,11 +47,12 @@ import javax.imageio.ImageIO;
 public class FXMLVerPartituraController implements Initializable {
     
     private FTPManager ftp = new FTPManager();
-    private mp3Player mp3;
+    private mp3Player mp3 = new mp3Player();
     private Partitura p = new Partitura();
     private PartituraModel pm = new PartituraModel();
     private Singleton s = Singleton.getInstance();
     private Usuario u = s.us;
+    private FTPManager ftpManager = new FTPManager();
     File pdf;
     File newMp3;
 
@@ -94,6 +96,7 @@ public class FXMLVerPartituraController implements Initializable {
         
        //coge la partitura
        this.p = pm.buscarPartitura(this.s.p.getId());
+       this.s.p = p;
         
         if(this.u.getId() == this.p.getUsuario().getId()){
             editarButton.setVisible(true);
@@ -119,7 +122,6 @@ public class FXMLVerPartituraController implements Initializable {
     @FXML
     private void reproducirMp3(ActionEvent event) {
         
-        //this.mp3.reproductor("https://www.youtube.com/watch?v=2EVTAzDPlQQ");
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
             this.mp3AP.getChildren().setAll(pane);
@@ -178,14 +180,15 @@ public class FXMLVerPartituraController implements Initializable {
     
 
     @FXML
-    private void editar(ActionEvent event) {
+    private void editar(ActionEvent event) throws IOException {
         
         Partitura newP = this.p;
+        
         newP.setNombre(editarTitulo.getText());
         newP.setAutor(editarAutor.getText());
         newP.setDescripcion(editarDescripcion.getText());
-        //newP.setSrc(this.);
-        //newP.setMp3(mp3);
+        newP.setSrc(this.ftpManager.subirPDF(this.pdf.getAbsolutePath(), p.getNombre() + ".pdf", this.u.getNombreUsuario()));
+        newP.setMp3(this.ftpManager.subirMP3(this.newMp3.getAbsolutePath(), p.getNombre() + ".mp3", this.u.getNombreUsuario()));
         
         if(this.pm.editarPartitura(u, newP, this.p) > 0){
             Alert aepa = new Alert(Alert.AlertType.INFORMATION);

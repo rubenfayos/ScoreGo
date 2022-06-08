@@ -4,23 +4,18 @@
  */
 package javaproject.model;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.GridPane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
+import javaproject.clases.Partitura;
+import javaproject.clases.Singleton;
 
 /**
  *
@@ -29,9 +24,10 @@ import javafx.stage.Stage;
 public class mp3Player implements Initializable {
     
     private URL resource;
-    private String st;
     
-  
+    private Singleton s = Singleton.getInstance();
+    private Partitura p = s.p;
+    
     @FXML
     private Button detenerButton;
     @FXML
@@ -45,10 +41,10 @@ public class mp3Player implements Initializable {
                     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           
-        Media media = new Media("https://www.youtube.com/watch?v=5ngWIDkPP3o");
-            
-        this.mp = new MediaPlayer(media);
+        
+        Media md = new Media("https://scorego.ddns.net" + this.p.getMp3());
+        
+        this.mp = new MediaPlayer(md);
         
     }
     
@@ -74,22 +70,11 @@ public class mp3Player implements Initializable {
     private void handleDetenerButton(ActionEvent event) {
         this.mp.stop();
     }
-    
-    public void reproductor(String url){
-        
-        this.st = url;
-            
-               
-    }
 
     public mp3Player() {
     }
-    
-    
-    
-    
-        
-		
+
+    		
 }
 	
         

@@ -125,7 +125,7 @@ public class PartituraModel extends DBUtil{
         try{
             
             //Hacemos update con los nuevos datos del usuario sobre el id del usuario
-            String sql = "UPDATE partitura SET titulo=?, autor=?, descripcion=? src=?, mp3=? WHERE id=?";
+            String sql = "UPDATE partitura SET titulo=?, autor=?, descripcion=? src=?, mp3=?, descripcion=? WHERE id=?";
             PreparedStatement stmt = this.getConexion().prepareStatement(sql);
             
             stmt.setString(1, newPartitura.getNombre());
@@ -133,7 +133,9 @@ public class PartituraModel extends DBUtil{
             stmt.setString(3, newPartitura.getDescripcion());
             stmt.setString(4, newPartitura.getSrc());
             stmt.setString(5, newPartitura.getMp3());
-            stmt.setInt(6, oldPartitura.getId()); 
+            stmt.setString(6, newPartitura.getDescripcion());
+            stmt.setInt(7, oldPartitura.getId()); 
+            
             
             i=stmt.executeUpdate();
             
