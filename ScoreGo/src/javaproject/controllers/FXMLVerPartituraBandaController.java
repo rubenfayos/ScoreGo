@@ -64,6 +64,7 @@ public class FXMLVerPartituraBandaController implements Initializable {
 
     @FXML
     private void reproducirMp3(ActionEvent event) {
+        //muestra el panel con el reproductor mp3
         try {
             AnchorPane pane = FXMLLoader.load(getClass().getResource("/javaproject/vistas/FXMLBotonReproducir.fxml"));
             this.mp3AP.getChildren().setAll(pane);
@@ -97,6 +98,7 @@ public class FXMLVerPartituraBandaController implements Initializable {
 
     @FXML
     private void descargar(ActionEvent event) {
+        
     }
     
 }
