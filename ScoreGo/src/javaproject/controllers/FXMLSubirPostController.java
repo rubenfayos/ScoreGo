@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -86,29 +87,57 @@ public class FXMLSubirPostController implements Initializable {
 
     @FXML
     private void SubirPost(ActionEvent event) {
-     
-
-       this.p = new Post();
         
        this.p.setTitulo(tituloPost.getText());
        this.p.setTexto(textoPost.getText());
        
+       if(tituloPost.getText().isEmpty()) {
+           Alert ae = new Alert(Alert.AlertType.ERROR);
+                ae.setTitle("ERROR");
+                ae.setHeaderText("Error");
+                ae.setContentText("El campo del titulo está vacío");
+                ae.showAndWait();
+       }
+       if(textoPost.getText().isEmpty()) {
+       Alert at = new Alert(Alert.AlertType.ERROR);
+                at.setTitle("ERROR");
+                at.setHeaderText("Error");
+                at.setContentText("Escriba un texto del post");
+                at.showAndWait();
+    
        
-       if(this.pm.subirPost(p, this.b, this.u) > 0){
+       }
+           else if(this.pm.subirPost(p, this.b, this.u) > 0) {
+           
            Alert ain = new Alert(Alert.AlertType.INFORMATION);
                 ain.setTitle("INFORMACIÓN");
                 ain.setHeaderText("Post subido");
                 ain.setContentText("Post subido correctamente");
                 ain.showAndWait();
+                this.p = new Post();
+                   }
        }
+
+
         
-    }
 
     @FXML
     private void eliminarPost(ActionEvent event) {
-
+        
+        
+        Alert ace = new Alert(Alert.AlertType.CONFIRMATION);
+            ace.setTitle("CONFIRMATION");
+            ace.setHeaderText("Confirmar eliminación de post");
+            ace.setContentText("¿Desea eliminar el post?");
+            ace.showAndWait();
+            if(ace.getResult() == ButtonType.OK){
+              Alert aip = new Alert(Alert.AlertType.INFORMATION);
+                aip.setTitle("INFORMACIÓN");
+                aip.setHeaderText("Post eliminado");
+                aip.setContentText("El post ha sido eliminado correctamente");
+                aip.showAndWait();
         this.pm.eliminarPost(this.p);
-    
+            }
     }
 
     @FXML
@@ -149,7 +178,11 @@ public class FXMLSubirPostController implements Initializable {
         nuevoPost.setTexto(nuevoTextoPost.getText());
         
         if(this.pm.editarPost(nuevoPost, this.p) > 0){
-            
+            Alert aep = new Alert(Alert.AlertType.INFORMATION);
+                aep.setTitle("INFORMACIÓN");
+                aep.setHeaderText("Post editado");
+                aep.setContentText("Post editado correctamente");
+                aep.showAndWait();
         }   
         
         
